@@ -1,0 +1,114 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model Lead {
+  id            String         @id @default(uuid())
+  reference     String         @unique
+  firstName     String
+  lastName      String
+  email         String
+  phone         String
+  nationality   String
+  language      String         @default("en")
+  location      String
+  plotOwned     String         @default("no")
+  status        String         @default("En revisión")
+  plansFileUrl  String?
+  plansFileName String?
+  createdAt     DateTime       @default(now())
+  updatedAt     DateTime       @updatedAt
+
+  project       Project?
+  estimate      Estimate?
+  approval      Approval?
+  delivery      EmailDelivery?
+}
+
+model Project {
+  id              String   @id @default(uuid())
+  leadId          String   @unique
+  lead            Lead     @relation(fields: [leadId], references: [id], onDelete: Cascade)
+  builtAreaM2     Float
+  floors          Int      @default(1)
+  bedrooms        Int      @default(2)
+  bathrooms       Int      @default(2)
+  quality         String   @default("Media")
+  climateSystem   String   @default("Aerotermia + suelo radiante")
+  domotics        Boolean  @default(false)
+  pool            String   @default("Sin piscina")
+  parkingSpaces   Int      @default(0)
+  gardenM2        Float    @default(0)
+  projectLicences Boolean  @default(false)
+}
+
+model Estimate {
+  id                    String             @id @default(uuid())
+  leadId                String             @unique
+  lead                  Lead               @relation(fields: [leadId], references: [id], onDelete: Cascade)
+  pricingVersion        String             @default("1.0")
+  centralTotal          Float
+  lowEstimate           Float
+  highEstimate          Float
+  appliedMargin         Float              @default(0.30)
+  projectLicencesAmount Float              @default(0)
+  createdAt             DateTime           @default(now())
+
+  lineItems             EstimateLineItem[]
+}
+
+model EstimateLineItem {
+  id          String   @id @default(uuid())
+  estimateId  String
+  estimate    Estimate @relation(fields: [estimateId], references: [id], onDelete: Cascade)
+  key         String
+  name        String
+  quantity    Float
+  unit        String
+  unitPrice   Float
+  total       Float
+  orderIndex  Int      @default(0)
+}
+
+model Approval {
+  id        String   @id @default(uuid())
+  leadId    String   @unique
+  lead      Lead     @relation(fields: [leadId], references: [id], onDelete: Cascade)
+  decision  String   // Aprobado / Rechazado
+  decidedBy String   @default("Propietario")
+  notes     String?
+  decidedAt DateTime @default(now())
+}
+
+model EmailDelivery {
+  id           String    @id @default(uuid())
+  leadId       String    @unique
+  lead         Lead      @relation(fields: [leadId], references: [id], onDelete: Cascade)
+  recipient    String
+  scheduledFor DateTime
+  sentAt       DateTime?
+  status       String    @default("Programado") // Programado / Enviado / Error
+  attempts     Int       @default(0)
+  errorMessage String?
+  createdAt    DateTime  @default(now())
+}
+
+model PricingConfiguration {
+  id                     String   @id @default(uuid())
+  version                String   @unique @default("1.0")
+  isActive               Boolean  @default(true)
+  marginRate             Float    @default(0.30)
+  contingencyRate        Float    @default(0.05)
+  projectLicencesRate    Float    @default(0.10)
+  deliveryMinDelayHours  Int      @default(12)
+  deliveryWindowStartHour Int     @default(10)
+  deliveryWindowEndHour  Int      @default(14)
+  timezone               String   @default("Europe/Madrid")
+  itemsJson              String
+  updatedAt              DateTime @updatedAt
+}
