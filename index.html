@@ -307,8 +307,8 @@
                 <div class="form-group">
                     <label id="lbl-q-quality">Quality Level</label>
                     <select id="quick-quality">
-                        <option value="Media">Medium Quality</option>
                         <option value="Básica">Basic Quality</option>
+                        <option value="Media">Medium Quality</option>
                         <option value="Alta">High Quality</option>
                     </select>
                 </div>
@@ -350,7 +350,7 @@
                     <label id="lbl-d-escaleras">Internal Staircases</label>
                     <input type="number" id="det-stairs" value="1" min="0">
                 </div>
-                <button class="btn" onclick="nextStep(2)" id="btn-next-1">Next Step</button>
+                <button class="btn" onclick="nextStep(2)" id="btn-next-1" data-i18n="btn-next">Next Step</button>
             </div>
 
             <!-- PASO 2 -->
@@ -373,9 +373,9 @@
                     </select>
                 </div>
                 <div class="step-buttons">
-                    <button class="btn btn-secondary" onclick="nextStep(1)" id="btn-back-2">Back</button>
-                    <button class="btn" onclick="nextStep(3)" id="btn-next-2">Next Step</button>
-                </div>
+    <button class="btn btn-secondary" onclick="nextStep(1)" id="btn-back-2" data-i18n="btn-back">Back</button>
+    <button class="btn" onclick="nextStep(3)" id="btn-next-2" data-i18n="btn-next">Next Step</button>
+</div>
             </div>
 
             <!-- PASO 3 -->
@@ -421,9 +421,10 @@
                     </select>
                 </div>
                 <div class="step-buttons">
-                    <button class="btn btn-secondary" onclick="nextStep(2)" id="btn-back-3">Back</button>
-                    <button class="btn" onclick="nextStep(4)" id="btn-next-3">Next Step</button>
-                </div>
+    <button class="btn btn-secondary" onclick="nextStep(2)" id="btn-back-3" data-i18n="btn-back">Back</button>
+    <button class="btn" onclick="nextStep(4)" id="btn-next-3" data-i18n="btn-next">Next Step</button>
+</div>
+
             </div>
 
             <!-- PASO 4 -->
@@ -442,9 +443,10 @@
                     <input type="text" id="det-phone" placeholder="Ej. +34 600 000 000">
                 </div>
                 <div class="step-buttons">
-                    <button class="btn btn-secondary" onclick="nextStep(3)" id="btn-back-4">Back</button>
-                    <button class="btn" onclick="submitDetailedForm()" id="btn-submit">Request Itemized Study & PDF Report</button>
-                </div>
+    <button class="btn btn-secondary" onclick="nextStep(3)" id="btn-back-4" data-i18n="btn-back">Back</button>
+    <button class="btn" onclick="submitDetailedForm()" id="btn-submit" data-i18n="btn-submit">Request Itemized Study & PDF Report</button>
+</div>
+
             </div>
 
             <!-- CUADRO DE RESULTADO DETALLADO -->
@@ -611,12 +613,17 @@
             document.getElementById("lbl-d-m2").innerText = i18n[l].lbl_d_m2;
             document.getElementById("lbl-d-plants").innerText = i18n[l].lbl_d_plants;
             document.getElementById("lbl-d-escaleras").innerText = i18n[l].lbl_d_escaleras;
+document.querySelectorAll(".btn-next").forEach(btn => {
+    btn.innerText = i18n[l].btn_next;
+});
             
             document.getElementById("txt-s2-title").innerText = i18n[l].s2_title;
             document.getElementById("lbl-d-habs").innerText = i18n[l].lbl_d_habs;
             document.getElementById("lbl-d-banyos").innerText = i18n[l].lbl_d_banyos;
             document.getElementById("lbl-d-qual-sel").innerText = i18n[l].lbl_d_qual_sel;
-            
+            document.querySelectorAll(".btn-back").forEach(btn => {
+    btn.innerText = i18n[l].btn_back;
+});
             document.getElementById("txt-s3-title").innerText = i18n[l].s3_title;
             document.getElementById("lbl-d-clima").innerText = i18n[l].lbl_d_clima;
             document.getElementById("lbl-d-pool-sel").innerText = i18n[l].lbl_d_pool_sel;
