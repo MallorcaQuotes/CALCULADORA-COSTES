@@ -795,7 +795,279 @@
         const savedLang = localStorage.getItem('mallorcaquotes-lang') || 'en';
         changeLanguage(savedLang);
     });
+        <script>
+    // 1. Control de Navegación entre Pasos
+    function nextStep(stepNumber) {
+        document.querySelectorAll('.step-container').forEach(step => {
+            step.style.display = 'none';
+        });
+        const targetStep = document.getElementById(`step-${stepNumber}`);
+        if (targetStep) {
+            targetStep.style.display = 'block';
+        }
+    }
+
+    // 2. Motor de Cálculo Fiel a las Matrices Originales del Excel
+    function runExcelMathEngine(m2, floors, bedrooms, bathrooms, quality, hvac, pool, gardenM2, parkingSpaces, includeFees) {
+        const matrix = {
+            excavation: 80,
+            structure: 625,
+            cubierta: quality === 'basic' ? 150 : (quality === 'medium' ? 180 : 210),
+            fachada: quality === 'basic' ? 150 : (quality === 'medium' ? 180 : 230),
+            tabiqueria: quality === 'basic' ? 56.25 : (quality === 'medium' ? 84 : 103.5),
+            acabados: quality === 'basic' ? 87.5 : (quality === 'medium' ? 110 : 125),
+            suelos: quality === 'basic' ? 70 : (quality === 'medium' ? 110 : 160),
+            electricidad: quality === 'basic' ? 93.75 : (quality === 'medium' ? 108 : 138),
+            fontaneria: quality === 'basic' ? 70 : (quality === 'medium' ? 90 : 120),
+            ventana: quality === 'basic' ? 600 : (quality === 'medium' ? 1000 : 1500),
+            cristalera: quality === 'basic' ? 5000 : (quality === 'medium' ? 8000 : 12500),
+            puerta_int: quality === 'basic' ? 400 : (quality === 'medium' ? 600 : 1000),
+            puerta_prin: quality === 'basic' ? 1500 : (quality === 'medium' ? 3600 : 5750),
+            banos: quality === 'basic' ? 3500 : (quality === 'medium' ? 6000 : 9000),
+            cocina: quality === 'basic' ? 8000 : (quality === 'medium' ? 15000 : 25000),
+            hvac_factor: hvac === 'convencional' ? 100 : (hvac === 'aerotermia' ? 150 : 250),
+            domotica_factor: 10000,
+            piscina_factor: quality === 'basic' ? 1250 : (quality === 'medium' ? 1750 : 2200),
+            jardin_factor: quality === 'basic' ? 125 : (quality === 'medium' ? 180 : 230),
+            parking_factor: quality === 'basic' ? 5000 : (quality === 'medium' ? 7200 : 9200),
+            escalera_factor: quality === 'basic' ? 5000 : (quality === 'medium' ? 8000 : 15000)
+        };
+
+        let baseCost = 0;
+        baseCost += m2 * matrix.excavation; 
+        baseCost += m2 * matrix.structure;  
+        baseCost += m2 * matrix.cubierta;   
+        
+        let desarrolladoFachada = 214.66252583997982 * (m2 / 160);
+        baseCost += desarrolladoFachada * matrix.fachada;
+
+        baseCost += 400 * (m2 / 160) * matrix.tabiqueria;    
+        baseCost += 560 * (m2 / 160) * matrix.acabados;     
+        baseCost += m2 * matrix.suelos;                      
+        baseCost += m2 * matrix.electricidad;                
+        baseCost += m2 * matrix.fontaneria;                  
+        
+        baseCost += 11.2 * (m2 / 160) * matrix.ventana;      
+        baseCost += 1 * matrix.cristalera;                   
+        baseCost += 9 * (m2 / 160) * matrix.puerta_int;      
+        baseCost += 1 * matrix.puerta_prin;                  
+        
+        baseCost += bathrooms * matrix.banos;                
+        baseCost += 1 * matrix.cocina;                       
+        baseCost += m2 * matrix.hvac_factor;                 
+        
+        let tieneDomotica = document.getElementById('smart-home')?.value || 'no';
+        if (tieneDomotica === 'yes') baseCost += 1 * matrix.domotica_factor;
+
+        let poolSelection = document.getElementById('pool-size')?.value || 'none';
+        let m2Piscina = poolSelection === 'small' ? 10 : (poolSelection === 'medium' ? 15 : (poolSelection === 'large' ? 20 : 0));
+        baseCost += m2Piscina * matrix.piscina_factor;
+
+        baseCost += gardenM2 * matrix.jardin_factor;         
+        baseCost += parkingSpaces * matrix.parking_factor;   
+        
+        if (floors > 1) baseCost += (floors - 1) * matrix.escalera_factor; 
+
+        const imprevistos = baseCost * 0.05;                        
+        const costeConImprevistos = baseCost + imprevistos;
+        const beneficioContrata = costeConImprevistos * 0.30;       
+        
+        let totalConstruccion = costeConImprevistos + beneficioContrata; 
+
+        if (includeFees === 'yes') totalConstruccion += totalConstruccion * 0.10;
+
+        return totalConstruccion;
+    }
+    // 3. Renderización en Tiempo Real de la Calculadora Rápida
+    function calculateQuickEstimate() {
+        const m2 = parseFloat(document.getElementById('quick-m2').value) || 160;
+        const quality = document.getElementById('quick-quality').value;
+        const hasPool = document.getElementById('quick-pool').value;
+        const poolSelection = hasPool === 'yes' ? 'large' : 'none';
+        
+        const centralTotal = runExcelMathEngine(m2, 2, 3, 3, quality, 'aerotermia', poolSelection, 100, 0, 'no');
+        
+        const rangeMin = Math.round(centralTotal * 0.95);
+        const rangeMax = Math.round(centralTotal * 1.05);
+
+        document.getElementById('quick-price-range').innerText = 
+            `€${rangeMin.toLocaleString()} - €${rangeMax.toLocaleString()}`;
+    }
+
+    // 4. Gestión Invisible y Envío Paramétrico hacia Formspree (Paso 4)
+    function handleFormSubmit(event) {
+        event.preventDefault();
+
+        // Mapeo automático de los campos del Excel hacia las variables de envío
+        document.getElementById('hidden-m2').value = document.getElementById('total-m2').value;
+        document.getElementById('hidden-floors').value = document.getElementById('num-floors').value;
+        document.getElementById('hidden-bedrooms').value = document.getElementById('num-bedrooms').value;
+        document.getElementById('hidden-bathrooms').value = document.getElementById('num-bathrooms').value;
+        document.getElementById('hidden-quality').value = document.getElementById('quality-level').value;
+        document.getElementById('hidden-hvac').value = document.getElementById('hvac-system').value;
+        document.getElementById('hidden-pool').value = document.getElementById('pool-size').value;
+        document.getElementById('hidden-garden').value = document.getElementById('garden-m2').value;
+        document.getElementById('hidden-fees').value = document.getElementById('include-fees').value;
+
+        const form = event.target;
+        const formData = new FormData(form);
+
+        const prefix = document.getElementById('phone-prefix').value;
+        const phoneInput = document.getElementById('det-phone').value;
+        formData.set('phone_number', `${prefix} ${phoneInput}`);
+
+        fetch(form.action, {
+            method: form.method,
+            body: formData,
+            headers: { 'Accept': 'application/json' }
+        }).then(response => {
+            if (response.ok) {
+                document.getElementById('step-4').style.display = 'none';
+                document.getElementById('detailed-result').style.display = 'block';
+            } else {
+                alert('Submission error. Please check your Formspree ID.');
+            }
+        }).catch(error => {
+            alert('Network error. Please try again.');
+        });
+    }
+    // ==========================================
+    // 5. DICCIONARIO INTERNACIONAL COMPACTADO
+    // ==========================================
+    const dictionary = {
+        en: {
+            "nav-calc": "Calculator", "nav-blog": "Blog", "nav-contact": "Contact",
+            "main-title": "Know the cost before you build",
+            "main-subtitle": "Get an indicative cost estimate for building your home in Mallorca.",
+            "quick-title": "1. Quick Calculator (No Registration)",
+            "lbl-quick-m2": "Built-up Area (m²)", "lbl-quality": "Quality Level",
+            "q-basic": "Basic Quality", "q-medium": "Medium Quality", "q-high": "High Quality",
+            "lbl-quick-pool": "Swimming Pool?", "pool-yes": "Yes (Large Pool)", "pool-none": "No Pool",
+            "quick-res-title": "Estimated Construction Cost",
+            "quick-disclaimer": "*An uncertainty range of ±5% is applied around the estimate.",
+            "go-detailed": "Want a more detailed estimate? Go to Detailed Calculator below",
+            "detailed-title": "2. Detailed Estimate by Items",
+            "step1-title": "Step 1 of 4: Property Structure", "lbl-det-m2": "Total Built-up m²",
+            "lbl-floors": "Number of Floors", "lbl-stairs": "Internal Staircases",
+            "step2-title": "Step 2 of 4: Layout & Qualities", "lbl-bedrooms": "Number of Bedrooms", "lbl-bathrooms": "Number of Bathrooms",
+            "step3-title": "Step 3 of 4: Facilities & Exteriors", "lbl-hvac": "Climate / HVAC System",
+            "hvac-aero": "Aerotermia", "hvac-conv": "Convencional", "hvac-both": "Aerotermia + Suelo Radiante",
+            "lbl-pool": "Swimming Pool Size", "pool-large": "Large Pool (20 m² sheet)", "pool-medium": "Medium Pool (15 m² sheet)",
+            "pool-small": "Small Pool (10 m² sheet)", "lbl-domotics": "Smart Home / Domotics?", "dom-no": "No", "dom-yes": "Sí",
+            "lbl-garden": "Exterior / Garden m²", "lbl-parking": "Outdoor Parking Spaces",
+            "lbl-fees": "Include Project Fees? (10% Extra)", "fees-no": "No", "fees-yes": "Sí",
+            "btn-back": "Back", "btn-next": "Next Step", "btn-submit": "Request Itemized Budget",
+            "txt-s4-title": "Step 4 of 4: Custom Budget Request", "step4-subtitle": "Please confirm your details.",
+            "lbl-f-name": "Contact Name", "lbl-f-email": "Email Address", "lbl-f-phone": "Phone Number",
+            "txt-d-res-title": "Estimated Construction Cost", "txt-d-success": "Request successfully received!",
+            "txt-d-explain": "Our team will verify the variables. Your detailed budget will be sent within 12 to 48 hours.",
+            "txt-d-disclaimer": "<strong>Indicative Legal Disclaimer:</strong> Parametric estimate based on user data."
+        },
+        es: {
+            "nav-calc": "Calculadora", "nav-blog": "Blog", "nav-contact": "Contacto",
+            "main-title": "Sepa el coste antes de construir",
+            "main-subtitle": "Obtenga una estimación de costes indicativa para construir su casa en Mallorca.",
+            "quick-title": "1. Calculadora Rápida (Sin Registro)",
+            "lbl-quick-m2": "Superficie Construida (m²)", "lbl-quality": "Nivel de Calidad",
+            "q-basic": "Calidad Básica", "q-medium": "Calidad Media", "q-high": "Calidad Alta",
+            "lbl-quick-pool": "¿Piscina?", "pool-yes": "Sí (Piscina Grande)", "pool-none": "Sin Piscina",
+            "quick-res-title": "Coste de Construcción Estimado",
+            "quick-disclaimer": "*Se aplica un rango de incertidumbre de ±5% alrededor de la estimación.",
+            "go-detailed": "¿Quiere una estimación más detallada? Ir a la Calculadora Detallada abajo",
+            "detailed-title": "2. Estimación Detallada por Partidas",
+            "step1-title": "Paso 1 de 4: Estructura de la Propiedad", "lbl-det-m2": "Total m² Construidos",
+            "lbl-floors": "Número de Plantas", "lbl-stairs": "Escaleras Interiores",
+            "step2-title": "Paso 2 de 4: Distribución y Calidades", "lbl-bedrooms": "Número de Dormitorios", "lbl-bathrooms": "Número de Baños",
+            "step3-title": "Paso 3 de 4: Instalaciones y Exteriores", "lbl-hvac": "Sistema de Climatización / HVAC",
+            "hvac-aero": "Aerotermia", "hvac-conv": "Convencional", "hvac-both": "Aerotermia + Suelo Radiante",
+            "lbl-pool": "Tamaño de la Piscina", "pool-large": "Piscina Grande (20 m² de lámina)", "pool-medium": "Piscina Mediana (15 m² de lámina)",
+            "pool-small": "Piscina Pequeña (10 m² de lámina)", "lbl-domotics": "¿Domótica / Smart Home?", "dom-no": "No", "dom-yes": "Sí",
+            "lbl-garden": "m² de Exterior / Jardín", "lbl-parking": "Plazas de Aparcamiento Exterior",
+            "lbl-fees": "¿Incluir Tasas de Proyecto? (10% Extra)", "fees-no": "No", "fees-yes": "Sí",
+            "btn-back": "Atrás", "btn-next": "Siguiente Paso", "btn-submit": "Solicitar Presupuesto Detallado",
+            "txt-s4-title": "Paso 4 de 4: Solicitud de Presupuesto Personalizado", "step4-subtitle": "Por favor, confirme sus datos.",
+            "lbl-f-name": "Nombre de Contacto", "lbl-f-email": "Correo Electrónico", "lbl-f-phone": "Número de Teléfono",
+            "txt-d-res-title": "Presupuesto de Construcción Estimado", "txt-d-success": "¡Solicitud recibida correctamente!",
+            "txt-d-explain": "Un asesor técnico verificará las variables. Su presupuesto detallado será enviado en un plazo de 12 a 48 horas.",
+            "txt-d-disclaimer": "<strong>Aviso Legal Indicativo:</strong> Estimación paramétrica basada en datos del usuario."
+        },
+        de: {
+            "nav-calc": "Rechner", "nav-blog": "Blog", "nav-contact": "Kontakt",
+            "main-title": "Kennen Sie die Kosten, bevor Sie bauen",
+            "main-subtitle": "Holen Sie sich eine erstklassige Kostenschätzung für den Bau Ihres Hauses auf Mallorca.",
+            "quick-title": "1. Schnellanpassung (Ohne Registrierung)",
+            "lbl-quick-m2": "Bebaute Fläche (m²)", "lbl-quality": "Qualitätsstufe",
+            "q-basic": "Einfache Qualität", "q-medium": "Mittlere Qualität", "q-high": "Gehobene Qualität",
+            "lbl-quick-pool": "Schwimmbad?", "pool-yes": "Ja (Großer Pool)", "pool-none": "Kein Pool",
+            "quick-res-title": "Geschätzte Baukosten",
+            "quick-disclaimer": "*Um die Schätzung wird eine Unsicherheitsspanne von ±5% angewandt.",
+            "go-detailed": "Wünschen Sie eine detailliertere Schätzung? Gehen Sie unten zum detaillierten Rechner",
+            "detailed-title": "2. Detaillierte Schätzung nach Positionen",
+            "step1-title": "Schritt 1 von 4: Immobilienstruktur", "lbl-det-m2": "Gesamte bebaute m²",
+            "lbl-floors": "Anzahl der Etagen", "lbl-stairs": "Innentreppen",
+            "step2-title": "Schritt 2 von 4: Layout & Qualitäten", "lbl-bedrooms": "Anzahl der Schlafzimmer", "lbl-bathrooms": "Anzahl der Badezimmer",
+            "step3-title": "Schritt 3 von 4: Anlagen & Außenbereiche", "lbl-hvac": "Klimaanlage / HVAC-System",
+            "hvac-aero": "Aerotermia", "hvac-conv": "Konventionell", "hvac-both": "Aerotermia + Fußbodenheizung",
+            "lbl-pool": "Schwimmbecken-Größe", "pool-large": "Großer Pool (20 m² Fläche)", "pool-medium": "Mittlerer Pool (15 m² Fläche)",
+            "pool-small": "Kleiner Pool (10 m² Fläche)", "lbl-domotics": "Smart Home / Domotik?", "dom-no": "Nein", "dom-yes": "Ja",
+            "lbl-garden": "Außenbereich / Garten m²", "lbl-parking": "Außenstellplätze",
+            "lbl-fees": "Gebühren einbeziehen? (10% Extra)", "fees-no": "Nein", "fees-yes": "Ja",
+            "btn-back": "Zurück", "btn-next": "Nächster Schritt", "btn-submit": "Detaillierten Kostenvoranschlag anfordern",
+            "txt-s4-title": "Schritt 4 von 4: Berichtsanforderung", "step4-subtitle": "Bitte bestätigen Sie Ihre Angaben.",
+            "lbl-f-name": "Kontaktname", "lbl-f-email": "E-Mail-Adresse", "lbl-f-phone": "Telefonnummer",
+            "txt-d-res-title": "Geschätzte Baukosten", "txt-d-success": "Anfrage Erfolgreich Eingegangen!",
+            "txt-d-explain": "Ein Berater wird die Bauvariablen abgleichen. Ihr detailliertes Budget wird innerhalb von 12 bis 48 Stunden gesendet.",
+            "txt-d-disclaimer": "<strong>Rechtlicher Hinweis:</strong> Diese Schätzung basiert auf parametrischen Informationen."
+        }
+    };
+
+    // 6. Lógica de Ejecución Lingüística
+    function changeLanguage(lang) {
+        if (!dictionary[lang]) lang = 'en';
+
+        document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
+        const targetBtn = document.getElementById(`btn-lang-${lang}`);
+        if (targetBtn) targetBtn.classList.add('active');
+
+        document.querySelectorAll('[data-i18n]').forEach(element => {
+            const key = element.getAttribute('data-i18n');
+            if (dictionary[lang][key]) {
+                if (element.tagName === 'OPTION') {
+                    element.text = dictionary[lang][key];
+                } else {
+                    element.innerHTML = dictionary[lang][key];
+                }
+            }
+        });
+
+        localStorage.setItem('mallorcaquotes-lang', lang);
+    }
+
+    document.addEventListener("DOMContentLoaded", () => {
+        const savedLang = localStorage.getItem('mallorcaquotes-lang') || 'en';
+        changeLanguage(savedLang);
+        calculateQuickEstimate();
+    });
+    // Forzar el cambio del texto del botón y la frase del Paso 4 en todos los idiomas
+    document.addEventListener("DOMContentLoaded", () => {
+        // Corrección de la errata visual del título
+        const detailedTitle = document.querySelector('[data-i18n="detailed-title"]');
+        if (detailedTitle) detailedTitle.innerText = "2. Estimación Detallada por Partidas";
+
+        // Cambio de frase comercial superior del Paso 4
+        const subtitleStep4 = document.getElementById('step-4')?.querySelector('p');
+        if (subtitleStep4) subtitleStep4.innerText = "Por favor, confirme sus datos de contacto. Nuestro equipo procesará sus preferencias para confeccionar un presupuesto detallado por partidas basado en los costes reales del mercado de Mallorca.";
+
+        // Forzar que el botón principal diga siempre Solicitar Presupuesto Detallado
+        const submitBtn = document.getElementById('btn-submit');
+        if (submitBtn) {
+            submitBtn.innerText = "Solicitar Presupuesto Detallado";
+            submitBtn.removeAttribute('data-i18n'); // Evita que el diccionario viejo lo pise
+        }
+    });
+
     </script>
 </body>
 </html>
+
 
