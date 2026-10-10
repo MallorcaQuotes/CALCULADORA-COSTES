@@ -248,10 +248,13 @@
             </div>
 
             <div class="form-group">
-                <label for="quick-pool" data-i18n="lbl-quick-pool">Swimming Pool?</label>
+                <label for="quick-pool" data-i18n="lbl-pool">Swimming Pool Size</label>
                 <select id="quick-pool" onchange="calculateQuickEstimate()">
-                    <option value="yes" data-i18n="pool-yes" selected>Yes (Large Pool)</option>
-                    <option value="no" data-i18n="pool-none">No Pool</option>
+                    <option value="none" data-i18n="pool-none">No Pool</option>
+                    <option value="small" data-i18n="pool-small">Small Pool (10 m² sheet)</option>
+                    <option value="medium" data-i18n="pool-medium">Medium Pool (15 m² sheet)</option>
+                    <option value="large" data-i18n="pool-large" selected>Large Pool (20 m² sheet)</option>
+                    <option value="xlarge" data-i18n="pool-xlarge">Extra Large Pool (35 m² sheet)</option>
                 </select>
             </div>
 
@@ -273,6 +276,29 @@
         <div class="step-container active" id="step-1">
             <h4 style="margin-bottom: 1.5rem; color: var(--soft-grey);" id="txt-s1-title" data-i18n="step1-title">Step 1 of 4: Property Structure</h4>
             
+            <div class="form-group">
+                <label for="has-plot" data-i18n="lbl-has-plot">Do you have a plot?</label>
+                <select id="has-plot">
+                    <option value="purchased" data-i18n="plot-purchased" selected>Yes, already purchased</option>
+                    <option value="searching" data-i18n="plot-searching">No, currently searching</option>
+                    <option value="reserved" data-i18n="plot-reserved">I have a reserved option</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="plot-location" data-i18n="lbl-plot-location">In which area or municipality will you build?</label>
+                <select id="plot-location">
+                    <option value="Santanyi">Santanyí</option>
+                    <option value="Andratx">Andratx</option>
+                    <option value="Ses Salines / Colonia de Sant Jordi">Ses Salines / Colònia de Sant Jordi</option>
+                    <option value="Campos">Campos</option>
+                    <option value="Llucmajor">Llucmajor</option>
+                    <option value="Palma">Palma</option>
+                    <option value="Calvia">Calvià</option>
+                    <option value="Otra zona de Mallorca" data-i18n="loc-other-mallorca">Other area in Mallorca</option>
+                </select>
+            </div>
+
             <div class="form-group">
                 <label for="total-m2" data-i18n="lbl-det-m2">Total Built-up m²</label>
                 <input type="number" id="total-m2" value="160" min="40" max="1500">
