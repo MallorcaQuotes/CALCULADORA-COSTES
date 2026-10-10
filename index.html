@@ -406,7 +406,7 @@
             <p style="color: var(--charcoal); font-size: 0.95rem; margin-bottom: 1.5rem; line-height: 1.6;" id="txt-s4-subtitle" data-i18n="step4-subtitle">Please confirm your contact details. Our team will process your parameters to prepare a detailed budget based on real Mallorca market costs.</p>
             
             <!-- FORMULARIO FORMSPREE CON CAPTURA OCULTA DE VARIABLES -->
-            <form id="lead-form" action="https://formspree.io/f/TU_ID_DE_FORMSPREE" method="POST" onsubmit="handleFormSubmit(event)">
+            <form id="lead-form" action="https://formspree.io/f/xrpekoey" method="POST" onsubmit="handleFormSubmit(event)">
                 
                 <!-- Inputs ocultos para empaquetar y enviar todas las variables del Excel -->
                 <input type="hidden" name="_subject" value="Nuevo Lead - Solicitud de Presupuesto Detallado MallorcaQuotes">
@@ -687,8 +687,10 @@
             submitBtn.innerText = currentLanguage === 'es' ? 'Enviando...' : (currentLanguage === 'de' ? 'Wird gesendet...' : 'Sending...');
         }
 
-        fetch(form.action, {
-            method: form.method,
+        const formspreeEndpoint = 'https://formspree.io/f/xrpekoey';
+
+        fetch(formspreeEndpoint, {
+            method: form.method || 'POST',
             body: formData,
             headers: { 'Accept': 'application/json' }
         }).then(response => {

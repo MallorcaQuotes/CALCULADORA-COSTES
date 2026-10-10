@@ -278,7 +278,7 @@
                 <span data-i18n="callout-sub">We analyze bill of quantities, geotechnical specifications, and current Balearic construction pricing.</span>
             </div>
 
-            <form id="direct-contact-form" action="https://formspree.io/f/TU_ID_DE_FORMSPREE" method="POST" onsubmit="handleContactSubmit(event)">
+            <form id="direct-contact-form" action="https://formspree.io/f/xrpekoey" method="POST" onsubmit="handleContactSubmit(event)">
                 <input type="hidden" name="_subject" value="Nuevo Proyecto con Planos - Consulta Directa MallorcaQuotes">
                 <input type="hidden" id="hidden-contact-lang" name="Idioma Seleccionado" value="EN">
 
@@ -521,8 +521,10 @@
             btn.innerText = currentLanguage === 'es' ? 'Enviando...' : (currentLanguage === 'de' ? 'Wird gesendet...' : 'Sending...');
         }
 
-        fetch(form.action, {
-            method: form.method,
+        const formspreeEndpoint = 'https://formspree.io/f/xrpekoey';
+
+        fetch(formspreeEndpoint, {
+            method: form.method || 'POST',
             body: formData,
             headers: { 'Accept': 'application/json' }
         }).then(response => {
