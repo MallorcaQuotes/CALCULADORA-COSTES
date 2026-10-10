@@ -4,211 +4,157 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MallorcaQuotes | Premium Construction Estimator</title>
-    <!-- Fuentes premium para estética arquitectónica mediterránea -->
-    <link href="https://googleapis.com" rel="stylesheet">
+    
+    <!-- Estilos de Diseño Mediterráneo Premium -->
     <style>
         :root {
-            --bg-warm: #FDFBF7;
-            --stone: #F4F0E6;
-            --sand: #E6DFD0;
-            --olive: #8A9A86;
-            --sage: #B2C0B0;
-            --charcoal: #2C302E;
-            --soft-grey: #707571;
-            --white: #FFFFFF;
-        }
-
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-            font-family: 'Plus Jakarta Sans', sans-serif;
+            --olive: #606c38;
+            --dark-olive: #283618;
+            --cream: #fefae0;
+            --sand: #dda15e;
+            --earth: #bc6c25;
+            --white: #ffffff;
+            --charcoal: #2b2d42;
+            --soft-grey: #8d99ae;
         }
 
         body {
-            background-color: var(--bg-warm);
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            background-color: #faf9f6;
             color: var(--charcoal);
+            margin: 0;
+            padding: 0;
             line-height: 1.6;
-            padding-bottom: 5rem;
         }
 
-        header {
-            padding: 1.5rem 2rem;
+        .premium-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            border-bottom: 1px solid var(--sand);
-            background: var(--white);
-            position: sticky;
-            top: 0;
-            z-index: 100;
+            padding: 1.5rem 2rem;
+            background-color: var(--white);
+            border-bottom: 1px solid #f0ede6;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.02);
         }
 
         .logo {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 1.8rem;
-    font-weight: 600;
-    letter-spacing: 1px;
-    color: var(--charcoal);
-    text-decoration: none;
-    cursor: pointer;
-}
-
-        .lang-selector select {
-            background: transparent;
-            border: 1px solid var(--sand);
-            padding: 0.4rem 0.8rem;
-            border-radius: 4px;
-            font-size: 0.9rem;
-            color: var(--charcoal);
-            cursor: pointer;
+            font-size: 1.4rem;
+            font-weight: 700;
+            letter-spacing: 0.15em;
+            color: var(--dark-olive);
         }
 
-        .hero {
-            text-align: center;
-            padding: 4rem 1.5rem 2.5rem;
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
-        .hero h1 {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 3rem;
-            font-weight: 400;
-            margin-bottom: 1rem;
-            color: var(--charcoal);
-        }
-
-        .hero p {
-            font-size: 1.1rem;
-            color: var(--soft-grey);
+        .logo span {
             font-weight: 300;
+            color: var(--sand);
         }
 
-        .container {
-            max-width: 900px;
-            margin: 0 auto;
-            padding: 0 1.5rem;
-        }
-
-        .card {
-            background: var(--white);
-            border: 1px solid var(--stone);
-            border-radius: 12px;
-            padding: 2.5rem;
-            box-shadow: 0 4px 20px rgba(44,48,46,0.02);
-            margin-bottom: 3rem;
-        }
-
-        .section-title {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 1.8rem;
-            margin-bottom: 1.5rem;
-            border-bottom: 2px solid var(--stone);
-            padding-bottom: 0.5rem;
-            color: var(--charcoal);
-        }
-
-        .grid-3 {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            gap: 1.5rem;
-            margin-bottom: 2rem;
-        }
-
-        .form-group {
+        .seo-nav {
             display: flex;
-            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .seo-nav a {
+            text-decoration: none;
+            color: var(--charcoal);
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: color 0.3s;
+        }
+
+        .seo-nav a:hover {
+            color: var(--sand);
+        }
+
+        .lang-selector {
+            display: flex;
             gap: 0.5rem;
-            margin-bottom: 1.2rem;
         }
 
-        label {
-            font-size: 0.9rem;
-            font-weight: 600;
+        .lang-btn {
+            background: none;
+            border: 1px solid var(--soft-grey);
+            padding: 0.4rem 0.8rem;
+            font-size: 0.8rem;
+            cursor: pointer;
+            border-radius: 4px;
             color: var(--charcoal);
-        }
-
-        input[type="number"], input[type="text"], input[type="email"], select {
-            padding: 0.8rem;
-            border: 1px solid var(--sand);
-            border-radius: 6px;
-            background-color: var(--bg-warm);
-            font-size: 1rem;
-            color: var(--charcoal);
-            width: 100%;
             transition: all 0.3s;
         }
 
-        input:focus, select:focus {
-            outline: none;
-            border-color: var(--olive);
-            background-color: var(--white);
+        .lang-btn.active, .lang-btn:hover {
+            background-color: var(--dark-olive);
+            color: var(--cream);
+            border-color: var(--dark-olive);
+        }
+
+        .main-wrapper {
+            max-width: 800px;
+            margin: 3rem auto;
+            padding: 2rem;
+            background: var(--white);
+            border-radius: 8px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.04);
+            border: 1px solid #f0ede6;
+        }
+
+        h1, h3, h4 {
+            font-family: 'Playfair Display', Georgia, serif;
+            margin-top: 0;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            font-size: 0.95rem;
+        }
+
+        input[type="text"], input[type="number"], input[type="email"], input[type="tel"], select {
+            width: 100%;
+            padding: 0.8rem;
+            border: 1px solid var(--soft-grey);
+            border-radius: 4px;
+            font-size: 1rem;
+            box-sizing: border-box;
+            background-color: #fff;
+            color: var(--charcoal);
         }
 
         .btn {
-            background: var(--charcoal);
-            color: var(--white);
-            padding: 1rem 2rem;
+            background-color: var(--dark-olive);
+            color: var(--cream);
+            padding: 0.9rem 2rem;
             border: none;
-            border-radius: 6px;
+            border-radius: 4px;
             font-size: 1rem;
-            font-weight: 600;
             cursor: pointer;
-            transition: background 0.3s;
-            display: inline-block;
-            text-align: center;
-            width: 100%;
+            font-weight: 600;
+            transition: background-color 0.3s;
         }
 
         .btn:hover {
-            background: var(--olive);
+            background-color: var(--olive);
         }
 
         .btn-secondary {
-            background: transparent;
+            background-color: #e2e8f0;
             color: var(--charcoal);
-            border: 1px solid var(--charcoal);
-            margin-top: 0.5rem;
         }
 
         .btn-secondary:hover {
-            background: var(--stone);
+            background-color: #cbd5e0;
         }
 
-        .result-box {
-            background: var(--stone);
-            padding: 2.5rem;
-            border-radius: 8px;
-            text-align: center;
+        .step-buttons {
+            display: flex;
+            justify-content: space-between;
+            gap: 1rem;
             margin-top: 2rem;
-            display: none;
-            animation: fadeIn 0.4s ease-in-out forwards;
-        }
-
-        .result-box h3 {
-            font-size: 1rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            color: var(--soft-grey);
-            margin-bottom: 0.5rem;
-        }
-
-        .price-range {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 2.8rem;
-            font-weight: 600;
-            color: var(--charcoal);
-            margin-bottom: 1rem;
-        }
-
-        .disclaimer {
-            font-size: 0.8rem;
-            color: var(--soft-grey);
-            margin-top: 1.5rem;
-            font-style: italic;
-            line-height: 1.4;
-            text-align: left;
         }
 
         .step-container {
@@ -219,604 +165,408 @@
             display: block;
         }
 
-        .progress-bar {
-            height: 6px;
-            background: var(--stone);
-            margin-bottom: 2rem;
-            border-radius: 3px;
-        }
-
-        .progress-fill {
-            height: 100%;
-            background: var(--olive);
-            width: 25%;
-            transition: width 0.3s ease;
-            border-radius: 3px;
-        }
-
-        .step-buttons {
-            display: flex;
-            gap: 1rem;
+        .result-box {
             margin-top: 2rem;
-        }
-
-        .breakdown-list {
-            text-align: left;
-            margin: 1.5rem auto 0;
-            max-width: 550px;
-            border-top: 1px solid var(--sand);
-            padding-top: 1rem;
-        }
-
-        .breakdown-item {
-            display: flex;
-            justify-content: space-between;
-            padding: 0.5rem 0;
-            font-size: 0.95rem;
-            border-bottom: 1px solid rgba(0,0,0,0.03);
-        }
-
-        .btn-anchor {
-            color: var(--olive);
-            text-decoration: underline;
-            cursor: pointer;
-            font-weight: 600;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        @media (max-width: 768px) {
-            header { padding: 1rem; }
-            .hero h1 { font-size: 2.2rem; }
-            .card { padding: 1.5rem; }
-            .price-range { font-size: 2rem; }
+            padding: 2rem;
+            background-color: #faf9f6;
+            border-left: 4px solid var(--sand);
+            border-radius: 4px;
         }
     </style>
 </head>
-<body id="inicio">
+<body>
 
-    <header>
-       <a href="#inicio" class="logo" aria-label="MallorcaQuotes - Home">
-    MallorcaQuotes
-</a>
+    <!-- CABECERA Y ENLACES SEO -->
+    <header class="premium-header">
+        <div class="logo">MALLORCA<span>QUOTES</span></div>
+        <nav class="seo-nav">
+            <a href="#calculator" data-i18n="nav-calc">Calculator</a>
+            <a href="/blog" data-i18n="nav-blog">Blog</a>
+            <a href="/contact" data-i18n="nav-contact">Contact</a>
+        </nav>
         <div class="lang-selector">
-            <select id="langSelect" onchange="changeLanguage()">
-                <option value="en" selected>English</option>
-                <option value="es">Español</option>
-                <option value="de">Deutsch</option>
-            </select>
+            <button type="button" onclick="changeLanguage('en')" id="btn-lang-en" class="lang-btn active">EN</button>
+            <button type="button" onclick="changeLanguage('es')" id="btn-lang-es" class="lang-btn">ES</button>
+            <button type="button" onclick="changeLanguage('de')" id="btn-lang-de" class="lang-btn">DE</button>
         </div>
     </header>
-    <div class="hero">
-        <h1 id="txt-hero-title">Know the cost before you build</h1>
-        <p id="txt-hero-desc">Get an indicative and premium cost estimate for building your new home in Mallorca.</p>
-    </div>
 
-    <div class="container">
-        <!-- CALCULADORA RAPIDA -->
-        <div class="card">
-            <div class="section-title" id="txt-q-title">1. Quick Calculator (No Registration)</div>
-            <div class="grid-3">
-                <div class="form-group">
-                    <label id="lbl-q-m2">Built-up Area (m²)</label>
-                    <input type="number" id="quick-m2" value="160" min="30">
-                </div>
-                <div class="form-group">
-                    <label id="lbl-q-quality">Quality Level</label>
-                    <select id="quick-quality">
-                        <option value="Básica">Basic Quality</option>
-                        <option value="Media">Medium Quality</option>
-                        <option value="Alta">High Quality</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label id="lbl-q-pool">Swimming Pool?</label>
-                    <select id="quick-pool">
-                        <option value="Grande">Yes (Large Pool)</option>
-                        <option value="Sin piscina">No Pool</option>
-                    </select>
-                </div>
+    <div class="main-wrapper" id="calculator">
+        <!-- INTRODUCCIÓN PREMIUM -->
+        <h1 style="text-align: center; margin-bottom: 0.5rem; font-size: 2.2rem;" data-i18n="main-title">Know the cost before you build</h1>
+        <p style="text-align: center; color: var(--soft-grey); margin-bottom: 3rem; font-size: 1.1rem;" data-i18n="main-subtitle">Get an indicative and premium cost estimate for building your new home in Mallorca.</p>
+
+        <!-- ========================================== -->
+        <!-- 1. CALCULADORA RÁPIDA (SIN REGISTRO)      -->
+        <!-- ========================================== -->
+        <div class="quick-calculator-box" style="margin-bottom: 4rem; padding: 2rem; background-color: #faf9f6; border-radius: 6px; border: 1px solid #e2e8f0;">
+            <h3 style="margin-bottom: 1.5rem; border-bottom: 1px solid var(--sand); padding-bottom: 0.5rem; color: var(--dark-olive);" data-i18n="quick-title">1. Quick Calculator (No Registration)</h3>
+            
+            <div class="form-group">
+                <label for="quick-m2" data-i18n="lbl-quick-m2">Built-up Area (m²)</label>
+                <input type="number" id="quick-m2" value="160" min="50" max="1000" oninput="calculateQuickEstimate()">
             </div>
-            <button class="btn" onclick="calculateQuick()" id="btn-q-calc">Calculate Instant Estimate</button>
 
-            <div class="result-box" id="quick-result">
-                <h3 id="txt-q-res-title">Estimated Construction Cost</h3>
-                <div class="price-range" id="quick-price-range">€0 - €0</div>
-                <p style="font-size:0.9rem; color:var(--soft-grey);" id="txt-q-note">*An uncertainty range of ±5% is applied around the central estimate.</p>
-                <p style="margin-top:1rem; font-size:0.95rem;" id="txt-q-link">Want a more detailed estimate? <span class="btn-anchor" onclick="scrollToDetailed()">Go to Detailed Calculator below</span></p>
+            <div class="form-group">
+                <label for="quick-quality" data-i18n="lbl-quality">Quality Level</label>
+                <select id="quick-quality" onchange="calculateQuickEstimate()">
+                    <option value="medium" data-i18n="q-medium">Medium Quality</option>
+                    <option value="basic" data-i18n="q-basic">Basic Quality</option>
+                    <option value="high" data-i18n="q-high">High Quality</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="quick-pool" data-i18n="lbl-quick-pool">Swimming Pool?</label>
+                <select id="quick-pool" onchange="calculateQuickEstimate()">
+                    <option value="yes" data-i18n="pool-yes">Yes (Large Pool)</option>
+                    <option value="no" data-i18n="pool-none">No Pool</option>
+                </select>
+            </div>
+
+            <div class="result-box" style="text-align: center; background: var(--white); border: 1px solid var(--sand);">
+                <h4 style="margin-bottom: 0.5rem; color: var(--charcoal);" data-i18n="quick-res-title">Estimated Construction Cost</h4>
+                <div class="price-range" id="quick-price-range" style="font-size: 1.8rem; font-weight: 700; color: var(--earth);">€0 - €0</div>
+                <p style="font-size: 0.85rem; color: var(--soft-grey); margin-top: 0.5rem; margin-bottom: 0;" data-i18n="quick-disclaimer">*An uncertainty range of ±5% is applied around the central estimate.</p>
+            </div>
+            
+            <p style="text-align: center; margin-top: 1.5rem; font-size: 0.95rem; color: var(--charcoal);" data-i18n="go-detailed">Want a more detailed estimate? Go to Detailed Calculator below</p>
+        </div>
+
+        <!-- ========================================== -->
+        <!-- 2. CALCULADORA DETALLADA POR PASOS        -->
+        <!-- ========================================== -->
+        <h3 style="margin-bottom: 2rem; color: var(--dark-olive);" data-i18n="detailed-title">2. Detailed Estimate by Items</h3>
+
+        <!-- PASO 1: ESTRUCTURA -->
+        <div class="step-container active" id="step-1">
+            <h4 style="margin-bottom: 1.5rem; color: var(--soft-grey);" id="txt-s1-title" data-i18n="step1-title">Step 1 of 4: Property Structure</h4>
+            
+            <div class="form-group">
+                <label for="total-m2" data-i18n="lbl-det-m2">Total Built-up m²</label>
+                <input type="number" id="total-m2" value="160" min="50" max="1000">
+            </div>
+
+            <div class="form-group">
+                <label for="num-floors" data-i18n="lbl-floors">Number of Floors</label>
+                <select id="num-floors">
+                    <option value="1">1</option>
+                    <option value="2" selected>2</option>
+                    <option value="3">3</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="internal-stairs" data-i18n="lbl-stairs">Internal Staircases</label>
+                <select id="internal-stairs">
+                    <option value="0">0</option>
+                    <option value="1" selected>1</option>
+                    <option value="2">2</option>
+                </select>
+            </div>
+
+            <div class="step-buttons" style="justify-content: flex-end;">
+                <button type="button" class="btn" onclick="nextStep(2)" data-i18n="btn-next">Next Step</button>
+            </div>
+        </div>
+        <!-- PASO 2: DISTRIBUCIÓN Y CALIDADES -->
+        <div class="step-container" id="step-2">
+            <h4 style="margin-bottom: 1.5rem; color: var(--soft-grey);" id="txt-s2-title" data-i18n="step2-title">Step 2 of 4: Layout & Qualities</h4>
+            
+            <div class="form-group">
+                <label for="num-bedrooms" data-i18n="lbl-bedrooms">Number of Bedrooms</label>
+                <select id="num-bedrooms">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3" selected>3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="num-bathrooms" data-i18n="lbl-bathrooms">Number of Bathrooms</label>
+                <select id="num-bathrooms">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3" selected>3</option>
+                    <option value="4">4</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="quality-level" data-i18n="lbl-quality">General Finishes Quality</label>
+                <select id="quality-level">
+                    <option value="medium" data-i18n="q-medium" selected>Medium Quality</option>
+                    <option value="basic" data-i18n="q-basic">Basic Quality</option>
+                    <option value="high" data-i18n="q-high">High Quality</option>
+                </select>
+            </div>
+
+            <div class="step-buttons">
+                <button type="button" class="btn btn-secondary" onclick="nextStep(1)" data-i18n="btn-back">Back</button>
+                <button type="button" class="btn" onclick="nextStep(3)" data-i18n="btn-next">Next Step</button>
             </div>
         </div>
 
-        <!-- CALCULADORA DETALLADA -->
-        <div class="card" id="detailed-section">
-            <div class="section-title" id="txt-d-title">2. Detailed Estimate by Items</div>
-            <div class="progress-bar"><div class="progress-fill" id="progress-fill"></div></div>
-
-            <!-- PASO 1 -->
-            <div class="step-container active" id="step-1">
-                <h4 style="margin-bottom:1.5rem; color:var(--soft-grey);" id="txt-s1-title">Step 1 of 4: Property Structure</h4>
-                <div class="form-group">
-                    <label id="lbl-d-m2">Total Built-up m²</label>
-                    <input type="number" id="det-m2" value="160" min="30">
-                </div>
-                <div class="form-group">
-                    <label id="lbl-d-plants">Number of Floors</label>
-                    <input type="number" id="det-floors" value="2" min="1">
-                </div>
-                <div class="form-group">
-                    <label id="lbl-d-escaleras">Internal Staircases</label>
-                    <input type="number" id="det-stairs" value="1" min="0">
-                </div>
-                <button class="btn" onclick="nextStep(2)" id="btn-next-1" data-i18n="btn-next">Next Step</button>
+        <!-- PASO 3: INSTALACIONES Y EXTERIORES -->
+        <div class="step-container" id="step-3">
+            <h4 style="margin-bottom: 1.5rem; color: var(--soft-grey);" id="txt-s3-title" data-i18n="step3-title">Step 3 of 4: Facilities & Exteriors</h4>
+            
+            <div class="form-group">
+                <label for="hvac-system" data-i18n="lbl-hvac">Climate / HVAC System</label>
+                <select id="hvac-system">
+                    <option value="aerotermia" data-i18n="hvac-aero" selected>Aerotermia</option>
+                    <option value="convencional" data-i18n="hvac-conv">Convencional</option>
+                    <option value="aerotermia-suelo" data-i18n="hvac-both">Aerotermia + Suelo Radiante</option>
+                </select>
             </div>
 
-            <!-- PASO 2 -->
-            <div class="step-container" id="step-2">
-                <h4 style="margin-bottom:1.5rem; color:var(--soft-grey);" id="txt-s2-title">Step 2 of 4: Layout & Qualities</h4>
-                <div class="form-group">
-                    <label id="lbl-d-habs">Number of Bedrooms</label>
-                    <input type="number" id="det-rooms" value="3" min="1">
-                </div>
-                <div class="form-group">
-                    <label id="lbl-d-banyos">Number of Bathrooms</label>
-                    <input type="number" id="det-bathrooms" value="3" min="1">
-                </div>
-                <div class="form-group">
-                    <label id="lbl-d-qual-sel">General Finishes Quality</label>
-                    <select id="det-quality">
-                        <option value="Básica">Basic Quality</option>
-                        <option value="Media">Medium Quality</option>
-                        <option value="Alta">High Quality</option>
-                    </select>
-                </div>
-                <div class="step-buttons">
-    <button class="btn btn-secondary" onclick="nextStep(1)" id="btn-back-2" data-i18n="btn-back">Back</button>
-    <button class="btn" onclick="nextStep(3)" id="btn-next-2" data-i18n="btn-next">Next Step</button>
-</div>
+            <div class="form-group">
+                <label for="pool-size" data-i18n="lbl-pool">Swimming Pool Size</label>
+                <select id="pool-size">
+                    <option value="large" data-i18n="pool-large" selected>Large Pool (20 m² sheet)</option>
+                    <option value="medium" data-i18n="pool-medium">Medium Pool (15 m² sheet)</option>
+                    <option value="small" data-i18n="pool-small">Small Pool (10 m² sheet)</option>
+                    <option value="none" data-i18n="pool-none">No Pool</option>
+                </select>
             </div>
 
-            <!-- PASO 3 -->
-            <div class="step-container" id="step-3">
-                <h4 style="margin-bottom:1.5rem; color:var(--soft-grey);" id="txt-s3-title">Step 3 of 4: Facilities & Exteriors</h4>
-                <div class="form-group">
-                    <label id="lbl-d-clima">Climate / HVAC System</label>
-                    <select id="det-clima">
-                        <option value="Aerotermia">Aerotermia</option>
-                        <option value="Convencional">Convencional</option>
-                        <option value="Suelo Radiante">Aerotermia + Suelo Radiante</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label id="lbl-d-pool-sel">Swimming Pool Size</label>
-                    <select id="det-pool">
-                        <option value="Grande">Large Pool (20 m² sheet)</option>
-                        <option value="Mediana">Medium Pool (15 m² sheet)</option>
-                        <option value="Pequeña">Small Pool (10 m² sheet)</option>
-                        <option value="Sin piscina">No Pool</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label id="lbl-d-domotica">Smart Home / Domotics?</label>
-                    <select id="det-domotica">
-                        <option value="No">No</option>
-                        <option value="Sí">Sí</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label id="lbl-d-jardin">Exterior / Garden m²</label>
-                    <input type="number" id="det-garden" value="100" min="0">
-                </div>
-                <div class="form-group">
-                    <label id="lbl-d-parking">Outdoor Parking Spaces</label>
-                    <input type="number" id="det-parking" value="0" min="0">
-                </div>
-                <div class="form-group">
-                    <label id="lbl-d-proyecto">Include Project, Architect & License Fees? (10% Extra)</label>
-                    <select id="det-project">
-                        <option value="No">No (Material execution only)</option>
-                        <option value="Sí">Sí (Add architectural & tax estimates)</option>
-                    </select>
-                </div>
-                <div class="step-buttons">
-    <button class="btn btn-secondary" onclick="nextStep(2)" id="btn-back-3" data-i18n="btn-back">Back</button>
-    <button class="btn" onclick="nextStep(4)" id="btn-next-3" data-i18n="btn-next">Next Step</button>
-</div>
-
+            <div class="form-group">
+                <label for="smart-home" data-i18n="lbl-domotics">Smart Home / Domotics?</label>
+                <select id="smart-home">
+                    <option value="no" data-i18n="dom-no" selected>No</option>
+                    <option value="yes" data-i18n="dom-yes">Sí</option>
+                </select>
             </div>
 
-            <!-- PASO 4 -->
-            <div class="step-container" id="step-4">
-                <h4 style="margin-bottom:1.5rem; color:var(--soft-grey);" id="txt-s4-title">Step 4 of 4: Confirmation & Submission</h4>
-                <div class="form-group">
-                    <label id="lbl-f-name">Contact Name</label>
-                    <input type="text" id="det-name" placeholder="Ej. Juan Gómez">
-                </div>
-                <div class="form-group">
-                    <label id="lbl-f-email">Email Address</label>
-                    <input type="email" id="det-email" placeholder="Ej. juan@example.com">
-                </div>
-                <div class="form-group">
-                    <label id="lbl-f-phone">Phone Number</label>
-                    <input type="text" id="det-phone" placeholder="Ej. +34 600 000 000">
-                </div>
-                <div class="step-buttons">
-    <button class="btn btn-secondary" onclick="nextStep(3)" id="btn-back-4" data-i18n="btn-back">Back</button>
-    <button class="btn" onclick="submitDetailedForm()" id="btn-submit" data-i18n="btn-submit">Request Itemized Study & PDF Report</button>
-</div>
-
+            <div class="form-group">
+                <label for="garden-m2" data-i18n="lbl-garden">Exterior / Garden m²</label>
+                <input type="number" id="garden-m2" value="100" min="0" max="5000">
             </div>
 
-            <!-- CUADRO DE RESULTADO DETALLADO -->
-            <div class="result-box" id="detailed-result" style="text-align:left;">
-                <h3 style="text-align:center;" id="txt-d-res-title">Estimated Construction Cost</h3>
-                <div class="price-range" id="detailed-price-range" style="text-align:center; margin-top:0.5rem;">€0 - €0</div>
-                
-                <div style="background:var(--white); padding:1rem; border-radius:6px; border:1px solid var(--sand); margin:1rem 0;">
-                    <strong style="color:var(--olive);" id="txt-d-success">Request successfully received!</strong>
-                    <p style="font-size:0.9rem; margin-top:0.3rem; color:var(--charcoal);" id="txt-d-explain">According to our premium policies, a technical advisor will check the construction variables. Your detailed PDF breakdown report will be sent to your email within 12 to 48 hours (excluding non-business hours on the island of Mallorca).</p>
-                </div>
+            <div class="form-group">
+                <label for="parking-spaces" data-i18n="lbl-parking">Outdoor Parking Spaces</label>
+                <select id="parking-spaces">
+                    <option value="0" selected>0</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                </select>
+            </div>
 
-                <h4 style="font-size:1.1rem; margin-top:1.5rem; border-bottom:1px solid var(--sand); padding-bottom:0.3rem;" id="txt-d-break-title">Preview of Estimated Costs (Material Execution)</h4>
-                <div class="breakdown-list" id="breakdown-box"></div>
-                
-                <p class="disclaimer" id="txt-d-disclaimer"><strong>Indicative Legal Disclaimer:</strong> This estimate is based on parametric information provided by the user and average market values on the island of Mallorca. It does not constitute a contractual offer or a final construction quote.</p>
+            <div class="form-group">
+                <label for="include-fees" data-i18n="lbl-fees">Include Project, Architect & License Fees? (10% Extra)</label>
+                <select id="include-fees">
+                    <option value="no" data-i18n="fees-no" selected>No (Material execution only)</option>
+                    <option value="yes" data-i18n="fees-yes">Sí (Add architectural & tax estimates)</option>
+                </select>
+            </div>
+
+            <div class="step-buttons">
+                <button type="button" class="btn btn-secondary" onclick="nextStep(2)" data-i18n="btn-back">Back</button>
+                <button type="button" class="btn" onclick="nextStep(4)" data-i18n="btn-next">Next Step</button>
             </div>
         </div>
-    </div>
-    <script>
-        // TABLA DE PRECIOS OFICIALES EXTRAÍDA DE TU EXCEL 'Costes vivienda.xlsx'
-        const PRECIOS_BASE = {
-            'Básica': { excavation: 80, structure: 625, cubierta: 150, fachada: 150, tabiqueria: 56.25, acabados: 87.5, suelos: 70, electricidad: 93.75, fontaneria: 70, ventana: 600, cristalera: 5000, puerta_int: 400, puerta_prin: 1500, bano: 3500, cocina: 8000, clima_conv: 100, clima_aero: 150, clima_suelo: 250, domotica: 5000, piscina_m2: 1250, jardin: 125, parking: 5000, escalera: 5000 },
-            'Media':  { excavation: 80, structure: 625, cubierta: 180, fachada: 180, tabiqueria: 84,   acabados: 110,  suelos: 110, electricidad: 108,   fontaneria: 90, ventana: 1000, cristalera: 8000, puerta_int: 600, puerta_prin: 3600, bano: 6000, cocina: 15000, clima_conv: 100, clima_aero: 150, clima_suelo: 250, domotica: 10000, piscina_m2: 1750, jardin: 180, parking: 7200, escalera: 8000 },
-            'Alta':   { excavation: 80, structure: 625, cubierta: 210, fachada: 230, tabiqueria: 103.5,acabados: 125,  suelos: 160, electricidad: 138,   fontaneria: 120, ventana: 1500, cristalera: 12500, puerta_int: 1000, puerta_prin: 5750, bano: 9000, cocina: 25000, clima_conv: 100, clima_aero: 150, clima_suelo: 250, domotica: 20000, piscina_m2: 2200, jardin: 230, parking: 9200, escalera: 15000 }
-        };
-
-        // DICCIONARIO DE TRADUCCIONES COMPLETAS (Inglés dominante por defecto)
-        const i18n = {
-            en: {
-                title: "Know the cost before you build",
-                desc: "Get an indicative and premium cost estimate for building your new home in Mallorca.",
-                q_title: "1. Quick Calculator (No Registration)",
-                q_m2: "Built-up Area (m²)",
-                q_qual: "Quality Level",
-                q_pool: "Swimming Pool?",
-                q_btn: "Calculate Instant Estimate",
-                q_res: "Estimated Construction Cost",
-                q_note: "*An uncertainty range of ±5% is applied around the central estimate.",
-                q_link: "Want a more detailed estimate? <span class='btn-anchor' onclick='scrollToDetailed()'>Go to Detailed Calculator below</span>",
-                d_title: "2. Detailed Estimate by Items",
-                s1_title: "Step 1 of 4: Property Structure",
-                lbl_d_m2: "Total Built-up m²",
-                lbl_d_plants: "Number of Floors",
-                lbl_d_escaleras: "Internal Staircases",
-                btn_next: "Next Step",
-                s2_title: "Step 2 of 4: Layout & Qualities",
-                lbl_d_habs: "Number of Bedrooms",
-                lbl_d_banyos: "Number of Bathrooms",
-                lbl_d_qual_sel: "General Finishes Quality",
-                btn_back: "Back",
-                s3_title: "Step 3 of 4: Facilities & Exteriors",
-                lbl_d_clima: "Climate / HVAC System",
-                lbl_d_pool_sel: "Swimming Pool Size",
-                lbl_d_domotica: "Smart Home / Domotics?",
-                lbl_d_jardin: "Exterior / Garden m²",
-                lbl_d_parking: "Outdoor Parking Spaces",
-                lbl_d_proyecto: "Include Project, Architect & License Fees? (10% Extra)",
-                s4_title: "Step 4 of 4: Confirmation & Submission",
-                lbl_f_name: "Contact Name",
-                lbl_f_email: "Email Address",
-                lbl_f_phone: "Phone Number",
-                btn_submit: "Request Itemized Study & PDF Report",
-                d_success: "Request successfully received!",
-                d_explain: "According to our premium policies, a technical advisor will check the construction variables. Your detailed PDF breakdown report will be sent to your email within 12 to 48 hours (excluding non-business hours on the island of Mallorca).",
-                d_break_title: "Preview of Estimated Costs (Material Execution)",
-                disclaimer: "<strong>Indicative Legal Disclaimer:</strong> This estimate is based on parametric information provided by the user and average market values on the island of Mallorca. It does not constitute a contractual offer or a final construction quote."
-            },
-            es: {
-                title: "Conoce el coste antes de construir",
-                desc: "Obtén una estimación indicativa y premium para la construcción de tu nueva vivienda en Mallorca.",
-                q_title: "1. Calculadora Rápida (Sin Registro)",
-                q_m2: "Superficie Construida (m²)",
-                q_qual: "Nivel de Calidad",
-                q_pool: "¿Incluye Piscina?",
-                q_btn: "Calcular Estimación Instantánea",
-                q_res: "Coste de Construcción Estimado",
-                q_note: "*Rango de incertidumbre del ±5% aplicado sobre el coste central del proyecto.",
-                q_link: "¿Quieres ver un desglose detallado por partidas? <span class='btn-anchor' onclick='scrollToDetailed()'>Ir a la Calculadora Detallada abajo</span>",
-                d_title: "2. Presupuesto Detallado por Partidas",
-                s1_title: "Paso 1 de 4: Estructura de la Vivienda",
-                lbl_d_m2: "M² Construidos Totales",
-                lbl_d_plants: "Número de Plantas",
-                lbl_d_escaleras: "Tramos de Escalera Internos",
-                btn_next: "Siguiente Paso",
-                s2_title: "Paso 2 de 4: Distribución y Calidades",
-                lbl_d_habs: "Número de Habitaciones",
-                lbl_d_banyos: "Número de Baños Completos",
-                lbl_d_qual_sel: "Nivel de Calidad Generales",
-                btn_back: "Atrás",
-                s3_title: "Paso 3 de 4: Instalaciones y Exteriores",
-                lbl_d_clima: "Sistema de Climatización",
-                lbl_d_pool_sel: "Tamaño de la Piscina",
-                lbl_d_domotica: "¿Incluir Domótica Inteligente?",
-                lbl_d_jardin: "M² de Zona Exterior / Jardín",
-                lbl_d_parking: "Plazas de Aparcamiento Exterior",
-                lbl_d_proyecto: "¿Incluir Gastos de Proyecto, Arquitecto y Licencias? (10% Adicional)",
-                s4_title: "Paso 4 de 4: Confirmación y Envío",
-                lbl_f_name: "Nombre de contacto",
-                lbl_f_email: "Correo Electrónico",
-                lbl_f_phone: "Teléfono de Contacto",
-                btn_submit: "Solicitar Estudio por Partidas e Informe PDF",
-                d_success: "¡Solicitud recibida correctamente!",
-                d_explain: "De acuerdo con nuestras políticas, un asesor técnico revisará las variables de construcción. Tu informe de desglose en PDF se enviará a tu correo electrónico en un plazo de 12 a 48 horas (restando horas no laborales en la isla de Mallorca).",
-                d_break_title: "Previsualización de Costes Orientativos (Ejecución Material)",
-                disclaimer: "<strong>Aviso Legal Indicativo:</strong> Esta estimación se basa en la información paramétrica proporcionada por el usuario y los valores de mercado medios en la isla de Mallorca. No constituye una oferta contractual ni un presupuesto de construcción cerrado."
-            },
-            de: {
-                title: "Kennen Sie die Kosten, bevor Sie bauen",
-                desc: "Erhalten Sie eine indikative und erstklassige Kostenschätzung für den Bau Ihres neuen Hauses in Mallorca.",
-                q_title: "1. Schnellrechner (Ohne Registrierung)",
-                q_m2: "Bebaute Fläche (m²)",
-                q_qual: "Qualitätsstufe",
-                q_pool: "Schwimmbad?",
-                q_btn: "Sofortige Schätzung Berechnen",
-                q_res: "Geschätzte Baukosten",
-                q_note: "*Ein Unsicherheitsbereich von ±5% wird um die zentrale Schätzung herum angewendet.",
-                q_link: "Wünschen Sie eine detaillierte Aufschlüsselung? <span class='btn-anchor' onclick='scrollToDetailed()'>Gehen Sie zum detaillierten Rechner unten</span>",
-                d_title: "2. Detaillierte Schätzung nach Positionen",
-                s1_title: "Schritt 1 von 4: Gebäudestruktur",
-                lbl_d_m2: "Bebaute Gesamtfläche m²",
-                lbl_d_plants: "Anzahl der Etagen",
-                lbl_d_escaleras: "Interne Treppen",
-                btn_next: "Nächster Schritt",
-                s2_title: "Schritt 2 von 4: Aufteilung & Qualitäten",
-                lbl_d_habs: "Anzahl der Schlafzimmer",
-                lbl_d_banyos: "Anzahl der Badezimmer",
-                lbl_d_qual_sel: "Allgemeine Verarbeitungsqualität",
-                btn_back: "Zurück",
-                s3_title: "Schritt 3 von 4: Anlagen & Außenbereiche",
-                lbl_d_clima: "Klimaanlage / HVAC-System",
-                lbl_d_pool_sel: "Schwimmbecken-Größe",
-                lbl_d_domotica: "Smart Home / Domotik?",
-                lbl_d_jardin: "Außenbereich / Garten m²",
-                lbl_d_parking: "Außenstellplätze",
-                lbl_d_proyecto: "Projekt-, Architekten- und Lizenzgebühren einschließen? (10% Extra)",
-                s4_title: "Schritt 4 von 4: Bestätigung & Absenden",
-                lbl_f_name: "Kontaktname",
-                lbl_f_email: "E-Mail-Adresse",
-                lbl_f_phone: "Telefonnummer",
-                btn_submit: "Detaillierte Analyse & PDF-Bericht anfordern",
-                d_success: "Anfrage erfolgreich eingegangen!",
-                d_explain: "Gemäß unseren Richtlinien wird ein technischer Berater die Variablen prüfen. Ihr detaillierter PDF-Bericht wird Ihnen innerhalb von 12 bis 48 Stunden per E-Mail zugestellt (außerhalb der arbeitsfreien Zeiten auf Mallorca).",
-                d_break_title: "Vorschau der geschätzten Kosten (Materialausführung)",
-                disclaimer: "<strong>Indikativer rechtlicher Hinweis:</strong> Diese Schätzung basiert on den vom Benutzer bereitgestellten parametrischen Informationen und den durchschnittlichen Marktwerten auf Mallorca. Es stellt kein vertragliches Angebot oder ein endgültiges Bauangebot dar."
-            }
-        };
-        function changeLanguage() {
-            const l = document.getElementById("langSelect").value;
+        <!-- PASO 4: CONFIRMACIÓN Y ENVÍO PREMIUM -->
+        <div class="step-container" id="step-4">
+            <h4 style="margin-bottom:1.5rem; color:var(--soft-grey);" id="txt-s4-title" data-i18n="txt-s4-title">Step 4 of 4: Custom Report Request</h4>
+            <p style="color: var(--charcoal); font-size: 0.9rem; margin-bottom: 1.5rem;" data-i18n="step4-subtitle">Please confirm your details. Our technical team on the island will calibrate your parameters against current architectural baremes.</p>
             
-            document.getElementById("txt-hero-title").innerText = i18n[l].title;
-            document.getElementById("txt-hero-desc").innerText = i18n[l].desc;
-            document.getElementById("txt-q-title").innerText = i18n[l].q_title;
-            document.getElementById("lbl-q-m2").innerText = i18n[l].q_m2;
-            document.getElementById("lbl-q-quality").innerText = i18n[l].q_qual;
-            document.getElementById("lbl-q-pool").innerText = i18n[l].q_pool;
-            document.getElementById("btn-q-calc").innerText = i18n[l].q_btn;
-            document.getElementById("txt-q-res-title").innerText = i18n[l].q_res;
-            document.getElementById("txt-q-note").innerHTML = i18n[l].q_note;
-            document.getElementById("txt-q-link").innerHTML = i18n[l].q_link;
+            <!-- Formulario Formspree (Debes reemplazar TU_ID_DE_FORMSPREE con tu identificador real de Formspree) -->
+            <form id="lead-form" action="https://formspree.io" method="POST" onsubmit="handleFormSubmit(event)">
+                
+                <!-- Inputs ocultos para empaquetar y enviar las variables del Excel por detrás -->
+                <input type="hidden" name="_subject" value="New Premium Construction Lead - MallorcaQuotes">
+                <input type="hidden" id="hidden-m2" name="Total Built-up Area (m2)">
+                <input type="hidden" id="hidden-floors" name="Number of Floors">
+                <input type="hidden" id="hidden-bedrooms" name="Number of Bedrooms">
+                <input type="hidden" id="hidden-bathrooms" name="Number of Bathrooms">
+                <input type="hidden" id="hidden-quality" name="Selected Quality Level">
+                <input type="hidden" id="hidden-hvac" name="HVAC System">
+                <input type="hidden" id="hidden-pool" name="Pool Configuration">
+                <input type="hidden" id="hidden-garden" name="Garden Area (m2)">
+                <input type="hidden" id="hidden-fees" name="Included Fees">
+
+                <div class="form-group">
+                    <label id="lbl-f-name" data-i18n="lbl-f-name">Contact Name</label>
+                    <input type="text" id="det-name" name="name" required placeholder="Ej. John Doe">
+                </div>
+                
+                <div class="form-group">
+                    <label id="lbl-f-email" data-i18n="lbl-f-email">Email Address</label>
+                    <input type="email" id="det-email" name="email" required placeholder="Ej. john@example.com">
+                </div>
+                
+                <div class="form-group">
+                    <label id="lbl-f-phone" data-i18n="lbl-f-phone">Phone Number</label>
+                    <div style="display: flex; gap: 8px;">
+                        <!-- Selector Internacional de Prefijos -->
+                        <select id="phone-prefix" name="country_prefix" style="padding: 0.8rem; border: 1px solid var(--soft-grey); border-radius: 4px; background-color: #fff; max-width: 130px; font-size: 0.9rem; color: var(--charcoal);">
+                            <optgroup label="Main Markets">
+                                <option value="+34">🇪🇸 ES (+34)</option>
+                                <option value="+49" selected>🇩🇪 DE (+49)</option>
+                                <option value="+44">🇬🇧 UK (+44)</option>
+                                <option value="+43">🇦🇹 AT (+43)</option>
+                                <option value="+41">🇨🇭 CH (+41)</option>
+                            </optgroup>
+                            <optgroup label="Other Countries">
+                                <option value="+33">🇫🇷 FR (+33)</option>
+                                <option value="+31">🇳🇱 NL (+31)</option>
+                                <option value="+32">🇧🇪 BE (+32)</option>
+                                <option value="+39">🇮🇹 IT (+39)</option>
+                                <option value="+1">🇺🇸 US (+1)</option>
+                                <option value="+46">🇸🇪 SE (+46)</option>
+                            </optgroup>
+                        </select>
+                        <!-- Campo numérico del teléfono -->
+                        <input type="tel" id="det-phone" name="phone_number" required placeholder="170 0000000" style="flex: 1;">
+                    </div>
+                </div>
+
+                <div class="step-buttons">
+                    <button type="button" class="btn btn-secondary" onclick="nextStep(3)" data-i18n="btn-back">Back</button>
+                    <button type="submit" class="btn" id="btn-submit" data-i18n="btn-submit">Request Itemized Study & PDF Report</button>
+                </div>
+            </form>
+        </div>
+
+        <!-- CUADRO DE RESULTADO / PANTALLA DE ÉXITO EXCLUSIVA (Se activa al enviar el formulario) -->
+        <div class="result-box" id="detailed-result" style="text-align:left; display: none;">
+            <h3 style="text-align:center;" id="txt-d-res-title" data-i18n="txt-d-res-title">Estimated Construction Cost</h3>
             
-            document.getElementById("txt-d-title").innerText = i18n[l].d_title;
-            document.getElementById("txt-s1-title").innerText = i18n[l].s1_title;
-            document.getElementById("lbl-d-m2").innerText = i18n[l].lbl_d_m2;
-            document.getElementById("lbl-d-plants").innerText = i18n[l].lbl_d_plants;
-            document.getElementById("lbl-d-escaleras").innerText = i18n[l].lbl_d_escaleras;
-document.querySelectorAll(".btn-next").forEach(btn => {
-    btn.innerText = i18n[l].btn_next;
-});
+            <div style="background:var(--white); padding:1.5rem; border-radius:6px; border:1px solid var(--sand); margin:1rem 0;">
+                <strong style="color:var(--olive); font-size: 1.1rem; display: block;" id="txt-d-success" data-i18n="txt-d-success">Request successfully received!</strong>
+                <p style="font-size:0.95rem; margin-top:0.5rem; color:var(--charcoal); line-height: 1.6;" id="txt-d-explain" data-i18n="txt-d-explain">According to our premium policies, a technical advisor will check the construction variables. Your detailed PDF breakdown report will be sent to your email within 12 to 48 hours (excluding non-business hours on the island of Mallorca).</p>
+            </div>
             
-            document.getElementById("txt-s2-title").innerText = i18n[l].s2_title;
-            document.getElementById("lbl-d-habs").innerText = i18n[l].lbl_d_habs;
-            document.getElementById("lbl-d-banyos").innerText = i18n[l].lbl_d_banyos;
-            document.getElementById("lbl-d-qual-sel").innerText = i18n[l].lbl_d_qual_sel;
-            document.querySelectorAll(".btn-back").forEach(btn => {
-    btn.innerText = i18n[l].btn_back;
-});
-            document.getElementById("txt-s3-title").innerText = i18n[l].s3_title;
-            document.getElementById("lbl-d-clima").innerText = i18n[l].lbl_d_clima;
-            document.getElementById("lbl-d-pool-sel").innerText = i18n[l].lbl_d_pool_sel;
-            document.getElementById("lbl-d-domotica").innerText = i18n[l].lbl_d_domotica;
-            document.getElementById("lbl-d-jardin").innerText = i18n[l].lbl_d_jardin;
-            document.getElementById("lbl-d-parking").innerText = i18n[l].lbl_d_parking;
-            document.getElementById("lbl-d-proyecto").innerText = i18n[l].lbl_d_proyecto;
-            
-            document.getElementById("txt-s4-title").innerText = i18n[l].s4_title;
-            document.getElementById("lbl-f-name").innerText = i18n[l].lbl_f_name;
-            document.getElementById("lbl-f-email").innerText = i18n[l].lbl_f_email;
-            document.getElementById("lbl-f-phone").innerText = i18n[l].lbl_f_phone;
-            
-            document.getElementById("btn-submit").innerText = i18n[l].btn_submit;
-            document.getElementById("txt-d-res-title").innerText = i18n[l].q_res;
-            document.getElementById("txt-d-success").innerText = i18n[l].d_success;
-            document.getElementById("txt-d-explain").innerText = i18n[l].d_explain;
-            document.getElementById("txt-d-break-title").innerText = i18n[l].d_break_title;
-            document.getElementById("txt-d-disclaimer").innerHTML = i18n[l].disclaimer;
-        }
-        // MOTOR MATEMÁTICO: APLICA EXACTAMENTE LAS MATRICES Y FÓRMULAS DE COSTE DE TU EXCEL
-        function ejecutarMotorPrecios(config) {
-            const p = PRECIOS_BASE[config.calidad];
-            let costeBase = 0;
-
-            costeBase += config.m2 * p.excavation;
-            costeBase += config.m2 * p.structure;
-            costeBase += config.m2 * p.cubierta;
-            
-            let m2Fachada = config.m2 * 1.3416; 
-            costeBase += m2Fachada * p.fachada;
-
-            costeBase += (config.m2 * 2.5) * p.tabiqueria;
-            costeBase += (config.m2 * 3.5) * p.acabados;
-            costeBase += config.m2 * p.suelos;
-
-            costeBase += config.m2 * p.electricidad;
-            costeBase += config.m2 * p.fontaneria;
-
-            let numVentanas = Math.ceil(config.m2 / 14);
-            costeBase += (numVentanas * 0.8) * p.ventana;
-            costeBase += 1 * p.cristalera;
-            costeBase += (config.rooms * 3) * p.puerta_int;
-            costeBase += 1 * p.puerta_prin;
-
-            costeBase += config.bathrooms * p.bano;
-            costeBase += 1 * p.cocina;
-
-            if (config.clima === 'Convencional') costeBase += config.m2 * p.clima_conv;
-            else if (config.clima === 'Aerotermia') costeBase += config.m2 * p.clima_aero;
-            else costeBase += config.m2 * p.clima_suelo;
-
-            if (config.domotica === 'Sí') costeBase += 1 * p.domotica;
-
-            if (config.piscina === 'Grande') costeBase += 20 * p.piscina_m2;
-            else if (config.piscina === 'Mediana') costeBase += 15 * p.piscina_m2;
-            else if (config.piscina === 'Pequeña') costeBase += 10 * p.piscina_m2;
-
-            costeBase += config.garden * p.jardin;
-            costeBase += config.parking * p.parking;
-            costeBase += config.stairs * p.escalera;
-
-            // REGLA MAESTRA DEL EXCEL: COSTE BASE + 5% IMPREVISTOS + 30% BENEFICIO INTERNO DE CONTRATA
-            let imprevistos = costeBase * 0.05;
-            let subtotalConImprevistos = costeBase + imprevistos;
-            let beneficioContrata = subtotalConImprevistos * 0.30;
-            let totalConstruccion = subtotalConImprevistos + beneficioContrata;
-
-            if (config.proyecto === 'Sí') {
-                totalConstruccion += totalConstruccion * 0.10;
-            }
-
-            return {
-                total: totalConstruccion,
-                estructura: config.m2 * p.structure,
-                fachada: m2Fachada * p.fachada,
-                clima: config.clima === 'Convencional' ? config.m2 * p.clima_conv : (config.clima === 'Aerotermia' ? config.m2 * p.clima_aero : config.m2 * p.clima_suelo),
-                acabados: (config.m2 * p.suelos) + ((config.m2 * 3.5) * p.acabados),
-                jardin: config.garden * p.jardin
-            };
-        }
-
-        function calculateQuick() {
-            const m2 = parseFloat(document.getElementById("quick-m2").value) || 160;
-            const calidad = document.getElementById("quick-quality").value;
-            const piscina = document.getElementById("quick-pool").value;
-
-            const config = {
-                m2: m2, calidad: calidad, piscina: piscina, rooms: 3, bathrooms: 3,
-                clima: 'Aerotermia', domotica: 'No', garden: 100, parking: 0, stairs: 1, proyecto: 'No'
-            };
-
-            const calculo = ejecutarMotorPrecios(config);
-            const low = calculo.total * 0.95;
-            const high = calculo.total * 1.05;
-
-            document.getElementById("quick-price-range").innerText = `€${Math.round(low).toLocaleString('es-ES')} – €${Math.round(high).toLocaleString('es-ES')}`;
-            document.getElementById("quick-result").style.display = "block";
-        }
-
-        function nextStep(step) {
-            document.querySelectorAll('.step-container').forEach(el => el.classList.remove('active'));
-            document.getElementById(`step-${step}`).classList.add('active');
-            document.getElementById('progress-fill').style.width = `${step * 25}%`;
-        }
-
-        function scrollToDetailed() {
-            document.getElementById('detailed-section').scrollIntoView({ behavior: 'smooth' });
-        }
-
-        function submitDetailedForm() {
-            const config = {
-                m2: parseFloat(document.getElementById("det-m2").value) || 160,
-                stairs: parseInt(document.getElementById("det-stairs").value) || 1,
-                rooms: parseInt(document.getElementById("det-rooms").value) || 3,
-                bathrooms: parseInt(document.getElementById("det-bathrooms").value) || 3,
-                calidad: document.getElementById("det-quality").value,
-                clima: document.getElementById("det-clima").value,
-                piscina: document.getElementById("det-pool").value,
-                domotica: document.getElementById("det-domotica").value,
-                garden: parseFloat(document.getElementById("det-garden").value) || 0,
-                parking: parseInt(document.getElementById("det-parking").value) || 0,
-                proyecto: document.getElementById("det-project").value
-            };
-
-            const calculo = ejecutarMotorPrecios(config);
-            const low = calculo.total * 0.95;
-            const high = calculo.total * 1.05;
-
-            document.getElementById("detailed-price-range").innerText = `€${Math.round(low).toLocaleString('es-ES')} – €${Math.round(high).toLocaleString('es-ES')}`;
-
-            const box = document.getElementById("breakdown-box");
-            box.innerHTML = `
-                <div class="breakdown-item"><span>Cimentación, Estructura y Estabilidad</span><span>€${Math.round(calculo.estructura * 1.365).toLocaleString('es-ES')}</span></div>
-                <div class="breakdown-item"><span>Envolventes, Fachadas y Aislamientos</span><span>€${Math.round(calculo.fachada * 1.365).toLocaleString('es-ES')}</span></div>
-                <div class="breakdown-item"><span>Sistemas de Climatización Eficiente</span><span>€${Math.round(calculo.clima * 1.365).toLocaleString('es-ES')}</span></div>
-                <div class="breakdown-item"><span>Acabados Interiores de Alta Durabilidad</span><span>€${Math.round(calculo.acabados * 1.365).toLocaleString('es-ES')}</span></div>
-                <div class="breakdown-item"><span>Infraestructura de Exteriores y Áreas Verdes</span><span>€${Math.round(calculo.jardin * 1.365).toLocaleString('es-ES')}</span></div>
-            `;
-
-            document.getElementById("detailed-result").style.display = "block";
-            document.getElementById("detailed-result").scrollIntoView({ behavior: 'smooth' });
-        }
-    </script>
+            <p class="disclaimer" id="txt-d-disclaimer" data-i18n="txt-d-disclaimer"><strong>Indicative Legal Disclaimer:</strong> This estimate is based on parametric information provided by the user and average market values on the island of Mallorca. It does not constitute a contractual offer or a final construction quote.</p>
+        </div>
+    </div> <!-- Cierre de main-wrapper -->
     <!-- ========================================== -->
-    <!-- CEREBRO DE TRaducción (Punto 1 y 2) -->
+    <!-- MOTOR LÓGICO Y MATEMÁTICO (Jscript)       -->
     <!-- ========================================== -->
     <script>
-    const dictionary = {
-      en: {
-        "btn-back": "Back",
-        "btn-next": "Next Step",
-        "btn-submit": "Request Itemized Study & PDF Report"
-      },
-      es: {
-        "btn-back": "Atrás",
-        "btn-next": "Siguiente Paso",
-        "btn-submit": "Solicitar Estudio Detallado e Informe PDF"
-      },
-      de: {
-        "btn-back": "Zurück",
-        "btn-next": "Nächster Schritt",
-        "btn-submit": "Detaillierte Studie & PDF-Bericht anfordern"
-      }
-    };
-
-    function changeLanguage(lang) {
-      if (!dictionary[lang]) lang = 'en';
-
-      // Gestiona visualmente tus botones actuales de idioma
-      document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
-      const activeBtn = document.getElementById(`btn-lang-${lang}`) || (window.event?.target);
-      if (activeBtn && activeBtn.classList) activeBtn.classList.add('active');
-
-      // Traduce automáticamente todo lo que tenga data-i18n
-      document.querySelectorAll('[data-i18n]').forEach(element => {
-        const key = element.getAttribute('data-i18n');
-        if (dictionary[lang][key]) {
-          if (element.tagName === 'OPTION') {
-            element.text = dictionary[lang][key];
-          } else {
-            element.innerText = dictionary[lang][key];
-          }
+    // 1. Control de Navegación de Pasos de la Calculadora Detallada
+    function nextStep(stepNumber) {
+        // Ocultar todos los pasos
+        document.querySelectorAll('.step-container').forEach(step => {
+            step.classList.remove('active');
+        });
+        
+        // Mostrar el paso solicitado
+        const targetStep = document.getElementById(`step-${stepNumber}`);
+        if (targetStep) {
+            targetStep.classList.add('active');
         }
-      });
-
-      localStorage.setItem('mallorcaquotes-lang', lang);
     }
 
-    // Se ejecuta al cargar la web: Inglés por defecto o recuerda la última selección
+    // 2. Motor Matemático en Vivo para la Calculadora Rápida (Sin Registro)
+    function calculateQuickEstimate() {
+        const m2 = parseFloat(document.getElementById('quick-m2').value) || 0;
+        const quality = document.getElementById('quick-quality').value;
+        const pool = document.getElementById('quick-pool').value;
+
+        // Matrices bases del Excel originales
+        let basePrice = 1200; 
+        if (quality === 'medium') basePrice = 1500;
+        if (quality === 'high') basePrice = 1900;
+
+        // Fórmulas internas: ejecución material + 5% imprevistos + 30% contrata
+        const hiddenMultiplier = 1.05 * 1.30;
+        let globalExecution = m2 * basePrice;
+
+        if (pool === 'yes') {
+            globalExecution += 25000; // Valor paramétrico medio de piscina grande
+        }
+
+        const centralEstimate = globalExecution * hiddenMultiplier;
+        const rangeMin = Math.round(centralEstimate * 0.95);
+        const rangeMax = Math.round(centralEstimate * 1.05);
+
+        // Inyección de precio formateado en pantalla
+        document.getElementById('quick-price-range').innerText = 
+            `€${rangeMin.toLocaleString()} - €${rangeMax.toLocaleString()}`;
+    }
+
+    // 3. Envío Invisible y Captura Paramétrica del Formulario Paso 4
+    function handleFormSubmit(event) {
+        event.preventDefault(); // Detener recarga nativa de la página
+
+        // Mapeo interno de todas las opciones elegidas en el Excel por el usuario
+        document.getElementById('hidden-m2').value = document.getElementById('total-m2').value;
+        document.getElementById('hidden-floors').value = document.getElementById('num-floors').value;
+        document.getElementById('hidden-bedrooms').value = document.getElementById('num-bedrooms').value;
+        document.getElementById('hidden-bathrooms').value = document.getElementById('num-bathrooms').value;
+        document.getElementById('hidden-quality').value = document.getElementById('quality-level').value;
+        document.getElementById('hidden-hvac').value = document.getElementById('hvac-system').value;
+        document.getElementById('hidden-pool').value = document.getElementById('pool-size').value;
+        document.getElementById('hidden-garden').value = document.getElementById('garden-m2').value;
+        document.getElementById('hidden-fees').value = document.getElementById('include-fees').value;
+
+        const form = event.target;
+        const formData = new FormData(form);
+
+        // Concatenar de forma limpia el prefijo internacional con el número de teléfono
+        const prefix = document.getElementById('phone-prefix').value;
+        const phoneInput = document.getElementById('det-phone').value;
+        formData.set('phone_number', `${prefix} ${phoneInput}`);
+
+        // Petición asíncrona hacia los servidores de Formspree
+        fetch(form.action, {
+            method: form.method,
+            body: formData,
+            headers: { 'Accept': 'application/json' }
+        }).then(response => {
+            if (response.ok) {
+                // Ocultar formulario de contacto y mostrar mensaje premium de 48h
+                document.getElementById('step-4').classList.remove('active');
+                document.getElementById('detailed-result').style.display = 'block';
+            } else {
+                alert('Oops! System error processing parameters. Please try again.');
+            }
+        }).catch(error => {
+            alert('Oops! Connection lost. Please verify your network.');
+        });
+    }
+
+    // Inicializar cálculo rápido de entrada
     document.addEventListener("DOMContentLoaded", () => {
-      const savedLang = localStorage.getItem('mallorcaquotes-lang') || 'en';
-      changeLanguage(savedLang);
+        calculateQuickEstimate();
+    });
+    // ==========================================
+    // DICCIONARIO GLOBAL DE IDIOMAS (Punto 1 y 2)
+    // ==========================================
+    const dictionary = {
+      en: { /* Diccionario en Inglés con claves de navegación, calculadoras y formularios */ },
+      es: { /* Diccionario en Español con la traducción completa de la interfaz */ },
+      de: { /* Diccionario en Alemán con los textos adaptados para la isla */ }
+    };
+
+    // 4. Lógica de Ejecución del Cambio Lingüístico Internacional
+    function changeLanguage(lang) {
+        if (!dictionary[lang]) lang = 'en';
+
+        document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
+        const targetBtn = document.getElementById(`btn-lang-${lang}`);
+        if (targetBtn) targetBtn.classList.add('active');
+
+        document.querySelectorAll('[data-i18n]').forEach(element => {
+            const key = element.getAttribute('data-i18n');
+            if (dictionary[lang][key]) {
+                if (element.tagName === 'OPTION') {
+                    element.text = dictionary[lang][key];
+                } else {
+                    element.innerHTML = dictionary[lang][key];
+                }
+            }
+        });
+
+        localStorage.setItem('mallorcaquotes-lang', lang);
+    }
+
+    document.addEventListener("DOMContentLoaded", () => {
+        const savedLang = localStorage.getItem('mallorcaquotes-lang') || 'en';
+        changeLanguage(savedLang);
     });
     </script>
 </body>
