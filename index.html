@@ -768,5 +768,56 @@ document.querySelectorAll(".btn-next").forEach(btn => {
             document.getElementById("detailed-result").scrollIntoView({ behavior: 'smooth' });
         }
     </script>
+    <!-- ========================================== -->
+    <!-- CEREBRO DE TRaducción (Punto 1 y 2) -->
+    <!-- ========================================== -->
+    <script>
+    const dictionary = {
+      en: {
+        "btn-back": "Back",
+        "btn-next": "Next Step",
+        "btn-submit": "Request Itemized Study & PDF Report"
+      },
+      es: {
+        "btn-back": "Atrás",
+        "btn-next": "Siguiente Paso",
+        "btn-submit": "Solicitar Estudio Detallado e Informe PDF"
+      },
+      de: {
+        "btn-back": "Zurück",
+        "btn-next": "Nächster Schritt",
+        "btn-submit": "Detaillierte Studie & PDF-Bericht anfordern"
+      }
+    };
+
+    function changeLanguage(lang) {
+      if (!dictionary[lang]) lang = 'en';
+
+      // Gestiona visualmente tus botones actuales de idioma
+      document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
+      const activeBtn = document.getElementById(`btn-lang-${lang}`) || (window.event?.target);
+      if (activeBtn && activeBtn.classList) activeBtn.classList.add('active');
+
+      // Traduce automáticamente todo lo que tenga data-i18n
+      document.querySelectorAll('[data-i18n]').forEach(element => {
+        const key = element.getAttribute('data-i18n');
+        if (dictionary[lang][key]) {
+          if (element.tagName === 'OPTION') {
+            element.text = dictionary[lang][key];
+          } else {
+            element.innerText = dictionary[lang][key];
+          }
+        }
+      });
+
+      localStorage.setItem('mallorcaquotes-lang', lang);
+    }
+
+    // Se ejecuta al cargar la web: Inglés por defecto o recuerda la última selección
+    document.addEventListener("DOMContentLoaded", () => {
+      const savedLang = localStorage.getItem('mallorcaquotes-lang') || 'en';
+      changeLanguage(savedLang);
+    });
+    </script>
 </body>
 </html>
