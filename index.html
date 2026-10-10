@@ -366,55 +366,51 @@
                 <button type="button" class="btn" onclick="nextStep(4)" data-i18n="btn-next">Next Step</button>
             </div>
         </div>
-        <!-- PASO 4: FORMULARIO Y CONFIRMACIÓN PREMIUM -->
-        <div class="step-container" id="step-4">
-            <h4 style="margin-bottom:1.5rem; color:var(--soft-grey);" id="txt-s4-title" data-i18n="txt-s4-title">Step 4 of 4: Custom Report Request</h4>
-            <p style="color: var(--charcoal); font-size: 0.9rem; margin-bottom: 1.5rem;" data-i18n="step4-subtitle">Please confirm your details. Our technical team on the island will calibrate your parameters against current architectural baremes.</p>
+                <!-- PASO 4: FORMULARIO Y CONFIRMACIÓN ORIENTADO A PRESUPUESTO DETALLADO -->
+        <div class="step-container" id="step-4" style="display: none;">
+            <h4 style="margin-bottom:1.5rem; color:var(--soft-grey);" id="txt-s4-title" data-i18n="txt-s4-title">Paso 4 de 4: Solicitud de Presupuesto Personalizado</h4>
+            <p style="color: var(--charcoal); font-size: 0.9rem; margin-bottom: 1.5rem;" data-i18n="step4-subtitle">Por favor, confirme sus datos de contacto. Nuestro equipo procesará sus parámetros para confeccionar un presupuesto detallado por partidas basado en los costes reales del mercado de Mallorca.</p>
             
+            <!-- IMPORTANTE: Reemplaza TU_ID_DE_FORMSPREE con tu código real de Formspree cuando lo tengas para que te lleguen los correos -->
             <form id="lead-form" action="https://formspree.io" method="POST" onsubmit="handleFormSubmit(event)">
                 
-                <!-- Inputs ocultos para empaquetar y enviar las variables del Excel por detrás -->
-                <input type="hidden" name="_subject" value="New Premium Construction Lead - MallorcaQuotes">
-                <input type="hidden" id="hidden-m2" name="Total Built-up Area (m2)">
-                <input type="hidden" id="hidden-floors" name="Number of Floors">
-                <input type="hidden" id="hidden-bedrooms" name="Number of Bedrooms">
-                <input type="hidden" id="hidden-bathrooms" name="Number of Bathrooms">
-                <input type="hidden" id="hidden-quality" name="Selected Quality Level">
-                <input type="hidden" id="hidden-hvac" name="HVAC System">
-                <input type="hidden" id="hidden-pool" name="Pool Configuration">
-                <input type="hidden" id="hidden-garden" name="Garden Area (m2)">
-                <input type="hidden" id="hidden-fees" name="Included Fees">
+                <!-- Inputs ocultos para empaquetar y enviar las variables del Excel por detrás de forma invisible -->
+                <input type="hidden" name="_subject" value="Nuevo Lead - Solicitud de Presupuesto Detallado MallorcaQuotes">
+                <input type="hidden" id="hidden-m2" name="M2 Construidos">
+                <input type="hidden" id="hidden-floors" name="Número de Plantas">
+                <input type="hidden" id="hidden-bedrooms" name="Dormitorios">
+                <input type="hidden" id="hidden-bathrooms" name="Baños">
+                <input type="hidden" id="hidden-quality" name="Nivel de Calidad">
+                <input type="hidden" id="hidden-hvac" name="Climatización">
+                <input type="hidden" id="hidden-pool" name="Configuración Piscina">
+                <input type="hidden" id="hidden-garden" name="M2 Exterior-Jardín">
+                <input type="hidden" id="hidden-fees" name="Incluye Tasas-Proyecto">
 
                 <div class="form-group">
-                    <label id="lbl-f-name" data-i18n="lbl-f-name">Contact Name</label>
-                    <input type="text" id="det-name" name="name" required placeholder="Ej. John Doe">
+                    <label id="lbl-f-name" data-i18n="lbl-f-name">Nombre de Contacto</label>
+                    <input type="text" id="det-name" name="name" required placeholder="Ej. Juan Gómez">
                 </div>
                 
                 <div class="form-group">
-                    <label id="lbl-f-email" data-i18n="lbl-f-email">Email Address</label>
-                    <input type="email" id="det-email" name="email" required placeholder="Ej. john@example.com">
+                    <label id="lbl-f-email" data-i18n="lbl-f-email">Correo Electrónico</label>
+                    <input type="email" id="det-email" name="email" required placeholder="Ej. juan@example.com">
                 </div>
                 
                 <div class="form-group">
-                    <label id="lbl-f-phone" data-i18n="lbl-f-phone">Phone Number</label>
+                    <label id="lbl-f-phone" data-i18n="lbl-f-phone">Número de Teléfono</label>
                     <div style="display: flex; gap: 8px;">
-                        <!-- Selector Internacional de Prefijos con Bandera + Prefijo Limpios -->
-                        <select id="phone-prefix" name="country_prefix" style="padding: 0.8rem; border: 1px solid var(--soft-grey); border-radius: 4px; background-color: #fff; max-width: 110px; font-size: 0.95rem; color: var(--charcoal);">
-                            <optgroup label="Main Markets">
-                                <option value="+34">🇪🇸 +34</option>
-                                <option value="+49" selected>🇩🇪 +49</option>
-                                <option value="+44">🇬🇧 +44</option>
-                                <option value="+43">🇦🇹 +43</option>
-                                <option value="+41">🇨🇭 +41</option>
-                            </optgroup>
-                            <optgroup label="Other">
-                                <option value="+33">🇫🇷 +33</option>
-                                <option value="+31">🇳🇱 +31</option>
-                                <option value="+32">🇧🇪 +32</option>
-                                <option value="+39">🇮🇹 +39</option>
-                                <option value="+1">🇺🇸 +1</option>
-                                <option value="+46">🇸🇪 +46</option>
-                            </optgroup>
+                        <!-- Selector Internacional Ultra-Limpio: Solo prefijos puros sin texto duplicado -->
+                        <select id="phone-prefix" name="country_prefix" style="padding: 0.8rem; border: 1px solid var(--soft-grey); border-radius: 4px; background-color: #fff; max-width: 90px; font-size: 0.95rem; color: var(--charcoal);">
+                            <option value="+34">+34</option>
+                            <option value="+49" selected>+49</option>
+                            <option value="+44">+44</option>
+                            <option value="+43">+43</option>
+                            <option value="+41">+41</option>
+                            <option value="+33">+33</option>
+                            <option value="+31">+31</option>
+                            <option value="+32">+32</option>
+                            <option value="+39">+39</option>
+                            <option value="+1">+1</option>
                         </select>
                         <!-- Campo numérico del teléfono -->
                         <input type="tel" id="det-phone" name="phone_number" required placeholder="170 0000000" style="flex: 1;">
@@ -422,23 +418,24 @@
                 </div>
 
                 <div class="step-buttons">
-                    <button type="button" class="btn btn-secondary" onclick="nextStep(3)" data-i18n="btn-back">Back</button>
-                    <button type="submit" class="btn" id="btn-submit" data-i18n="btn-submit">Request Technical Study & PDF</button>
+                    <button type="button" class="btn btn-secondary" onclick="nextStep(3)" data-i18n="btn-back">Atrás</button>
+                    <button type="submit" class="btn" id="btn-submit" data-i18n="btn-submit">Solicitar Presupuesto Detallado</button>
                 </div>
             </form>
         </div>
 
-        <!-- CUADRO DE RESULTADO / PANTALLA DE ÉXITO EXCLUSIVA (Se activa al enviar) -->
+        <!-- CUADRO DE ÉXITO EXCLUSIVA (Se activa de forma invisible al enviar el formulario) -->
         <div class="result-box" id="detailed-result" style="text-align:left; display: none;">
-            <h3 style="text-align:center;" id="txt-d-res-title" data-i18n="txt-d-res-title">Estimated Construction Cost</h3>
+            <h3 style="text-align:center;" id="txt-d-res-title" data-i18n="txt-d-res-title">Presupuesto de Construcción Estimado</h3>
             
             <div style="background:var(--white); padding:1.5rem; border-radius:6px; border:1px solid var(--sand); margin:1rem 0;">
-                <strong style="color:var(--olive); font-size: 1.1rem; display: block;" id="txt-d-success" data-i18n="txt-d-success">Request successfully received!</strong>
-                <p style="font-size:0.95rem; margin-top:0.5rem; color:var(--charcoal); line-height: 1.6;" id="txt-d-explain" data-i18n="txt-d-explain">According to our premium policies, a technical advisor will check the construction variables. Your detailed PDF breakdown report will be sent to your email within 12 to 48 hours (excluding non-business hours on the island of Mallorca).</p>
+                <strong style="color:var(--olive); font-size: 1.1rem; display: block;" id="txt-d-success" data-i18n="txt-d-success">¡Solicitud recibida correctamente!</strong>
+                <p style="font-size:0.95rem; margin-top:0.5rem; color:var(--charcoal); line-height: 1.6;" id="txt-d-explain" data-i18n="txt-d-explain">De acuerdo con nuestras políticas de validación premium, un asesor técnico sénior verificará las variables de construcción introducidas frente a los índices de mercado actuales en la isla de Mallorca. Su presupuesto detallado por partidas arquitectónicas será enviado a su correo electrónico en un plazo de 12 a 48 horas (excluyendo horas no laborables).</p>
             </div>
             
-            <p class="disclaimer" id="txt-d-disclaimer" data-i18n="txt-d-disclaimer"><strong>Indicative Legal Disclaimer:</strong> This estimate is based on parametric information provided by the user and average market values on the island of Mallorca. It does not constitute a contractual offer or a final construction quote.</p>
+            <p class="disclaimer" id="txt-d-disclaimer" data-i18n="txt-d-disclaimer"><strong>Aviso Legal Indicativo:</strong> Esta estimación se basa en información paramétrica proporcionada por el usuario y en los valores medios de mercado de la isla de Mallorca. No constituye una oferta contractual ni un presupuesto final de construcción.</p>
         </div>
+
     </div> <!-- Cierre de main-wrapper -->
     <!-- ========================================== -->
     <!-- MOTOR MATEMÁTICO REAL Y NAVEGACIÓN JS      -->
