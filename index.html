@@ -144,7 +144,7 @@
                 </div>
             </div>
 
-            <!-- PASO 3 -->
+                        <!-- PASO 3 -->
             <div class="step-container" id="step-3">
                 <h4 style="margin-bottom:1.5rem; color:var(--soft-grey);">Paso 3 de 4: Instalaciones y Exteriores</h4>
                 <div class="form-group">
@@ -162,6 +162,36 @@
                         <option value="Mediana">Piscina Mediana (15 m² lámina)</option>
                         <option value="Pequeña">Piscina Pequeña (10 m² lámina)</option>
                         <option value="Sin piscina">Sin Piscina</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>¿Incluir Domótica Inteligente?</label>
+                    <select id="det-domotica">
+                        <option value="No">No</option>
+                        <option value="Sí">Sí</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>M² de Zona Exterior / Jardín</label>
+                    <input type="number" id="det-garden" value="100" min="0">
+                </div>
+                <div class="form-group">
+                    <label>Plazas de Aparcamiento Exterior</label>
+                    <input type="number" id="det-parking" value="0" min="0">
+                </div>
+                <div class="form-group">
+                    <label>¿Incluir Gastos de Proyecto, Arquitecto y Licencias? (10% Adicional)</label>
+                    <select id="det-project">
+                        <option value="No">No (Solo ejecución material)</option>
+                        <option value="Sí">Sí (Añadir estimación de tasas y honorarios)</option>
+                    </select>
+                </div>
+                <div class="step-buttons">
+                    <button class="btn btn-secondary" onclick="nextStep(2)">Atrás</button>
+                    <button class="btn" onclick="nextStep(4)">Siguiente Paso</button>
+                </div>
+            </div>
+
 ```html
     <script>
         // TABLA DE PRECIOS OFICIALES EXTRAÍDA DE TU EXCEL 'Costes vivienda.xlsx'
