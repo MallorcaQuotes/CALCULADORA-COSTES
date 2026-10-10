@@ -45,12 +45,14 @@
         }
 
         .logo {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 1.8rem;
-            font-weight: 600;
-            letter-spacing: 1px;
-            color: var(--charcoal);
-        }
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.8rem;
+    font-weight: 600;
+    letter-spacing: 1px;
+    color: var(--charcoal);
+    text-decoration: none;
+    cursor: pointer;
+}
 
         .lang-selector select {
             background: transparent;
@@ -274,10 +276,12 @@
         }
     </style>
 </head>
-<body>
+<body id="inicio">
 
     <header>
-        <div class="logo">MallorcaQuotes</div>
+       <a href="#inicio" class="logo" aria-label="MallorcaQuotes - Home">
+    MallorcaQuotes
+</a>
         <div class="lang-selector">
             <select id="langSelect" onchange="changeLanguage()">
                 <option value="en" selected>English</option>
@@ -363,9 +367,9 @@
                 <div class="form-group">
                     <label id="lbl-d-qual-sel">General Finishes Quality</label>
                     <select id="det-quality">
-                        <option value="Media">Medium Quality (+20% adjustment)</option>
-                        <option value="Básica">Basic Quality (+25% adjustment)</option>
-                        <option value="Alta">High Quality (+15% adjustment)</option>
+                        <option value="Básica">Basic Quality</option>
+                        <option value="Media">Medium Quality</option>
+                        <option value="Alta">High Quality</option>
                     </select>
                 </div>
                 <div class="step-buttons">
