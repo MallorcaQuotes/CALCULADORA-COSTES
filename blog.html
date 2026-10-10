@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MallorcaQuotes | Architecture & Construction Blog</title>
+    
+    <style>
+        :root {
+            --olive: #606c38;
+            --dark-olive: #283618;
+            --cream: #fefae0;
+            --sand: #dda15e;
+            --earth: #bc6c25;
+            --white: #ffffff;
+            --charcoal: #2b2d42;
+            --soft-grey: #8d99ae;
+        }
+
+        body {
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            background-color: #faf9f6;
+            color: var(--charcoal);
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+        }
+
+        .premium-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem 2rem;
+            background-color: var(--white);
+            border-bottom: 1px solid #f0ede6;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+        }
+
+        .logo {
+            font-size: 1.4rem;
+            font-weight: 700;
+            letter-spacing: 0.15em;
+            color: var(--dark-olive);
+            text-decoration: none;
+        }
+
+        .logo span {
+            font-weight: 300;
+            color: var(--sand);
+        }
+
+        .seo-nav {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .seo-nav a {
+            text-decoration: none;
+            color: var(--charcoal);
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: color 0.3s;
+        }
+
+        .seo-nav a:hover {
+            color: var(--sand);
+        }
+
+        .blog-container {
+            max-width: 1000px;
+            margin: 3rem auto;
+            padding: 0 2rem;
+        }
+
+        .search-wrapper {
+            margin-bottom: 3rem;
+            text-align: center;
+        }
+
+        .search-bar {
+            width: 100%;
+            max-width: 500px;
+            padding: 0.8rem 1.2rem;
+            border: 1px solid var(--soft-grey);
+            border-radius: 30px;
+            font-size: 1rem;
+            outline: none;
+            transition: border-color 0.3s;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.02);
+        }
+
+        .search-bar:focus {
+            border-color: var(--sand);
+        }
+
+        /* Rejilla Dinámica para los Artículos */
+        .blog-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .blog-card {
+            background: var(--white);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.02);
+            border: 1px solid #f0ede6;
+            transition: transform 0.3s, box-shadow 0.3s;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .blog-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 30px rgba(0,0,0,0.06);
+        }
+
+        .blog-card-content {
+            padding: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+        }
+
+        .blog-card-tag {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--sand);
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .blog-card-title {
+            font-family: 'Playfair Display', Georgia, serif;
+            font-size: 1.3rem;
+            margin: 0 0 0.8rem 0;
+            color: var(--dark-olive);
+        }
+
+        .blog-card-excerpt {
+            font-size: 0.9rem;
+            color: var(--soft-grey);
+            margin-bottom: 1.5rem;
+            flex-grow: 1;
+        }
+
+        .blog-card-link {
+            color: var(--earth);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+            align-self: flex-start;
+        }
+
+        .blog-card-link:hover {
+            text-decoration: underline;
+        }
+
+        .no-results {
+            grid-column: 1 / -1;
+            text-align: center;
+            color: var(--soft-grey);
+            padding: 3rem 0;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- CABECERA PREMIUM -->
+    <header class="premium-header">
+        <a href="index.html" class="logo">MALLORCA<span>QUOTES</span></a>
+        <nav class="seo-nav">
+            <a href="index.html#calculator">Calculator</a>
+            <a href="blog.html" style="color: var(--sand);">Blog</a>
+            <a href="contact.html">Contact</a>
+        </nav>
+    </header>
+
+    <div class="blog-container">
+        <h1 style="text-align: center; font-family: 'Playfair Display', serif; margin-bottom: 0.5rem; font-size: 2.5rem;">Our Insights</h1>
+        <p style="text-align: center; color: var(--soft-grey); margin-bottom: 2.5rem;">Discover expert advice, tax guides, and construction trends in Mallorca.</p>
+        <!-- BARRA DE BÚSQUEDA MINIMALISTA -->
+        <div class="search-wrapper">
+            <input type="text" id="blog-search" class="search-bar" placeholder="Search articles, guides, taxes...">
+        </div>
+
+        <!-- REJILLA DE ARTÍCULOS (MÁXIMO 6 RECIENTES) -->
+        <div class="blog-grid" id="posts-grid">
+            
+            <!-- ARTÍCULO 1 (POST REAL DE PRUEBA) -->
+            <article class="blog-card" data-title="taxes costs building new villa mallorca 2026 legal guide">
+                <div class="blog-card-content">
+                    <span class="blog-card-tag">Guides & Taxes</span>
+                    <h3 class="blog-card-title">Taxes and Hidden Costs of Building a Villa in Mallorca</h3>
+                    <p class="blog-card-excerpt">An essential breakdown of architectural fees, municipal building licenses (ICIO), and VAT (IVA) implications for international owners looking to build a premium home in the Balearic Islands.</p>
+                    <a href="#" class="blog-card-link">Read Guide →</a>
+                </div>
+            </article>
+
+            <!-- ARTÍCULO 2 (MUESTRA) -->
+            <article class="blog-card" data-title="architecture mediterranean design trends luxury luxury home materials">
+                <div class="blog-card-content">
+                    <span class="blog-card-tag">Architecture</span>
+                    <h3 class="blog-card-title">5 Mediterranean Architecture Trends for Premium Homes</h3>
+                    <p class="blog-card-excerpt">Discover how dry-stone walls (pedra en sec), microcement finishes, and passive solar cooling are defining contemporary high-end luxury villas in Santanyí and Andratx.</p>
+                    <a href="#" class="blog-card-link">Read Article →</a>
+                </div>
+            </article>
+
+            <!-- ARTÍCULO 3 (MUESTRA) -->
+            <article class="blog-card" data-title="how long build house mallorca construction timelines plot licenses">
+                <div class="blog-card-content">
+                    <span class="blog-card-tag">Construction</span>
+                    <h3 class="blog-card-title">Understanding Construction Timelines in the Balearics</h3>
+                    <p class="blog-card-excerpt">From securing the building license from the local Ayuntamiento to the final certificate of occupancy (Cédula de Habitabilidad). A realistic month-by-month projection.</p>
+                    <a href="#" class="blog-card-link">Read Article →</a>
+                </div>
+            </article>
+
+            <!-- MENSAJE SI NO SE ENCUENTRAN RESULTADOS -->
+            <div class="no-results" id="no-results-msg">No articles match your search. Please try another keyword.</div>
+        </div>
+    </div> <!-- Cierre de blog-container -->
+    <!-- ========================================== -->
+    <!-- MOTOR DE BÚSQUEDA FILTRADO EN TIEMPO REAL  -->
+    <!-- ========================================== -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const searchInput = document.getElementById('blog-search');
+            const cards = document.querySelectorAll('.blog-grid .blog-card');
+            const noResultsMsg = document.getElementById('no-results-msg');
+
+            searchInput.addEventListener('input', (e) => {
+                const searchTerm = e.target.value.toLowerCase().trim();
+                let visibleCount = 0;
+
+                cards.forEach(card => {
+                    // Lee las palabras clave guardadas en el atributo data-title de cada artículo
+                    const keywords = card.getAttribute('data-title') || '';
+                    const titleText = card.querySelector('.blog-card-title').innerText.toLowerCase();
+                    const excerptText = card.querySelector('.blog-card-excerpt').innerText.toLowerCase();
+
+                    // Comprueba si el término buscado está en el título, el extracto o las palabras clave ocultas
+                    if (titleText.includes(searchTerm) || excerptText.includes(searchTerm) || keywords.includes(searchTerm)) {
+                        card.style.display = 'flex';
+                        visibleCount++;
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+
+                // Muestra u oculta el mensaje de "No se encontraron resultados"
+                if (visibleCount === 0 && searchTerm !== '') {
+                    noResultsMsg.style.display = 'block';
+                } else {
+                    noResultsMsg.style.display = 'none';
+                }
+            });
+        });
+    </script>
+</body>
+</html>
