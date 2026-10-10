@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MallorcaQuotes | Mediterranean Architectural Inspiration</title>
+    
+    <style>
+        :root {
+            --olive: #606c38;
+            --dark-olive: #283618;
+            --cream: #fefae0;
+            --sand: #dda15e;
+            --earth: #bc6c25;
+            --white: #ffffff;
+            --charcoal: #2b2d42;
+            --soft-grey: #8d99ae;
+        }
+
+        body {
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            background-color: #faf9f6;
+            color: var(--charcoal);
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+        }
+
+        .premium-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem 2rem;
+            background-color: var(--white);
+            border-bottom: 1px solid #f0ede6;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+        }
+
+        .logo {
+            font-size: 1.4rem;
+            font-weight: 700;
+            letter-spacing: 0.15em;
+            color: var(--dark-olive);
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .logo span {
+            font-weight: 300;
+            color: var(--sand);
+        }
+
+        .seo-nav {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .seo-nav a {
+            text-decoration: none;
+            color: var(--charcoal);
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: color 0.3s;
+        }
+
+        .seo-nav a:hover, .seo-nav a.active {
+            color: var(--sand);
+        }
+
+        @media (max-width: 680px) {
+            .premium-header {
+                flex-direction: column;
+                gap: 1rem;
+                padding: 1.2rem 1rem;
+                text-align: center;
+            }
+            .seo-nav {
+                gap: 1.2rem;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+        }
+
+        .lang-selector {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .lang-btn {
+            background: none;
+            border: 1px solid var(--soft-grey);
+            padding: 0.4rem 0.8rem;
+            font-size: 0.8rem;
+            cursor: pointer;
+            border-radius: 4px;
+            color: var(--charcoal);
+            transition: all 0.3s;
+            font-weight: 600;
+        }
+
+        .lang-btn.active, .lang-btn:hover {
+            background-color: var(--dark-olive);
+            color: var(--cream);
+            border-color: var(--dark-olive);
+        }
+
+        .insp-container {
+            max-width: 1100px;
+            margin: 3rem auto 5rem auto;
+            padding: 0 2rem;
+        }
+
+        .hero-section {
+            text-align: center;
+            margin-bottom: 3.5rem;
+        }
+
+        .hero-section h1 {
+            font-family: 'Playfair Display', Georgia, serif;
+            font-size: 2.6rem;
+            color: var(--dark-olive);
+            margin-bottom: 0.8rem;
+            margin-top: 0;
+        }
+
+        .hero-section p {
+            font-size: 1.1rem;
+            color: var(--soft-grey);
+            max-width: 680px;
+            margin: 0 auto;
+            line-height: 1.7;
+        }
+
+        /* Cuadrícula Porfolio / Revista de Lujo */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2.5rem;
+        }
+
+        .insp-card {
+            background: var(--white);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 25px rgba(0,0,0,0.03);
+            border: 1px solid #f0ede6;
+            display: flex;
+            flex-direction: column;
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
+        }
+
+        .insp-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 12px 35px rgba(0,0,0,0.08);
+        }
+
+        .insp-image-wrapper {
+            position: relative;
+            width: 100%;
+            height: 280px;
+            overflow: hidden;
+            background-color: #eee;
+        }
+
+        .insp-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s ease;
+        }
+
+        .insp-card:hover .insp-image {
+            transform: scale(1.05);
+        }
+
+        .insp-badge {
+            position: absolute;
+            top: 1rem;
+            left: 1rem;
+            background: rgba(40, 54, 24, 0.85);
+            backdrop-filter: blur(4px);
+            color: var(--cream);
+            padding: 0.35rem 0.85rem;
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            border-radius: 4px;
+        }
+
+        .insp-content {
+            padding: 1.8rem;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+        }
+
+        .insp-collection-name {
+            font-family: 'Playfair Display', Georgia, serif;
+            font-size: 1.4rem;
+            margin: 0 0 0.8rem 0;
+            color: var(--dark-olive);
+        }
+
+        .insp-caption {
+            font-size: 0.95rem;
+            color: var(--charcoal);
+            line-height: 1.7;
+            margin-bottom: 1.8rem;
+            flex-grow: 1;
+        }
+
+        .insp-cta-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            padding: 0.8rem 1.4rem;
+            background-color: var(--cream);
+            color: var(--dark-olive);
+            border: 1px solid var(--sand);
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+            align-self: flex-start;
+        }
+
+        .insp-cta-btn:hover {
+            background-color: var(--dark-olive);
+            color: var(--cream);
+            border-color: var(--dark-olive);
+        }
+
+        /* Footer sutil */
+        .insp-footer {
+            text-align: center;
+            margin-top: 4rem;
+            padding-top: 2rem;
+            border-top: 1px solid #f0ede6;
+            color: var(--soft-grey);
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- CABECERA PREMIUM -->
+    <header class="premium-header">
+        <a href="index.html" class="logo">MALLORCA<span>QUOTES</span></a>
+        <nav class="seo-nav">
+            <a href="index.html#calculator" data-i18n="nav-calc">Calculator</a>
+            <a href="inspiration.html" class="active" style="color: var(--sand);" data-i18n="nav-inspiration">Inspiration</a>
+            <a href="blog.html" data-i18n="nav-blog">Blog</a>
+            <a href="contact.html" data-i18n="nav-contact">Contact</a>
+        </nav>
+        <div class="lang-selector">
+            <button type="button" onclick="changeLanguage('en')" id="btn-lang-en" class="lang-btn active">EN</button>
+            <button type="button" onclick="changeLanguage('es')" id="btn-lang-es" class="lang-btn">ES</button>
+            <button type="button" onclick="changeLanguage('de')" id="btn-lang-de" class="lang-btn">DE</button>
+        </div>
+    </header>
+
+    <div class="insp-container">
+        <!-- SECCIÓN DE INTRODUCCIÓN -->
+        <section class="hero-section">
+            <h1 data-i18n="insp-title">Architectural Inspiration</h1>
+            <p data-i18n="insp-subtitle">Curated design concepts and authentic Mediterranean finishes for your future home in Mallorca.</p>
+        </section>
+
+        <!-- CUADRÍCULA DE COLECCIONES EXCLUSIVAS -->
+        <div class="gallery-grid">
+            
+            <!-- COLECCIÓN 1: TRADICIÓN DE PIEDRA -->
+            <article class="insp-card">
+                <div class="insp-image-wrapper">
+                    <img 
+                        src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&q=80" 
+                        alt="Villa tradicional de piedra seca en Mallorca" 
+                        class="insp-image"
+                        loading="lazy"
+                    >
+                    <div class="insp-badge" data-i18n="badge-c1">Santanyí Style</div>
+                </div>
+                <div class="insp-content">
+                    <h2 class="insp-collection-name" data-i18n="c1-title">Collection 1: Stone Tradition</h2>
+                    <p class="insp-caption" data-i18n="c1-caption">Traditional Mallorca dry-stone facades and natural wooden beams integrated into the Santanyí landscape.</p>
+                    <a href="index.html#calculator" class="insp-cta-btn" data-i18n="btn-estimate">Estimate This Style →</a>
+                </div>
+            </article>
+
+            <!-- COLECCIÓN 2: MINIMALISMO MEDITERRÁNEO -->
+            <article class="insp-card">
+                <div class="insp-image-wrapper">
+                    <img 
+                        src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=1200&q=80" 
+                        alt="Minimalismo contemporáneo en microcemento en Mallorca" 
+                        class="insp-image"
+                        loading="lazy"
+                    >
+                    <div class="insp-badge" data-i18n="badge-c2">Andratx Architecture</div>
+                </div>
+                <div class="insp-content">
+                    <h2 class="insp-collection-name" data-i18n="c2-title">Collection 2: Mediterranean Minimalism</h2>
+                    <p class="insp-caption" data-i18n="c2-caption">Pure lines, beige microcement finishes, and large glass windows to capture the light of Andratx.</p>
+                    <a href="index.html#calculator" class="insp-cta-btn" data-i18n="btn-estimate">Estimate This Style →</a>
+                </div>
+            </article>
+
+            <!-- COLECCIÓN 3: OASIS EXTERIOR -->
+            <article class="insp-card">
+                <div class="insp-image-wrapper">
+                    <img 
+                        src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=1200&q=80" 
+                        alt="Piscina desbordante y terraza mediterránea" 
+                        class="insp-image"
+                        loading="lazy"
+                    >
+                    <div class="insp-badge" data-i18n="badge-c3">Binissalem Stone</div>
+                </div>
+                <div class="insp-content">
+                    <h2 class="insp-collection-name" data-i18n="c3-title">Collection 3: Outdoor Oasis</h2>
+                    <p class="insp-caption" data-i18n="c3-caption">Infinity pools with Binissalem stone decking and Mediterranean shaded lounge areas.</p>
+                    <a href="index.html#calculator" class="insp-cta-btn" data-i18n="btn-estimate">Estimate This Style →</a>
+                </div>
+            </article>
+
+        </div>
+
+        <div class="insp-footer">
+            <p data-i18n="insp-footer-note">All architectural styles are fully customizable in our calculation engine according to Balearic construction parameters.</p>
+        </div>
+    </div>
+
+    <!-- ========================================== -->
+    <!-- SCRIPT DE IDIOMAS SINCRONIZADO            -->
+    <!-- ========================================== -->
+    <script>
+    const dictionary = {
+        en: {
+            "nav-calc": "Calculator",
+            "nav-inspiration": "Inspiration",
+            "nav-blog": "Blog",
+            "nav-contact": "Contact",
+            "insp-title": "Architectural Inspiration",
+            "insp-subtitle": "Curated design concepts and authentic Mediterranean finishes for your future home in Mallorca.",
+            "badge-c1": "Santanyí Style",
+            "c1-title": "Collection 1: Stone Tradition",
+            "c1-caption": "Traditional Mallorca dry-stone facades and natural wooden beams integrated into the Santanyí landscape.",
+            "badge-c2": "Andratx Architecture",
+            "c2-title": "Collection 2: Mediterranean Minimalism",
+            "c2-caption": "Pure lines, beige microcement finishes, and large glass windows to capture the light of Andratx.",
+            "badge-c3": "Binissalem Stone",
+            "c3-title": "Collection 3: Outdoor Oasis",
+            "c3-caption": "Infinity pools with Binissalem stone decking and Mediterranean shaded lounge areas.",
+            "btn-estimate": "Estimate This Style →",
+            "insp-footer-note": "All architectural styles are fully customizable in our calculation engine according to Balearic construction parameters."
+        },
+        es: {
+            "nav-calc": "Calculadora",
+            "nav-inspiration": "Inspiración",
+            "nav-blog": "Blog",
+            "nav-contact": "Contacto",
+            "insp-title": "Inspiración Arquitectónica",
+            "insp-subtitle": "Conceptos de diseño exclusivos y acabados mediterráneos auténticos para su futura residencia en Mallorca.",
+            "badge-c1": "Estilo Santanyí",
+            "c1-title": "Colección 1: Tradición de Piedra",
+            "c1-caption": "Fachadas de piedra seca mallorquina y vigas de madera natural integradas en el paisaje de Santanyí.",
+            "badge-c2": "Arquitectura Andratx",
+            "c2-title": "Colección 2: Minimalismo Mediterráneo",
+            "c2-caption": "Líneas puras, acabados en microcemento beige y grandes cristaleras para aprovechar la luz de Andratx.",
+            "badge-c3": "Piedra de Binissalem",
+            "c3-title": "Colección 3: Oasis Exterior",
+            "c3-caption": "Piscinas desbordantes con terrazas de piedra de Binissalem y zonas de sombra mediterránea.",
+            "btn-estimate": "Estimar Este Estilo →",
+            "insp-footer-note": "Todos los estilos arquitectónicos son totalmente parametrizables en nuestro motor de cálculo según las calidades de construcción en Baleares."
+        },
+        de: {
+            "nav-calc": "Rechner",
+            "nav-inspiration": "Inspiration",
+            "nav-blog": "Blog",
+            "nav-contact": "Kontakt",
+            "insp-title": "Architektur-Inspiration",
+            "insp-subtitle": "Kuratierte Designkonzepte und authentische mediterrane Oberflächen für Ihr zukünftiges Anwesen auf Mallorca.",
+            "badge-c1": "Santanyí-Stil",
+            "c1-title": "Kollektion 1: Steintradition",
+            "c1-caption": "Traditionelle mallorquinische Trockenstein-Fassaden und Holzbalken, integriert in die Landschaft von Santanyí.",
+            "badge-c2": "Andratx-Architektur",
+            "c2-title": "Kollektion 2: Mediterraner Minimalismus",
+            "c2-caption": "Klare Linien, beigefarbene Mikrozement-Oberflächen und große Glasfronten, um das Licht von Andratx einzufangen.",
+            "badge-c3": "Binissalem-Stein",
+            "c3-title": "Kollektion 3: Outdoor-Oase",
+            "c3-caption": "Infinity-Pools mit Terrassen aus Binissalem-Stein und schattigen mediterranen Loungebereichen.",
+            "btn-estimate": "Diesen Stil kalkulieren →",
+            "insp-footer-note": "Alle Architekturstile sind in unserem Berechnungsmodell nach balearischen Baufaktoren voll konfigurierbar."
+        }
+    };
+
+    let currentLanguage = 'en';
+
+    function changeLanguage(lang) {
+        if (!dictionary[lang]) lang = 'en';
+        currentLanguage = lang;
+
+        // Actualizar estado botones
+        document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
+        const targetBtn = document.getElementById(`btn-lang-${lang}`);
+        if (targetBtn) targetBtn.classList.add('active');
+
+        // Traducir todos los elementos con data-i18n
+        document.querySelectorAll('[data-i18n]').forEach(element => {
+            const key = element.getAttribute('data-i18n');
+            if (dictionary[lang] && dictionary[lang][key]) {
+                element.innerHTML = dictionary[lang][key];
+            }
+        });
+
+        // Guardar persistencia
+        localStorage.setItem('mallorcaquotes-lang', lang);
+        document.documentElement.lang = lang;
+    }
+
+    // Inicialización al cargar la página
+    document.addEventListener('DOMContentLoaded', () => {
+        const savedLang = localStorage.getItem('mallorcaquotes-lang') || 'en';
+        changeLanguage(savedLang);
+    });
+    </script>
+</body>
+</html>

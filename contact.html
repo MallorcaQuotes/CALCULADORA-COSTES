@@ -1,0 +1,563 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MallorcaQuotes | Direct Consultation & Custom Budget</title>
+    
+    <style>
+        :root {
+            --olive: #606c38;
+            --dark-olive: #283618;
+            --cream: #fefae0;
+            --sand: #dda15e;
+            --earth: #bc6c25;
+            --white: #ffffff;
+            --charcoal: #2b2d42;
+            --soft-grey: #8d99ae;
+        }
+
+        body {
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            background-color: #faf9f6;
+            color: var(--charcoal);
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+        }
+
+        .premium-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem 2rem;
+            background-color: var(--white);
+            border-bottom: 1px solid #f0ede6;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+        }
+
+        .logo {
+            font-size: 1.4rem;
+            font-weight: 700;
+            letter-spacing: 0.15em;
+            color: var(--dark-olive);
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .logo span {
+            font-weight: 300;
+            color: var(--sand);
+        }
+
+        .seo-nav {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .seo-nav a {
+            text-decoration: none;
+            color: var(--charcoal);
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: color 0.3s;
+        }
+
+        .seo-nav a:hover, .seo-nav a.active {
+            color: var(--sand);
+        }
+
+        @media (max-width: 680px) {
+            .premium-header {
+                flex-direction: column;
+                gap: 1rem;
+                padding: 1.2rem 1rem;
+                text-align: center;
+            }
+            .seo-nav {
+                gap: 1.2rem;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+        }
+
+        .lang-selector {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .lang-btn {
+            background: none;
+            border: 1px solid var(--soft-grey);
+            padding: 0.4rem 0.8rem;
+            font-size: 0.8rem;
+            cursor: pointer;
+            border-radius: 4px;
+            color: var(--charcoal);
+            transition: all 0.3s;
+            font-weight: 600;
+        }
+
+        .lang-btn.active, .lang-btn:hover {
+            background-color: var(--dark-olive);
+            color: var(--cream);
+            border-color: var(--dark-olive);
+        }
+
+        .contact-wrapper {
+            max-width: 820px;
+            margin: 3.5rem auto 5rem auto;
+            padding: 0 2rem;
+        }
+
+        .contact-box {
+            background: var(--white);
+            border-radius: 8px;
+            box-shadow: 0 4px 25px rgba(0,0,0,0.03);
+            border: 1px solid #f0ede6;
+            padding: 2.5rem 3rem;
+        }
+
+        .contact-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .contact-header h1 {
+            font-family: 'Playfair Display', Georgia, serif;
+            font-size: 2.3rem;
+            color: var(--dark-olive);
+            margin: 0 0 0.8rem 0;
+        }
+
+        /* Banner Comercial Destacado para Proyectos Avanzados */
+        .commercial-callout {
+            background-color: var(--cream);
+            border-left: 4px solid var(--sand);
+            padding: 1.4rem 1.8rem;
+            border-radius: 4px;
+            margin-bottom: 2.5rem;
+        }
+
+        .commercial-callout p {
+            margin: 0;
+            font-size: 1.05rem;
+            color: var(--dark-olive);
+            font-weight: 600;
+            line-height: 1.6;
+        }
+
+        .commercial-callout span {
+            display: block;
+            margin-top: 0.4rem;
+            font-size: 0.9rem;
+            font-weight: 400;
+            color: var(--charcoal);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            font-size: 0.95rem;
+            color: var(--charcoal);
+        }
+
+        .form-group .hint {
+            font-size: 0.8rem;
+            color: var(--soft-grey);
+            margin-top: 0.3rem;
+            display: block;
+        }
+
+        input[type="text"], input[type="email"], input[type="tel"], select, textarea {
+            width: 100%;
+            padding: 0.85rem;
+            border: 1px solid var(--soft-grey);
+            border-radius: 4px;
+            font-size: 1rem;
+            box-sizing: border-box;
+            background-color: #fff;
+            color: var(--charcoal);
+            font-family: inherit;
+            transition: border-color 0.2s, box-shadow 0.2s;
+        }
+
+        input[type="text"]:focus, input[type="email"]:focus, input[type="tel"]:focus, select:focus, textarea:focus {
+            outline: none;
+            border-color: var(--olive);
+            box-shadow: 0 0 0 3px rgba(96, 108, 56, 0.1);
+        }
+
+        .form-grid-2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.2rem;
+        }
+
+        @media (max-width: 650px) {
+            .contact-box {
+                padding: 1.8rem 1.5rem;
+            }
+            .form-grid-2 {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .btn-submit {
+            background-color: var(--dark-olive);
+            color: var(--cream);
+            padding: 1rem 2.2rem;
+            border: none;
+            border-radius: 4px;
+            font-size: 1.05rem;
+            cursor: pointer;
+            font-weight: 600;
+            transition: background-color 0.3s;
+            width: 100%;
+            margin-top: 1rem;
+        }
+
+        .btn-submit:hover {
+            background-color: var(--olive);
+        }
+
+        .result-box {
+            margin-top: 2rem;
+            padding: 2rem;
+            background-color: #faf9f6;
+            border-left: 4px solid var(--sand);
+            border-radius: 4px;
+            display: none;
+        }
+
+        .confidentiality-notice {
+            margin-top: 1.8rem;
+            padding-top: 1.2rem;
+            border-top: 1px solid #f0ede6;
+            font-size: 0.85rem;
+            color: var(--soft-grey);
+            text-align: center;
+            line-height: 1.5;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- CABECERA PREMIUM -->
+    <header class="premium-header">
+        <a href="index.html" class="logo">MALLORCA<span>QUOTES</span></a>
+        <nav class="seo-nav">
+            <a href="index.html#calculator" data-i18n="nav-calc">Calculator</a>
+            <a href="inspiration.html" data-i18n="nav-inspiration">Inspiration</a>
+            <a href="blog.html" data-i18n="nav-blog">Blog</a>
+            <a href="contact.html" class="active" style="color: var(--sand);" data-i18n="nav-contact">Contact</a>
+        </nav>
+        <div class="lang-selector">
+            <button type="button" onclick="changeLanguage('en')" id="btn-lang-en" class="lang-btn active">EN</button>
+            <button type="button" onclick="changeLanguage('es')" id="btn-lang-es" class="lang-btn">ES</button>
+            <button type="button" onclick="changeLanguage('de')" id="btn-lang-de" class="lang-btn">DE</button>
+        </div>
+    </header>
+
+    <div class="contact-wrapper">
+        <div class="contact-box">
+            
+            <div class="contact-header">
+                <h1 data-i18n="contact-title">Direct Technical Consultation</h1>
+                <p style="color: var(--soft-grey); font-size: 1.05rem; margin: 0;" data-i18n="contact-subtitle">Independent cost analysis and custom contractor tender for your villa in Mallorca.</p>
+            </div>
+
+            <!-- ENFOQUE COMERCIAL NO GENÉRICO -->
+            <div class="commercial-callout">
+                <p data-i18n="callout-main">Already have a plot or an architectural project? Send us your plans and our team will prepare a custom contractor budget.</p>
+                <span data-i18n="callout-sub">We analyze bill of quantities, geotechnical specifications, and current Balearic construction pricing.</span>
+            </div>
+
+            <form id="direct-contact-form" action="https://formspree.io/f/TU_ID_DE_FORMSPREE" method="POST" onsubmit="handleContactSubmit(event)">
+                <input type="hidden" name="_subject" value="Nuevo Proyecto con Planos - Consulta Directa MallorcaQuotes">
+                <input type="hidden" id="hidden-contact-lang" name="Idioma Seleccionado" value="EN">
+
+                <div class="form-grid-2">
+                    <div class="form-group">
+                        <label for="contact-name" data-i18n="lbl-name">Full Name</label>
+                        <input type="text" id="contact-name" name="name" required placeholder="e.g. Elena Weber" data-i18n-ph="ph-name">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="contact-email" data-i18n="lbl-email">Email Address</label>
+                        <input type="email" id="contact-email" name="email" required placeholder="e.g. elena@domain.com" data-i18n-ph="ph-email">
+                    </div>
+                </div>
+
+                <div class="form-grid-2">
+                    <div class="form-group">
+                        <label for="contact-phone" data-i18n="lbl-phone">Phone Number</label>
+                        <div style="display: flex; gap: 8px;">
+                            <select id="contact-prefix" name="phone_prefix" style="max-width: 95px; padding: 0.85rem;">
+                                <option value="+34">+34</option>
+                                <option value="+49" selected>+49</option>
+                                <option value="+44">+44</option>
+                                <option value="+41">+41</option>
+                                <option value="+43">+43</option>
+                                <option value="+33">+33</option>
+                                <option value="+31">+31</option>
+                                <option value="+32">+32</option>
+                                <option value="+39">+39</option>
+                                <option value="+1">+1</option>
+                            </select>
+                            <input type="tel" id="contact-phone" name="phone_local" required placeholder="170 0000000" style="flex: 1;" data-i18n-ph="ph-phone">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="project-status" data-i18n="lbl-status">Current Project Status</label>
+                        <select id="project-status" name="project_status">
+                            <option value="plans_ready" data-i18n="st-plans" selected>I have plot & architectural plans</option>
+                            <option value="plot_only" data-i18n="st-plot">I have a plot, need architectural project</option>
+                            <option value="evaluating_plot" data-i18n="st-eval">Negotiating / Evaluating a plot</option>
+                            <option value="preliminary" data-i18n="st-prelim">Preliminary design stage</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="location-mallorca" data-i18n="lbl-location">Plot Location / Municipality</label>
+                    <select id="location-mallorca" name="municipality">
+                        <option value="Andratx" selected>Andratx / Port d'Andratx</option>
+                        <option value="Calvia">Calvià / Bendinat / Santa Ponsa</option>
+                        <option value="Santanyi">Santanyí / Cala d'Or</option>
+                        <option value="Palma">Palma / Son Vida</option>
+                        <option value="Soller">Sóller / Deià / Valldemossa</option>
+                        <option value="Pollensa">Pollença / Alcúdia</option>
+                        <option value="SantaMaria">Santa María / Alaró</option>
+                        <option value="Arta">Artà / Capdepera</option>
+                        <option value="Other" data-i18n="loc-other">Other Balearic location</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="plans-link" data-i18n="lbl-plans">Plans / Project Link (Drive, Dropbox, WeTransfer)</label>
+                    <input type="text" id="plans-link" name="plans_link" placeholder="https://wetransfer.com/... or Google Drive link" data-i18n-ph="ph-plans">
+                    <span class="hint" data-i18n="hint-plans">You can paste a cloud download link to architectural drawings, cadastre notes, or topographic surveys.</span>
+                </div>
+
+                <div class="form-group">
+                    <label for="project-notes" data-i18n="lbl-notes">Project Details / Specific Requirements</label>
+                    <textarea id="project-notes" name="project_notes" rows="4" placeholder="Tell us about the desired m², finish level, pool, heating type, or particular features..." data-i18n-ph="ph-notes"></textarea>
+                </div>
+
+                <button type="submit" id="btn-contact-submit" class="btn-submit" data-i18n="btn-submit">Submit Project for Custom Budget</button>
+            </form>
+
+            <div class="result-box" id="contact-success-box">
+                <strong style="color: var(--olive); font-size: 1.2rem; display: block; margin-bottom: 0.5rem;" data-i18n="res-title">Project received successfully!</strong>
+                <p style="color: var(--charcoal); font-size: 0.95rem; line-height: 1.6; margin: 0;" data-i18n="res-desc">Our senior cost engineer will review your project documentation and calculate the bill of quantities. We will get in touch with you within 12 to 24 business hours.</p>
+            </div>
+
+            <div class="confidentiality-notice">
+                <span data-i18n="conf-notice">🔒 Strictly Confidential. Your documentation is exclusively analyzed by our technical department under non-disclosure standards.</span>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- ========================================== -->
+    <!-- SCRIPT DE IDIOMAS Y ENVÍO                 -->
+    <!-- ========================================== -->
+    <script>
+    const dictionary = {
+        en: {
+            "nav-calc": "Calculator",
+            "nav-inspiration": "Inspiration",
+            "nav-blog": "Blog",
+            "nav-contact": "Contact",
+            "contact-title": "Direct Technical Consultation",
+            "contact-subtitle": "Independent cost analysis and custom contractor tender for your villa in Mallorca.",
+            "callout-main": "Already have a plot or an architectural project? Send us your plans and our team will prepare a custom contractor budget.",
+            "callout-sub": "We analyze bill of quantities, geotechnical specifications, and current Balearic construction pricing.",
+            "lbl-name": "Full Name",
+            "ph-name": "e.g. Elena Weber",
+            "lbl-email": "Email Address",
+            "ph-email": "e.g. elena@domain.com",
+            "lbl-phone": "Phone Number",
+            "ph-phone": "170 0000000",
+            "lbl-status": "Current Project Status",
+            "st-plans": "I have plot & architectural plans",
+            "st-plot": "I have a plot, need architectural project",
+            "st-eval": "Negotiating / Evaluating a plot",
+            "st-prelim": "Preliminary design stage",
+            "lbl-location": "Plot Location / Municipality",
+            "loc-other": "Other Balearic location",
+            "lbl-plans": "Plans / Project Link (Drive, Dropbox, WeTransfer)",
+            "ph-plans": "https://wetransfer.com/... or Google Drive link",
+            "hint-plans": "You can paste a cloud download link to architectural drawings, cadastre notes, or topographic surveys.",
+            "lbl-notes": "Project Details / Specific Requirements",
+            "ph-notes": "Tell us about the desired m², finish level, pool, heating type, or particular features...",
+            "btn-submit": "Submit Project for Custom Budget",
+            "res-title": "Project received successfully!",
+            "res-desc": "Our senior cost engineer will review your project documentation and calculate the bill of quantities. We will get in touch with you within 12 to 24 business hours.",
+            "conf-notice": "🔒 Strictly Confidential. Your documentation is exclusively analyzed by our technical department under non-disclosure standards."
+        },
+        es: {
+            "nav-calc": "Calculadora",
+            "nav-inspiration": "Inspiración",
+            "nav-blog": "Blog",
+            "nav-contact": "Contacto",
+            "contact-title": "Consulta Técnica Directa",
+            "contact-subtitle": "Estudio de costes independiente y licitación de contrata para su villa en Mallorca.",
+            "callout-main": "¿Ya dispone de un terreno o proyecto arquitectónico? Envíenos sus planos y nuestro equipo elaborará un presupuesto de contrata a medida.",
+            "callout-sub": "Analizamos mediciones de obra, prescripciones geotécnicas y precios reales de contrata en Baleares.",
+            "lbl-name": "Nombre Completo",
+            "ph-name": "Ej. Elena Gómez",
+            "lbl-email": "Correo Electrónico",
+            "ph-email": "Ej. elena@dominio.com",
+            "lbl-phone": "Número de Teléfono",
+            "ph-phone": "600 000 000",
+            "lbl-status": "Estado Actual del Proyecto",
+            "st-plans": "Dispongo de terreno y proyecto de planos",
+            "st-plot": "Tengo terreno, necesito proyecto arquitectónico",
+            "st-eval": "En negociación / Evaluando un terreno",
+            "st-prelim": "Fase preliminar de diseño",
+            "lbl-location": "Ubicación del Terreno / Municipio",
+            "loc-other": "Otro municipio de Baleares",
+            "lbl-plans": "Enlace a Planos / Proyecto (Drive, Dropbox, WeTransfer)",
+            "ph-plans": "https://wetransfer.com/... o enlace de Google Drive",
+            "hint-plans": "Puede pegar un enlace de descarga a planos arquitectónicos, fichas catastrales o levantamientos topográficos.",
+            "lbl-notes": "Detalles del Proyecto / Requisitos Específicos",
+            "ph-notes": "Indique m² aproximados, nivel de calidades, piscina, climatización o particularidades de la obra...",
+            "btn-submit": "Enviar Proyecto para Presupuesto a Medida",
+            "res-title": "¡Proyecto recibido correctamente!",
+            "res-desc": "Nuestro departamento técnico revisará la documentación de planos y elaborará el desglose por partidas de contrata. Nos pondremos en contacto en un plazo de 12 a 24 horas laborables.",
+            "conf-notice": "🔒 Confidencialidad Rigurosa. Toda su documentación es analizada exclusivamente por nuestro equipo técnico bajo acuerdo de confidencialidad."
+        },
+        de: {
+            "nav-calc": "Rechner",
+            "nav-inspiration": "Inspiration",
+            "nav-blog": "Blog",
+            "nav-contact": "Kontakt",
+            "contact-title": "Direkte Technische Beratung",
+            "contact-subtitle": "Unabhängige Kostenanalyse und Bauunternehmer-Ausschreibung für Ihre Villa auf Mallorca.",
+            "callout-main": "Haben Sie bereits ein Grundstück oder ein Architekturprojekt? Senden Sie uns Ihre Pläne und unser Team erstellt ein maßgeschneidertes Bauunternehmer-Budget.",
+            "callout-sub": "Wir analysieren Leistungsverzeichnisse, geotechnische Vorgaben und aktuelle balearische Baupreise.",
+            "lbl-name": "Vollständiger Name",
+            "ph-name": "z. B. Elena Weber",
+            "lbl-email": "E-Mail-Adresse",
+            "ph-email": "z. B. elena@domain.de",
+            "lbl-phone": "Telefonnummer",
+            "ph-phone": "170 0000000",
+            "lbl-status": "Aktueller Projektstatus",
+            "st-plans": "Ich habe ein Grundstück und Architekturpläne",
+            "st-plot": "Ich habe ein Grundstück, brauche ein Architekturprojekt",
+            "st-eval": "In Verhandlung / Grundstücksprüfung",
+            "st-prelim": "Vorplanungsphase",
+            "lbl-location": "Grundstückslage / Gemeinde",
+            "loc-other": "Anderer balearischer Standort",
+            "lbl-plans": "Pläne / Projektlink (Drive, Dropbox, WeTransfer)",
+            "ph-plans": "https://wetransfer.com/... oder Google Drive-Link",
+            "hint-plans": "Fügen Sie einen Download-Link zu Architekturplänen, Katasterauszügen oder topografischen Gutachten ein.",
+            "lbl-notes": "Projektdetails / Spezifische Anforderungen",
+            "ph-notes": "Nennen Sie gewünschte m², Ausstattungsstandard, Pool, Heizung oder besondere Merkmale...",
+            "btn-submit": "Projekt für maßgeschneidertes Budget einreichen",
+            "res-title": "Projekt erfolgreich eingegangen!",
+            "res-desc": "Unser leitender Bauingenieur wird Ihre Projektdokumentation prüfen und das Leistungsverzeichnis kalkulieren. Wir melden uns innerhalb von 12 bis 24 Geschäftsstunden bei Ihnen.",
+            "conf-notice": "🔒 Streng vertraulich. Ihre Unterlagen werden ausschließlich von unserer Fachabteilung unter Geheimhaltungsstandards analysiert."
+        }
+    };
+
+    let currentLanguage = 'en';
+
+    function changeLanguage(lang) {
+        if (!dictionary[lang]) lang = 'en';
+        currentLanguage = lang;
+
+        // Actualizar botones
+        document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
+        const targetBtn = document.getElementById(`btn-lang-${lang}`);
+        if (targetBtn) targetBtn.classList.add('active');
+
+        // Traducir textos y opciones
+        document.querySelectorAll('[data-i18n]').forEach(element => {
+            const key = element.getAttribute('data-i18n');
+            if (dictionary[lang] && dictionary[lang][key]) {
+                if (element.tagName === 'OPTION') {
+                    element.text = dictionary[lang][key];
+                } else {
+                    element.innerHTML = dictionary[lang][key];
+                }
+            }
+        });
+
+        // Traducir placeholders
+        document.querySelectorAll('[data-i18n-ph]').forEach(element => {
+            const key = element.getAttribute('data-i18n-ph');
+            if (dictionary[lang] && dictionary[lang][key]) {
+                element.setAttribute('placeholder', dictionary[lang][key]);
+            }
+        });
+
+        document.getElementById('hidden-contact-lang').value = lang.toUpperCase();
+        localStorage.setItem('mallorcaquotes-lang', lang);
+        document.documentElement.lang = lang;
+    }
+
+    function handleContactSubmit(event) {
+        event.preventDefault();
+        const form = event.target;
+        const formData = new FormData(form);
+
+        // Concatenar teléfono con prefijo
+        const prefix = document.getElementById('contact-prefix')?.value || '+34';
+        const phone = document.getElementById('contact-phone')?.value || '';
+        formData.set('phone_complete', `${prefix} ${phone}`);
+
+        const btn = document.getElementById('btn-contact-submit');
+        if (btn) {
+            btn.disabled = true;
+            btn.innerText = currentLanguage === 'es' ? 'Enviando...' : (currentLanguage === 'de' ? 'Wird gesendet...' : 'Sending...');
+        }
+
+        fetch(form.action, {
+            method: form.method,
+            body: formData,
+            headers: { 'Accept': 'application/json' }
+        }).then(response => {
+            if (response.ok) {
+                form.style.display = 'none';
+                const successBox = document.getElementById('contact-success-box');
+                successBox.style.display = 'block';
+                const headerOffset = 30;
+                const elementPosition = successBox.getBoundingClientRect().top;
+                const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+                window.scrollTo({
+                    top: offsetPosition,
+                    behavior: 'smooth'
+                });
+            } else {
+                alert(currentLanguage === 'es' ? 'Error al enviar. Por favor revise el formulario.' : (currentLanguage === 'de' ? 'Übertragungsfehler. Bitte überprüfen Sie das Formular.' : 'Submission error. Please check your form.'));
+                if (btn) {
+                    btn.disabled = false;
+                    btn.innerText = dictionary[currentLanguage]['btn-submit'];
+                }
+            }
+        }).catch(() => {
+            alert(currentLanguage === 'es' ? 'Error de conexión. Inténtelo de nuevo.' : (currentLanguage === 'de' ? 'Verbindungsfehler. Bitte erneut versuchen.' : 'Connection error. Please try again.'));
+            if (btn) {
+                btn.disabled = false;
+                btn.innerText = dictionary[currentLanguage]['btn-submit'];
+            }
+        });
+    }
+
+    // Inicialización al cargar la página
+    document.addEventListener('DOMContentLoaded', () => {
+        const savedLang = localStorage.getItem('mallorcaquotes-lang') || 'en';
+        changeLanguage(savedLang);
+    });
+    </script>
+</body>
+</html>

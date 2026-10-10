@@ -68,6 +68,20 @@
             color: var(--sand);
         }
 
+        @media (max-width: 680px) {
+            .premium-header {
+                flex-direction: column;
+                gap: 1rem;
+                padding: 1.2rem 1rem;
+                text-align: center;
+            }
+            .seo-nav {
+                gap: 1.2rem;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+        }
+
         .lang-selector {
             display: flex;
             gap: 0.5rem;
@@ -194,11 +208,12 @@
 
     <!-- CABECERA PREMIUM -->
     <header class="premium-header">
-        <a href="/" class="logo">MALLORCA<span>QUOTES</span></a>
+        <a href="index.html" class="logo">MALLORCA<span>QUOTES</span></a>
         <nav class="seo-nav">
-            <a href="#calculator" data-i18n="nav-calc">Calculator</a>
-            <a href="/blog" data-i18n="nav-blog">Blog</a>
-            <a href="/contact" data-i18n="nav-contact">Contact</a>
+            <a href="index.html#calculator" data-i18n="nav-calc">Calculator</a>
+            <a href="inspiration.html" data-i18n="nav-inspiration">Inspiration</a>
+            <a href="blog.html" data-i18n="nav-blog">Blog</a>
+            <a href="contact.html" data-i18n="nav-contact">Contact</a>
         </nav>
         <div class="lang-selector">
             <button type="button" onclick="changeLanguage('en')" id="btn-lang-en" class="lang-btn active">EN</button>
@@ -252,7 +267,7 @@
         <!-- ========================================== -->
         <!-- 2. ESTIMACIÓN DETALLADA POR PARTIDAS       -->
         <!-- ========================================== -->
-        <h3 style="margin-bottom: 2rem; color: var(--dark-olive);" data-i18n="detailed-title">2. Detailed Estimate by Items</h3>
+        <h3 id="detailed-title-heading" style="margin-bottom: 2rem; color: var(--dark-olive);" data-i18n="detailed-title">2. Detailed Estimate by Items</h3>
         
         <!-- PASO 1: ESTRUCTURA DE LA PROPIEDAD -->
         <div class="step-container active" id="step-1">
@@ -473,8 +488,12 @@
         const targetStep = document.getElementById(`step-${stepNumber}`);
         if (targetStep) {
             targetStep.style.display = 'block';
+            const detailedHeading = document.getElementById('detailed-title-heading') || targetStep;
+            const headerOffset = 25;
+            const elementPosition = detailedHeading.getBoundingClientRect().top;
+            const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
             window.scrollTo({
-                top: document.getElementById('calculator').offsetTop - 30,
+                top: offsetPosition,
                 behavior: 'smooth'
             });
         }
@@ -675,9 +694,13 @@
         }).then(response => {
             if (response.ok) {
                 document.getElementById('step-4').style.display = 'none';
-                document.getElementById('detailed-result').style.display = 'block';
+                const resultBox = document.getElementById('detailed-result');
+                resultBox.style.display = 'block';
+                const headerOffset = 25;
+                const elementPosition = resultBox.getBoundingClientRect().top;
+                const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
                 window.scrollTo({
-                    top: document.getElementById('detailed-result').offsetTop - 30,
+                    top: offsetPosition,
                     behavior: 'smooth'
                 });
             } else {
@@ -700,6 +723,7 @@
     const dictionary = {
         en: {
             "nav-calc": "Calculator",
+            "nav-inspiration": "Inspiration",
             "nav-blog": "Blog",
             "nav-contact": "Contact",
             "main-title": "Know the cost before you build",
@@ -759,6 +783,7 @@
         },
         es: {
             "nav-calc": "Calculadora",
+            "nav-inspiration": "Inspiración",
             "nav-blog": "Blog",
             "nav-contact": "Contacto",
             "main-title": "Conoce el coste antes de construir",
@@ -818,6 +843,7 @@
         },
         de: {
             "nav-calc": "Rechner",
+            "nav-inspiration": "Inspiration",
             "nav-blog": "Blog",
             "nav-contact": "Kontakt",
             "main-title": "Erfahren Sie die Kosten, bevor Sie bauen",
