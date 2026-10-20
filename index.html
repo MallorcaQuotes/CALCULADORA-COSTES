@@ -383,10 +383,11 @@
             <div class="form-group">
                 <label for="pool-size" data-i18n="lbl-pool">Swimming Pool Size</label>
                 <select id="pool-size">
-                    <option value="large" data-i18n="pool-large" selected>Large Pool (20 m² sheet)</option>
-                    <option value="medium" data-i18n="pool-medium">Medium Pool (15 m² sheet)</option>
-                    <option value="small" data-i18n="pool-small">Small Pool (10 m² sheet)</option>
                     <option value="none" data-i18n="pool-none">No Pool</option>
+                    <option value="small" data-i18n="pool-small">Small Pool (10 m² sheet)</option>
+                    <option value="medium" data-i18n="pool-medium">Medium Pool (15 m² sheet)</option>
+                    <option value="large" data-i18n="pool-large" selected>Large Pool (20 m² sheet)</option>
+                    <option value="xlarge" data-i18n="pool-xlarge">Extra Large Pool (35 m² sheet)</option>
                 </select>
             </div>
 
@@ -436,6 +437,8 @@
                 
                 <!-- Inputs ocultos para empaquetar y enviar todas las variables del Excel -->
                 <input type="hidden" name="_subject" value="Nuevo Lead - Solicitud de Presupuesto Detallado MallorcaQuotes">
+                <input type="hidden" id="hidden-has-plot" name="Dispone de Terreno">
+                <input type="hidden" id="hidden-plot-location" name="Zona o Municipio">
                 <input type="hidden" id="hidden-m2" name="M2 Construidos">
                 <input type="hidden" id="hidden-floors" name="Número de Plantas">
                 <input type="hidden" id="hidden-stairs" name="Escaleras Interiores">
@@ -494,7 +497,7 @@
             
             <div style="background: var(--white); padding: 1.5rem; border-radius: 6px; border: 1px solid var(--sand); margin: 1rem 0;">
                 <strong style="color: var(--olive); font-size: 1.15rem; display: block;" id="txt-d-success" data-i18n="txt-d-success">Request successfully received!</strong>
-                <p style="font-size: 0.95rem; margin-top: 0.5rem; color: var(--charcoal); line-height: 1.6;" id="txt-d-explain" data-i18n="txt-d-explain">In accordance with our premium validation standards, a senior technical advisor will verify your project parameters against current Balearic market indices. Your detailed architectural estimate will be sent to your email within 12 to 48 hours.</p>
+                <p style="font-size: 0.95rem; margin-top: 0.5rem; color: var(--charcoal); line-height: 1.6;" id="txt-d-explain" data-i18n="txt-d-explain">De acuerdo con nuestras políticas de validación premium, un responsable de nuestro equipo verificará las variables de construcción introducidas frente a los índices de mercado actuales en la isla de Mallorca. Su presupuesto detallado por partidas arquitectónicas será enviado a su correo electrónico en un plazo de 12 a 48 horas.</p>
             </div>
             
             <p class="disclaimer" id="txt-d-disclaimer" data-i18n="txt-d-disclaimer"><strong>Indicative Legal Disclaimer:</strong> This estimate is based on parametric data provided by the user and average market values in Mallorca. It does not constitute a contractual offer or a final construction quotation.</p>
@@ -604,9 +607,11 @@
         }
         // 18. Piscina (lámina de agua)
         let m2Piscina = 0;
-        if (pool === 'small') m2Piscina = 6;
-        else if (pool === 'medium') m2Piscina = 12;
+        if (pool === 'small') m2Piscina = 10;
+        else if (pool === 'medium') m2Piscina = 15;
         else if (pool === 'large') m2Piscina = 20;
+        else if (pool === 'xlarge') m2Piscina = 35;
+        else m2Piscina = 0;
         baseCost += m2Piscina * matrix.piscina_factor;
         // 19. Jardín / Exterior
         baseCost += gardenM2 * matrix.jardin_factor;
@@ -641,8 +646,7 @@
         const quality = qualityEl ? qualityEl.value : 'medium';
 
         const poolEl = document.getElementById('quick-pool');
-        const hasPool = poolEl ? poolEl.value : 'yes';
-        const poolSelection = hasPool === 'yes' ? 'medium' : 'none';
+        const poolSelection = poolEl ? poolEl.value : 'large';
 
         // Llama al motor exacto con valores base estandarizados
         const centralTotal = runExcelMathEngine(m2, 2, 3, 2, quality, 'aerotermia', poolSelection, 100, 0, 'no');
@@ -666,6 +670,8 @@
         event.preventDefault();
 
         // Mapeo seguro de todos los campos hacia los inputs ocultos
+        const hasPlot = document.getElementById('has-plot')?.value || '';
+        const plotLocation = document.getElementById('plot-location')?.value || '';
         const m2 = document.getElementById('total-m2')?.value || '160';
         const floors = document.getElementById('num-floors')?.value || '2';
         const stairs = document.getElementById('internal-stairs')?.value || '1';
@@ -679,6 +685,8 @@
         const parking = document.getElementById('parking-spaces')?.value || '0';
         const fees = document.getElementById('include-fees')?.value || 'no';
 
+        document.getElementById('hidden-has-plot').value = hasPlot;
+        document.getElementById('hidden-plot-location').value = plotLocation;
         document.getElementById('hidden-m2').value = m2;
         document.getElementById('hidden-floors').value = floors;
         document.getElementById('hidden-stairs').value = stairs;
@@ -762,14 +770,17 @@
             "q-basic": "Basic Quality",
             "q-medium": "Medium Quality",
             "q-high": "High Quality",
-            "lbl-quick-pool": "Swimming Pool?",
-            "pool-yes": "Yes (Large Pool)",
-            "pool-none": "No Pool",
             "quick-res-title": "Estimated Construction Cost",
             "quick-disclaimer": "*An uncertainty range of ±5% is applied around the central estimate.",
             "go-detailed": "Want a more detailed estimate? Go to Detailed Calculator below",
             "detailed-title": "2. Detailed Estimate by Items",
             "step1-title": "Step 1 of 4: Property Structure",
+            "lbl-has-plot": "Do you have a plot?",
+            "plot-purchased": "Yes, already purchased",
+            "plot-searching": "No, currently searching",
+            "plot-reserved": "I have a reserved option",
+            "lbl-plot-location": "In which area or municipality will you build?",
+            "loc-other-mallorca": "Other area in Mallorca",
             "lbl-det-m2": "Total Built-up m²",
             "lbl-floors": "Number of Floors",
             "lbl-stairs": "Internal Staircases",
@@ -782,9 +793,11 @@
             "hvac-conv": "Conventional A/C",
             "hvac-both": "Aerotermia + Underfloor Heating",
             "lbl-pool": "Swimming Pool Size",
-            "pool-large": "Large Pool (20 m² surface)",
-            "pool-medium": "Medium Pool (15 m² surface)",
-            "pool-small": "Small Pool (10 m² surface)",
+            "pool-none": "No Pool",
+            "pool-small": "Small Pool (10 m² sheet)",
+            "pool-medium": "Medium Pool (15 m² sheet)",
+            "pool-large": "Large Pool (20 m² sheet)",
+            "pool-xlarge": "Extra Large Pool (35 m² sheet)",
             "lbl-domotics": "Smart Home / Domotics?",
             "dom-no": "No",
             "dom-yes": "Yes",
@@ -806,7 +819,7 @@
             "ph-phone": "170 0000000",
             "txt-d-res-title": "Estimated Construction Cost",
             "txt-d-success": "Request successfully received!",
-            "txt-d-explain": "In accordance with our premium validation standards, a senior technical advisor will verify your project parameters against current Balearic market indices. Your detailed architectural estimate will be sent to your email within 12 to 48 hours.",
+            "txt-d-explain": "In accordance with our premium validation policies, a manager from our team will verify the construction variables entered against current market indices on the island of Mallorca. Your detailed architectural itemized estimate will be sent to your email within 12 to 48 hours.",
             "txt-d-disclaimer": "<strong>Indicative Legal Disclaimer:</strong> This estimate is based on parametric data provided by the user and average market values in Mallorca. It does not constitute a contractual offer or a final construction quotation."
         },
         es: {
@@ -822,14 +835,17 @@
             "q-basic": "Calidad Básica",
             "q-medium": "Calidad Media",
             "q-high": "Calidad Alta",
-            "lbl-quick-pool": "¿Piscina?",
-            "pool-yes": "Sí (Piscina Grande)",
-            "pool-none": "Sin Piscina",
             "quick-res-title": "Coste de Construcción Estimado",
             "quick-disclaimer": "*Se aplica un rango de incertidumbre de ±5% alrededor de la estimación central.",
             "go-detailed": "¿Quieres una estimación más detallada? Ir a la Calculadora Detallada abajo",
             "detailed-title": "2. Estimación Detallada por Partidas",
             "step1-title": "Paso 1 de 4: Estructura de la Propiedad",
+            "lbl-has-plot": "¿Dispone de terreno?",
+            "plot-purchased": "Sí, ya lo tengo comprado",
+            "plot-searching": "No, estoy buscando",
+            "plot-reserved": "Tengo una opción reservada",
+            "lbl-plot-location": "¿En qué zona o municipio va a construir?",
+            "loc-other-mallorca": "Otra zona de Mallorca",
             "lbl-det-m2": "Total m² Construidos",
             "lbl-floors": "Número de Plantas",
             "lbl-stairs": "Escaleras Interiores",
@@ -842,9 +858,11 @@
             "hvac-conv": "Convencional",
             "hvac-both": "Aerotermia + Suelo Radiante",
             "lbl-pool": "Tamaño de la Piscina",
-            "pool-large": "Piscina Grande (20 m² de lámina)",
-            "pool-medium": "Piscina Mediana (15 m² de lámina)",
+            "pool-none": "Sin Piscina",
             "pool-small": "Piscina Pequeña (10 m² de lámina)",
+            "pool-medium": "Piscina Mediana (15 m² de lámina)",
+            "pool-large": "Piscina Grande (20 m² de lámina)",
+            "pool-xlarge": "Piscina Extra Grande (35 m² de lámina)",
             "lbl-domotics": "¿Domótica / Smart Home?",
             "dom-no": "No",
             "dom-yes": "Sí",
@@ -866,7 +884,7 @@
             "ph-phone": "600 000 000",
             "txt-d-res-title": "Presupuesto de Construcción Estimado",
             "txt-d-success": "¡Solicitud recibida correctamente!",
-            "txt-d-explain": "De acuerdo con nuestras políticas de validación premium, un asesor técnico sénior verificará las variables de construcción introducidas frente a los índices de mercado actuales en la isla de Mallorca. Su presupuesto detallado por partidas arquitectónicas será enviado a su correo electrónico en un plazo de 12 a 48 horas (excluyendo horas no laborables).",
+            "txt-d-explain": "De acuerdo con nuestras políticas de validación premium, un responsable de nuestro equipo verificará las variables de construcción introducidas frente a los índices de mercado actuales en la isla de Mallorca. Su presupuesto detallado por partidas arquitectónicas será enviado a su correo electrónico en un plazo de 12 a 48 horas.",
             "txt-d-disclaimer": "<strong>Aviso Legal Indicativo:</strong> Esta estimación se basa en información paramétrica proporcionada por el usuario y en los valores medios de mercado de la isla de Mallorca. No constituye una oferta contractual ni un presupuesto final de construcción."
         },
         de: {
@@ -882,14 +900,17 @@
             "q-basic": "Einfache Qualität",
             "q-medium": "Mittlere Qualität",
             "q-high": "Gehobene Qualität",
-            "lbl-quick-pool": "Schwimmbad?",
-            "pool-yes": "Ja (Großer Pool)",
-            "pool-none": "Kein Pool",
             "quick-res-title": "Geschätzte Baukosten",
             "quick-disclaimer": "*Um die zentrale Schätzung wird eine Unsicherheitsspanne von ±5% angewandt.",
             "go-detailed": "Wünschen Sie eine detailliertere Schätzung? Gehen Sie unten zum detaillierten Rechner",
             "detailed-title": "2. Detaillierte Schätzung nach Positionen",
             "step1-title": "Schritt 1 von 4: Immobilienstruktur",
+            "lbl-has-plot": "Haben Sie ein Grundstück?",
+            "plot-purchased": "Ja, bereits gekauft",
+            "plot-searching": "Nein, auf der Suche",
+            "plot-reserved": "Habe eine reservierte Option",
+            "lbl-plot-location": "In welcher Gemeinde werden Sie bauen?",
+            "loc-other-mallorca": "Anderes Gebiet auf Mallorca",
             "lbl-det-m2": "Gesamte bebaute m²",
             "lbl-floors": "Anzahl der Etagen",
             "lbl-stairs": "Innentreppen",
@@ -902,9 +923,11 @@
             "hvac-conv": "Konventionell",
             "hvac-both": "Aerotermia + Fußbodenheizung",
             "lbl-pool": "Schwimmbecken-Größe",
-            "pool-large": "Großer Pool (20 m² Fläche)",
-            "pool-medium": "Mittlerer Pool (15 m² Fläche)",
+            "pool-none": "Kein Pool",
             "pool-small": "Kleiner Pool (10 m² Fläche)",
+            "pool-medium": "Mittlerer Pool (15 m² Fläche)",
+            "pool-large": "Großer Pool (20 m² Fläche)",
+            "pool-xlarge": "Extra großer Pool (35 m² Fläche)",
             "lbl-domotics": "Smart Home / Domotik?",
             "dom-no": "Nein",
             "dom-yes": "Ja",
@@ -926,7 +949,7 @@
             "ph-phone": "170 0000000",
             "txt-d-res-title": "Geschätzte Baukosten",
             "txt-d-success": "Anfrage erfolgreich eingegangen!",
-            "txt-d-explain": "Gemäß unseren Premium-Validierungsrichtlinien wird ein erfahrener technischer Berater die eingegebenen Bauvariablen mit den aktuellen Marktindizes auf der Insel Mallorca abgleichen. Ihr detaillierter Kostenvoranschlag wird innerhalb von 12 bis 48 Stunden an Ihre E-Mail-Adresse gesendet.",
+            "txt-d-explain": "Gemäß unseren Premium-Validierungsrichtlinien wird ein Verantwortlicher unseres Teams die eingegebenen Bauvariablen mit den aktuellen Marktindizes auf der Insel Mallorca abgleichen. Ihr detaillierter architektonischer Kostenvoranschlag wird innerhalb von 12 bis 48 Stunden an Ihre E-Mail-Adresse gesendet.",
             "txt-d-disclaimer": "<strong>Unverbindlicher rechtlicher Hinweis:</strong> Diese Schätzung basiert auf parametrischen Angaben des Nutzers und durchschnittlichen Marktwerten auf der Insel Mallorca. Sie stellt kein vertragliches Angebot und keinen endgültigen Kostenvoranschlag dar."
         }
     };
