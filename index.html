@@ -164,6 +164,13 @@
             background-color: var(--olive);
         }
 
+        .btn:disabled {
+            opacity: 0.55;
+            cursor: not-allowed;
+            background-color: var(--soft-grey) !important;
+            border-color: var(--soft-grey) !important;
+        }
+
         .btn-secondary {
             background-color: #e2e8f0;
             color: var(--charcoal);
@@ -288,14 +295,18 @@
             <div class="form-group">
                 <label for="plot-location" data-i18n="lbl-plot-location">In which area or municipality will you build?</label>
                 <select id="plot-location">
-                    <option value="Santanyi">Santanyí</option>
-                    <option value="Andratx">Andratx</option>
+                    <option value="Santanyi" selected>Santanyí / Cala d'Or</option>
                     <option value="Ses Salines / Colonia de Sant Jordi">Ses Salines / Colònia de Sant Jordi</option>
                     <option value="Campos">Campos</option>
                     <option value="Llucmajor">Llucmajor</option>
-                    <option value="Palma">Palma</option>
-                    <option value="Calvia">Calvià</option>
-                    <option value="Otra zona de Mallorca" data-i18n="loc-other-mallorca">Other area in Mallorca</option>
+                    <option value="Andratx">Andratx / Port d'Andratx</option>
+                    <option value="Calvia">Calvià / Bendinat / Santa Ponsa</option>
+                    <option value="Palma">Palma / Son Vida</option>
+                    <option value="Soller">Sóller / Deià / Valldemossa</option>
+                    <option value="Pollensa">Pollença / Alcúdia</option>
+                    <option value="SantaMaria">Santa María / Alaró</option>
+                    <option value="Arta">Artà / Capdepera</option>
+                    <option value="Other" data-i18n="loc-other">Other Balearic location</option>
                 </select>
             </div>
 
@@ -435,8 +446,12 @@
             <!-- FORMULARIO FORMSPREE CON CAPTURA OCULTA DE VARIABLES -->
             <form id="lead-form" action="https://formspree.io/f/xrpekoey" method="POST" onsubmit="handleFormSubmit(event)">
                 
-                <!-- Inputs ocultos para empaquetar y enviar todas las variables del Excel -->
-                <input type="hidden" name="_subject" value="Nuevo Lead - Solicitud de Presupuesto Detallado MallorcaQuotes">
+                <!-- Inputs ocultos para empaquetar y enviar todas las variables del Excel y confirmación -->
+                <input type="hidden" name="_subject" id="hidden-subject" value="Solicitud de Presupuesto Detallado - MallorcaQuotes.com">
+                <input type="hidden" name="_replyto" id="hidden-replyto">
+                <input type="hidden" name="message" id="hidden-message">
+                <input type="hidden" name="Resumen_del_Proyecto" id="hidden-project-summary">
+                <input type="hidden" name="Politica_Privacidad_Aceptada" id="hidden-privacy" value="Aceptada">
                 <input type="hidden" id="hidden-has-plot" name="Dispone de Terreno">
                 <input type="hidden" id="hidden-plot-location" name="Zona o Municipio">
                 <input type="hidden" id="hidden-m2" name="M2 Construidos">
@@ -484,9 +499,18 @@
                     </div>
                 </div>
 
+                <!-- MODIFICACIÓN 3: Checkbox Obligatorio de Política de Privacidad -->
+                <div class="form-group" id="privacy-group" style="margin-top: 1.2rem; margin-bottom: 1.5rem; transition: outline 0.2s;">
+                    <label style="display: flex; align-items: flex-start; gap: 10px; cursor: pointer; font-size: 0.92rem; color: var(--charcoal); line-height: 1.45; font-weight: normal; margin-bottom: 0;">
+                        <input type="checkbox" id="privacy-check" name="privacy_accepted" required style="width: 18px; height: 18px; margin-top: 2px; accent-color: var(--olive); cursor: pointer;" onchange="handlePrivacyToggle()">
+                        <span id="lbl-privacy" data-i18n="lbl-privacy">I have read and accept the privacy policy.</span>
+                    </label>
+                    <div id="privacy-error" style="display: none; color: #b91c1c; font-size: 0.85rem; margin-top: 6px; font-weight: 500;" data-i18n="err-privacy">Please accept the privacy policy to continue.</div>
+                </div>
+
                 <div class="step-buttons">
                     <button type="button" class="btn btn-secondary" onclick="nextStep(3)" data-i18n="btn-back">Back</button>
-                    <button type="submit" class="btn" id="btn-submit" data-i18n="btn-submit">Request Detailed Estimate</button>
+                    <button type="submit" class="btn" id="btn-submit" data-i18n="btn-submit" disabled>Request Detailed Estimate</button>
                 </div>
             </form>
         </div>
@@ -557,7 +581,6 @@
             cocina: quality === 'basic' ? 10000 : (quality === 'medium' ? 19200 : 28750),
             hvac_factor: hvac === 'convencional' ? 100 : (hvac === 'aerotermia' ? 150 : 237.5),
             domotica_factor: quality === 'basic' ? 6250 : (quality === 'medium' ? 12000 : 23000),
-            piscina_factor: quality === 'basic' ? 1875 : (quality === 'medium' ? 2400 : 2875),
             jardin_factor: quality === 'basic' ? 125 : (quality === 'medium' ? 180 : 230),
             parking_factor: quality === 'basic' ? 5000 : (quality === 'medium' ? 7200 : 9200),
             escalera_factor: quality === 'basic' ? 5000 : (quality === 'medium' ? 7200 : 10350)
@@ -605,14 +628,30 @@
         if (smartHomeVal === 'yes') {
             baseCost += 1 * matrix.domotica_factor;
         }
-        // 18. Piscina (lámina de agua)
-        let m2Piscina = 0;
-        if (pool === 'small') m2Piscina = 10;
-        else if (pool === 'medium') m2Piscina = 15;
-        else if (pool === 'large') m2Piscina = 20;
-        else if (pool === 'xlarge') m2Piscina = 35;
-        else m2Piscina = 0;
-        baseCost += m2Piscina * matrix.piscina_factor;
+
+        // 18. Piscina (MODIFICACIÓN 2: Recalibrada paramétricamente según calidad y tamaño)
+        // Calidad Media (Base): Pequeña 20.000€, Mediana 30.000€, Grande 40.000€, Extra Grande 50.000€
+        // Calidad Básica: -20% (x 0.80) | Calidad Alta: +20% (x 1.20)
+        const poolBasePrices = {
+            none: 0,
+            small: 20000,
+            medium: 30000,
+            large: 40000,
+            xlarge: 50000
+        };
+        const poolRef = poolBasePrices[pool] !== undefined ? poolBasePrices[pool] : 0;
+        let poolCost = 0;
+        if (poolRef > 0) {
+            if (quality === 'basic') {
+                poolCost = poolRef * 0.80; // 20% descuento
+            } else if (quality === 'high') {
+                poolCost = poolRef * 1.20; // 20% incremento
+            } else {
+                poolCost = poolRef; // Calidad media referencia
+            }
+        }
+        baseCost += poolCost;
+
         // 19. Jardín / Exterior
         baseCost += gardenM2 * matrix.jardin_factor;
         // 20. Aparcamiento exterior
@@ -636,7 +675,7 @@
         return Math.round(totalConstruccion);
     }
 
-    // 3. Calculadora Rápida en Vivo (Garantiza que nunca da €0)
+    // 3. Calculadora Rápida en Vivo (Garantiza que nunca da €0 y actualiza con el nuevo coste de piscina)
     function calculateQuickEstimate() {
         const m2Input = document.getElementById('quick-m2');
         let m2 = parseFloat(m2Input ? m2Input.value : 160);
@@ -665,55 +704,282 @@
         }
     }
 
-    // 4. Captura Paramétrica Invisible y Envío a Formspree
+    // MODIFICACIÓN 3: Control y Validación Estricta del Checkbox de Privacidad
+    function handlePrivacyToggle() {
+        const privacyCheck = document.getElementById('privacy-check');
+        const submitBtn = document.getElementById('btn-submit');
+        const privacyError = document.getElementById('privacy-error');
+        const privacyGroup = document.getElementById('privacy-group');
+        if (privacyCheck && privacyCheck.checked) {
+            if (submitBtn) submitBtn.disabled = false;
+            if (privacyError) privacyError.style.display = 'none';
+            if (privacyGroup) {
+                privacyGroup.style.outline = 'none';
+                privacyGroup.style.padding = '0';
+            }
+        } else {
+            if (submitBtn) submitBtn.disabled = true;
+        }
+    }
+
+    // MODIFICACIÓN 5: Generador del Resumen del Proyecto y Texto de Confirmación en Idioma Activo
+    function generateProjectSummary(lang, data) {
+        const labels = {
+            es: {
+                intro: "En un plazo inferior a 48 horas recibirá su presupuesto detallado.",
+                title: "RESUMEN DE SU SELECCIÓN:",
+                m2: "Superficie construida",
+                quality: "Calidad de acabados",
+                location: "Ubicación / Municipio",
+                plot: "Estado del terreno",
+                floors: "Número de plantas",
+                stairs: "Escaleras interiores",
+                bedrooms: "Dormitorios",
+                bathrooms: "Baños",
+                hvac: "Climatización / HVAC",
+                pool: "Piscina",
+                domotics: "Domótica / Smart Home",
+                garden: "Jardín / Exterior",
+                parking: "Plazas de aparcamiento",
+                fees: "Tasas, arquitecto y proyecto (+10%)",
+                range: "Rango de estimación orientativa",
+                contact: "DATOS DE CONTACTO",
+                name: "Nombre",
+                email: "Email",
+                phone: "Teléfono"
+            },
+            en: {
+                intro: "You will receive your detailed quote in less than 48 hours.",
+                title: "SUMMARY OF YOUR SELECTION:",
+                m2: "Built-up area",
+                quality: "Finish quality",
+                location: "Municipality / Area",
+                plot: "Plot ownership status",
+                floors: "Number of floors",
+                stairs: "Internal staircases",
+                bedrooms: "Bedrooms",
+                bathrooms: "Bathrooms",
+                hvac: "HVAC / Climate system",
+                pool: "Swimming pool",
+                domotics: "Smart Home / Domotics",
+                garden: "Garden / Exterior",
+                parking: "Outdoor parking spaces",
+                fees: "Project, architect & licenses (+10%)",
+                range: "Indicative estimated range",
+                contact: "CONTACT DETAILS",
+                name: "Name",
+                email: "Email",
+                phone: "Phone"
+            },
+            de: {
+                intro: "Sie erhalten Ihr detailliertes Angebot in weniger als 48 Stunden.",
+                title: "ZUSAMMENFASSUNG IHRER AUSWAHL:",
+                m2: "Bebaute Fläche",
+                quality: "Qualitätsstandard",
+                location: "Gemeinde / Lage",
+                plot: "Grundstücksstatus",
+                floors: "Anzahl der Etagen",
+                stairs: "Innentreppen",
+                bedrooms: "Schlafzimmer",
+                bathrooms: "Badezimmer",
+                hvac: "Klimatisierung / Heizung",
+                pool: "Swimmingpool",
+                domotics: "Smart Home / Domotik",
+                garden: "Garten / Außenbereich",
+                parking: "Außenstellplätze",
+                fees: "Projekt-, Architekten- und Lizenzgebühren (+10%)",
+                range: "Richtwert Kostenspanne",
+                contact: "KONTAKTDATEN",
+                name: "Name",
+                email: "E-Mail",
+                phone: "Telefon"
+            }
+        };
+
+        const t = labels[lang] || labels.en;
+
+        const summaryLines = [
+            t.intro,
+            "",
+            "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━",
+            t.title,
+            "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━",
+            `• ${t.m2}: ${data.m2} m²`,
+            `• ${t.quality}: ${data.qualityText}`,
+            `• ${t.location}: ${data.locationText}`,
+            `• ${t.plot}: ${data.plotText}`,
+            `• ${t.floors}: ${data.floors}`,
+            `• ${t.stairs}: ${data.stairs}`,
+            `• ${t.bedrooms}: ${data.bedrooms}`,
+            `• ${t.bathrooms}: ${data.bathrooms}`,
+            `• ${t.hvac}: ${data.hvacText}`,
+            `• ${t.pool}: ${data.poolText}`,
+            `• ${t.domotics}: ${data.domoticsText}`,
+            `• ${t.garden}: ${data.garden} m²`,
+            `• ${t.parking}: ${data.parking}`,
+            `• ${t.fees}: ${data.feesText}`,
+            "────────────────────────────────────────",
+            `• ${t.range}: ${data.estimateRange}`,
+            "────────────────────────────────────────",
+            "",
+            `[${t.contact}]`,
+            `• ${t.name}: ${data.name}`,
+            `• ${t.email}: ${data.email}`,
+            `• ${t.phone}: ${data.phone}`,
+            "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+        ];
+
+        return {
+            intro: t.intro,
+            fullSummary: summaryLines.join("\n")
+        };
+    }
+
+    // 4. Captura Paramétrica Invisible y Envío a Formspree / Autoresponder
     function handleFormSubmit(event) {
         event.preventDefault();
 
+        const nameInput = document.getElementById('det-name');
+        const emailInput = document.getElementById('det-email');
+        const phoneInput = document.getElementById('det-phone');
+        const privacyCheck = document.getElementById('privacy-check');
+
+        const nameVal = nameInput ? nameInput.value.trim() : '';
+        const emailVal = emailInput ? emailInput.value.trim() : '';
+        const phoneVal = phoneInput ? phoneInput.value.trim() : '';
+
+        // MODIFICACIÓN 4: Alerta internacionalizada para campos obligatorios vacíos
+        if (!nameVal || !emailVal || !phoneVal) {
+            const requiredMsg = dictionary[currentLanguage]['alert-required'] || "Please fill in all required fields before proceeding.";
+            alert(requiredMsg);
+            if (!nameVal && nameInput) nameInput.focus();
+            else if (!emailVal && emailInput) emailInput.focus();
+            else if (!phoneVal && phoneInput) phoneInput.focus();
+            return;
+        }
+
+        // MODIFICACIÓN 3: Validación estricta del consentimiento de privacidad
+        if (!privacyCheck || !privacyCheck.checked) {
+            const privacyGroup = document.getElementById('privacy-group');
+            const privacyError = document.getElementById('privacy-error');
+            if (privacyError) privacyError.style.display = 'block';
+            if (privacyGroup) {
+                privacyGroup.style.outline = '2px solid #b91c1c';
+                privacyGroup.style.padding = '8px';
+                privacyGroup.style.borderRadius = '4px';
+            }
+            const privacyMsg = dictionary[currentLanguage]['err-privacy'] || (currentLanguage === 'es' ? "Debe aceptar la política de privacidad para continuar." : (currentLanguage === 'de' ? "Bitte akzeptieren Sie die Datenschutzerklärung, um fortzufahren." : "Please accept the privacy policy to continue."));
+            alert(privacyMsg);
+            return;
+        }
+
         // Mapeo seguro de todos los campos hacia los inputs ocultos
-        const hasPlot = document.getElementById('has-plot')?.value || '';
-        const plotLocation = document.getElementById('plot-location')?.value || '';
+        const hasPlotEl = document.getElementById('has-plot');
+        const plotLocationEl = document.getElementById('plot-location');
+        const qualityEl = document.getElementById('quality-level');
+        const hvacEl = document.getElementById('hvac-system');
+        const poolEl = document.getElementById('pool-size');
+        const domoticsEl = document.getElementById('smart-home');
+        const feesEl = document.getElementById('include-fees');
+
+        const hasPlot = hasPlotEl?.value || '';
+        const plotLocation = plotLocationEl?.value || '';
         const m2 = document.getElementById('total-m2')?.value || '160';
         const floors = document.getElementById('num-floors')?.value || '2';
         const stairs = document.getElementById('internal-stairs')?.value || '1';
         const bedrooms = document.getElementById('num-bedrooms')?.value || '3';
         const bathrooms = document.getElementById('num-bathrooms')?.value || '3';
-        const quality = document.getElementById('quality-level')?.value || 'medium';
-        const hvac = document.getElementById('hvac-system')?.value || 'aerotermia';
-        const pool = document.getElementById('pool-size')?.value || 'large';
-        const domotics = document.getElementById('smart-home')?.value || 'no';
+        const quality = qualityEl?.value || 'medium';
+        const hvac = hvacEl?.value || 'aerotermia';
+        const pool = poolEl?.value || 'large';
+        const domotics = domoticsEl?.value || 'no';
         const garden = document.getElementById('garden-m2')?.value || '100';
         const parking = document.getElementById('parking-spaces')?.value || '0';
-        const fees = document.getElementById('include-fees')?.value || 'no';
+        const fees = feesEl?.value || 'no';
 
-        document.getElementById('hidden-has-plot').value = hasPlot;
-        document.getElementById('hidden-plot-location').value = plotLocation;
-        document.getElementById('hidden-m2').value = m2;
-        document.getElementById('hidden-floors').value = floors;
-        document.getElementById('hidden-stairs').value = stairs;
-        document.getElementById('hidden-bedrooms').value = bedrooms;
-        document.getElementById('hidden-bathrooms').value = bathrooms;
-        document.getElementById('hidden-quality').value = quality;
-        document.getElementById('hidden-hvac').value = hvac;
-        document.getElementById('hidden-pool').value = pool;
-        document.getElementById('hidden-domotics').value = domotics;
-        document.getElementById('hidden-garden').value = garden;
-        document.getElementById('hidden-parking').value = parking;
-        document.getElementById('hidden-fees').value = fees;
-        document.getElementById('hidden-lang').value = currentLanguage.toUpperCase();
+        // Obtener los textos visibles seleccionados para el informe legible
+        const getSelectedText = (el) => el && el.selectedIndex >= 0 ? el.options[el.selectedIndex].text : '';
+        const hasPlotText = getSelectedText(hasPlotEl);
+        const plotLocationText = getSelectedText(plotLocationEl);
+        const qualityText = getSelectedText(qualityEl);
+        const hvacText = getSelectedText(hvacEl);
+        const poolText = getSelectedText(poolEl);
+        const domoticsText = getSelectedText(domoticsEl);
+        const feesText = getSelectedText(feesEl);
+
+        // Prefijo y teléfono unificados
+        const prefix = document.getElementById('phone-prefix')?.value || '+34';
+        const fullPhone = `${prefix} ${phoneVal}`;
 
         // Calcular presupuesto central para enviarlo también como referencia
         const calculatedTotal = runExcelMathEngine(m2, floors, bedrooms, bathrooms, quality, hvac, pool, garden, parking, fees);
         const low = Math.round(calculatedTotal * 0.95);
         const high = Math.round(calculatedTotal * 1.05);
-        document.getElementById('hidden-calculated-estimate').value = `€${low.toLocaleString('es-ES')} - €${high.toLocaleString('es-ES')} (Central: €${calculatedTotal.toLocaleString('es-ES')})`;
+        const numLocale = currentLanguage === 'es' ? 'es-ES' : (currentLanguage === 'de' ? 'de-DE' : 'en-US');
+        const estimateRangeStr = `€${low.toLocaleString(numLocale)} – €${high.toLocaleString(numLocale)} (Central: €${calculatedTotal.toLocaleString(numLocale)})`;
+
+        // MODIFICACIÓN 5: Construcción dinámica del cuerpo del email con introducción y resumen completo
+        const summaryObj = generateProjectSummary(currentLanguage, {
+            m2,
+            qualityText,
+            locationText: plotLocationText,
+            plotText: hasPlotText,
+            floors,
+            stairs,
+            bedrooms,
+            bathrooms,
+            hvacText,
+            poolText,
+            domoticsText,
+            garden,
+            parking,
+            feesText,
+            estimateRange: estimateRangeStr,
+            name: nameVal,
+            email: emailVal,
+            phone: fullPhone
+        });
+
+        // Asignación exhaustiva a los inputs ocultos
+        document.getElementById('hidden-has-plot').value = `${hasPlotText} (${hasPlot})`;
+        document.getElementById('hidden-plot-location').value = `${plotLocationText} (${plotLocation})`;
+        document.getElementById('hidden-m2').value = m2;
+        document.getElementById('hidden-floors').value = floors;
+        document.getElementById('hidden-stairs').value = stairs;
+        document.getElementById('hidden-bedrooms').value = bedrooms;
+        document.getElementById('hidden-bathrooms').value = bathrooms;
+        document.getElementById('hidden-quality').value = `${qualityText} (${quality})`;
+        document.getElementById('hidden-hvac').value = `${hvacText} (${hvac})`;
+        document.getElementById('hidden-pool').value = `${poolText} (${pool})`;
+        document.getElementById('hidden-domotics').value = `${domoticsText} (${domotics})`;
+        document.getElementById('hidden-garden').value = garden;
+        document.getElementById('hidden-parking').value = parking;
+        document.getElementById('hidden-fees').value = `${feesText} (${fees})`;
+        document.getElementById('hidden-lang').value = currentLanguage.toUpperCase();
+        document.getElementById('hidden-calculated-estimate').value = estimateRangeStr;
+
+        // Asignación de campos de autoresponder / confirmación
+        document.getElementById('hidden-replyto').value = emailVal;
+        document.getElementById('hidden-message').value = summaryObj.fullSummary;
+        document.getElementById('hidden-project-summary').value = summaryObj.fullSummary;
+        document.getElementById('hidden-privacy').value = 'Aceptada (Consent given)';
+
+        const subjects = {
+            es: `Confirmación de Solicitud de Presupuesto - MallorcaQuotes (${nameVal})`,
+            en: `Confirmation of Construction Estimate Request - MallorcaQuotes (${nameVal})`,
+            de: `Bestätigung Ihrer Kostenschätzung - MallorcaQuotes (${nameVal})`
+        };
+        const emailSubject = subjects[currentLanguage] || subjects.en;
+        document.getElementById('hidden-subject').value = emailSubject;
 
         const form = event.target;
         const formData = new FormData(form);
-
-        // Prefijo y teléfono unificados
-        const prefix = document.getElementById('phone-prefix')?.value || '+34';
-        const phoneInput = document.getElementById('det-phone')?.value || '';
-        formData.set('phone_number', `${prefix} ${phoneInput}`);
+        formData.set('_subject', emailSubject);
+        formData.set('_replyto', emailVal);
+        formData.set('email', emailVal);
+        formData.set('phone_number', fullPhone);
+        formData.set('message', summaryObj.fullSummary);
+        formData.set('Resumen_del_Proyecto', summaryObj.fullSummary);
 
         const submitBtn = document.getElementById('btn-submit');
         if (submitBtn) {
@@ -817,6 +1083,10 @@
             "ph-email": "e.g. john@example.com",
             "lbl-f-phone": "Phone Number",
             "ph-phone": "170 0000000",
+            "loc-other": "Other Balearic location",
+            "lbl-privacy": "I have read and accept the privacy policy.",
+            "err-privacy": "Please accept the privacy policy to continue.",
+            "alert-required": "Please fill in all required fields before proceeding.",
             "txt-d-res-title": "Estimated Construction Cost",
             "txt-d-success": "Request successfully received!",
             "txt-d-explain": "In accordance with our premium validation policies, a manager from our team will verify the construction variables entered against current market indices on the island of Mallorca. Your detailed architectural itemized estimate will be sent to your email within 12 to 48 hours.",
@@ -846,6 +1116,7 @@
             "plot-reserved": "Tengo una opción reservada",
             "lbl-plot-location": "¿En qué zona o municipio va a construir?",
             "loc-other-mallorca": "Otra zona de Mallorca",
+            "loc-other": "Otro municipio de Baleares",
             "lbl-det-m2": "Total m² Construidos",
             "lbl-floors": "Número de Plantas",
             "lbl-stairs": "Escaleras Interiores",
@@ -882,6 +1153,9 @@
             "ph-email": "Ej. juan@example.com",
             "lbl-f-phone": "Número de Teléfono",
             "ph-phone": "600 000 000",
+            "lbl-privacy": "He leído y acepto la política de privacidad.",
+            "err-privacy": "Debe aceptar la política de privacidad para continuar.",
+            "alert-required": "Por favor, rellene todos los campos obligatorios antes de continuar.",
             "txt-d-res-title": "Presupuesto de Construcción Estimado",
             "txt-d-success": "¡Solicitud recibida correctamente!",
             "txt-d-explain": "De acuerdo con nuestras políticas de validación premium, un responsable de nuestro equipo verificará las variables de construcción introducidas frente a los índices de mercado actuales en la isla de Mallorca. Su presupuesto detallado por partidas arquitectónicas será enviado a su correo electrónico en un plazo de 12 a 48 horas.",
@@ -911,6 +1185,7 @@
             "plot-reserved": "Habe eine reservierte Option",
             "lbl-plot-location": "In welcher Gemeinde werden Sie bauen?",
             "loc-other-mallorca": "Anderes Gebiet auf Mallorca",
+            "loc-other": "Anderer balearischer Standort",
             "lbl-det-m2": "Gesamte bebaute m²",
             "lbl-floors": "Anzahl der Etagen",
             "lbl-stairs": "Innentreppen",
@@ -947,6 +1222,9 @@
             "ph-email": "z. B. max@beispiel.de",
             "lbl-f-phone": "Telefonnummer",
             "ph-phone": "170 0000000",
+            "lbl-privacy": "Ich habe die Datenschutzerklärung gelesen und akzeptiere sie.",
+            "err-privacy": "Bitte akzeptieren Sie die Datenschutzerklärung, um fortzufahren.",
+            "alert-required": "Bitte füllen Sie alle Pflichtfelder aus, bevor Sie fortfahren.",
             "txt-d-res-title": "Geschätzte Baukosten",
             "txt-d-success": "Anfrage erfolgreich eingegangen!",
             "txt-d-explain": "Gemäß unseren Premium-Validierungsrichtlinien wird ein Verantwortlicher unseres Teams die eingegebenen Bauvariablen mit den aktuellen Marktindizes auf der Insel Mallorca abgleichen. Ihr detaillierter architektonischer Kostenvoranschlag wird innerhalb von 12 bis 48 Stunden an Ihre E-Mail-Adresse gesendet.",
@@ -994,10 +1272,15 @@
         calculateQuickEstimate();
     }
 
+    // Exponer funciones globales
+    window.changeLanguage = changeLanguage;
+    window.handlePrivacyToggle = handlePrivacyToggle;
+
     // Inicialización al cargar el DOM
     document.addEventListener("DOMContentLoaded", () => {
         const savedLang = localStorage.getItem('mallorcaquotes-lang') || 'en';
         changeLanguage(savedLang);
+        handlePrivacyToggle();
         calculateQuickEstimate();
     });
     </script>
