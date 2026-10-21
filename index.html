@@ -552,8 +552,64 @@
         }
     }
 
-    // 2. Motor Matemático Fiel al Excel de Costes
-    // Aplica: base paramétrica + 5% imprevistos + 30% beneficio contrata (+ 10% opcional proyecto/licencias)
+    // ==========================================
+    // 2. MATRIZ DE PRECIOS EXACTA PARA PISCINAS
+    // Regla de adición separada estricta: NO se mezcla proporcionalmente con los m² ni márgenes
+    // ==========================================
+    const SWIMMING_POOL_PRICING = {
+        none: {
+            basic: 0,
+            medium: 0,
+            high: 0
+        },
+        small: { // 10 m² de lámina
+            basic: 16000,
+            medium: 20000,
+            high: 24000
+        },
+        medium: { // 15 m² de lámina
+            basic: 26000,
+            medium: 30000,
+            high: 36000
+        },
+        large: { // 20 m² de lámina
+            basic: 32000,
+            medium: 40000,
+            high: 48000
+        },
+        xlarge: { // 35 m² de lámina
+            basic: 40000,
+            medium: 50000,
+            high: 60000
+        }
+    };
+
+    /**
+     * Calcula el coste exacto del componente piscina.
+     * Garantiza que 'none' siempre añade exactamente 0 € en cualquier nivel de calidad.
+     * Sigue una regla de adición independiente que no escala con los m² de la vivienda.
+     *
+     * @param {string} poolSize - 'none' | 'small' | 'medium' | 'large' | 'xlarge'
+     * @param {string} quality - 'basic' | 'medium' | 'high'
+     * @returns {number} Coste en euros
+     */
+    function getSwimmingPoolCost(poolSize, quality) {
+        const size = (poolSize || 'none').toLowerCase();
+        const qual = (quality || 'medium').toLowerCase();
+
+        if (!SWIMMING_POOL_PRICING[size]) {
+            return 0;
+        }
+
+        return SWIMMING_POOL_PRICING[size][qual] !== undefined ? SWIMMING_POOL_PRICING[size][qual] : 0;
+    }
+
+    // Exponer helper para uso modular o llamadas directas
+    window.SWIMMING_POOL_PRICING = SWIMMING_POOL_PRICING;
+    window.getSwimmingPoolCost = getSwimmingPoolCost;
+
+    // 3. Motor Matemático Fiel al Excel de Costes
+    // Regla central: Coste Estimado Total = Coste Construcción Vivienda + Coste Piscina (Adición Separada)
     function runExcelMathEngine(m2, floors, bedrooms, bathrooms, quality, hvac, pool, gardenM2, parkingSpaces, includeFees) {
         m2 = parseFloat(m2) || 160;
         floors = parseInt(floors) || 1;
@@ -586,93 +642,74 @@
             escalera_factor: quality === 'basic' ? 5000 : (quality === 'medium' ? 7200 : 10350)
         };
 
-        let baseCost = 0;
+        let houseBaseCost = 0;
 
         // 1. Excavación
-        baseCost += m2 * matrix.excavation;
+        houseBaseCost += m2 * matrix.excavation;
         // 2. Estructura
-        baseCost += m2 * matrix.structure;
+        houseBaseCost += m2 * matrix.structure;
         // 3. Cubierta: (m2 / floors) * 1.3
-        baseCost += (m2 / Math.max(1, floors)) * 1.3 * matrix.cubierta;
+        houseBaseCost += (m2 / Math.max(1, floors)) * 1.3 * matrix.cubierta;
         // 4. Fachada: 4 * SQRT(m2 / floors) * 3 * floors
         const supFachada = 4 * Math.sqrt(m2 / Math.max(1, floors)) * 3 * floors;
-        baseCost += supFachada * matrix.fachada;
+        houseBaseCost += supFachada * matrix.fachada;
         // 5. Tabiquería: m2 * 2.5
-        baseCost += (m2 * 2.5) * matrix.tabiqueria;
+        houseBaseCost += (m2 * 2.5) * matrix.tabiqueria;
         // 6. Acabados paredes: m2 * 2.5
-        baseCost += (m2 * 2.5) * matrix.acabados;
+        houseBaseCost += (m2 * 2.5) * matrix.acabados;
         // 7. Suelos: m2
-        baseCost += m2 * matrix.suelos;
+        houseBaseCost += m2 * matrix.suelos;
         // 8. Electricidad: m2
-        baseCost += m2 * matrix.electricidad;
+        houseBaseCost += m2 * matrix.electricidad;
         // 9. Fontanería: m2
-        baseCost += m2 * matrix.fontaneria;
+        houseBaseCost += m2 * matrix.fontaneria;
         // 10. Ventanas: (bedrooms + bathrooms + 2) * 1.4
         const cantVentanas = (bedrooms + bathrooms + 2) * 1.4;
-        baseCost += cantVentanas * matrix.ventana;
+        houseBaseCost += cantVentanas * matrix.ventana;
         // 11. Cristalera salón
-        baseCost += 1 * matrix.cristalera;
+        houseBaseCost += 1 * matrix.cristalera;
         // 12. Puertas interiores: bedrooms + bathrooms + 3
         const cantPuertas = bedrooms + bathrooms + 3;
-        baseCost += cantPuertas * matrix.puerta_int;
+        houseBaseCost += cantPuertas * matrix.puerta_int;
         // 13. Puerta principal
-        baseCost += 1 * matrix.puerta_prin;
+        houseBaseCost += 1 * matrix.puerta_prin;
         // 14. Baños
-        baseCost += bathrooms * matrix.banos;
+        houseBaseCost += bathrooms * matrix.banos;
         // 15. Cocina
-        baseCost += 1 * matrix.cocina;
+        houseBaseCost += 1 * matrix.cocina;
         // 16. Climatización: m2
-        baseCost += m2 * matrix.hvac_factor;
+        houseBaseCost += m2 * matrix.hvac_factor;
         // 17. Domótica
         const smartHomeVal = document.getElementById('smart-home')?.value;
         if (smartHomeVal === 'yes') {
-            baseCost += 1 * matrix.domotica_factor;
+            houseBaseCost += 1 * matrix.domotica_factor;
         }
-
-        // 18. Piscina (MODIFICACIÓN 2: Recalibrada paramétricamente según calidad y tamaño)
-        // Calidad Media (Base): Pequeña 20.000€, Mediana 30.000€, Grande 40.000€, Extra Grande 50.000€
-        // Calidad Básica: -20% (x 0.80) | Calidad Alta: +20% (x 1.20)
-        const poolBasePrices = {
-            none: 0,
-            small: 20000,
-            medium: 30000,
-            large: 40000,
-            xlarge: 50000
-        };
-        const poolRef = poolBasePrices[pool] !== undefined ? poolBasePrices[pool] : 0;
-        let poolCost = 0;
-        if (poolRef > 0) {
-            if (quality === 'basic') {
-                poolCost = poolRef * 0.80; // 20% descuento
-            } else if (quality === 'high') {
-                poolCost = poolRef * 1.20; // 20% incremento
-            } else {
-                poolCost = poolRef; // Calidad media referencia
-            }
-        }
-        baseCost += poolCost;
-
-        // 19. Jardín / Exterior
-        baseCost += gardenM2 * matrix.jardin_factor;
-        // 20. Aparcamiento exterior
-        baseCost += parkingSpaces * matrix.parking_factor;
-        // 21. Escaleras: max(floors - 1, 0)
+        // 18. Jardín / Exterior
+        houseBaseCost += gardenM2 * matrix.jardin_factor;
+        // 19. Aparcamiento exterior
+        houseBaseCost += parkingSpaces * matrix.parking_factor;
+        // 20. Escaleras: max(floors - 1, 0)
         if (floors > 1) {
-            baseCost += (floors - 1) * matrix.escalera_factor;
+            houseBaseCost += (floors - 1) * matrix.escalera_factor;
         }
 
-        // Aplicación estricta de Márgenes del Excel (5% Imprevistos + 30% Beneficio Contrata)
-        const imprevistos = baseCost * 0.05;
-        const subtotalConImprevistos = baseCost + imprevistos;
+        // Aplicación estricta de Márgenes del Excel para la edificación (5% Imprevistos + 30% Beneficio Contrata)
+        const imprevistos = houseBaseCost * 0.05;
+        const subtotalConImprevistos = houseBaseCost + imprevistos;
         const beneficioContrata = subtotalConImprevistos * 0.30;
-        let totalConstruccion = subtotalConImprevistos + beneficioContrata;
+        let houseConstructionCost = subtotalConImprevistos + beneficioContrata;
 
         // Opción opcional de Proyecto / Arquitecto / Licencias (+10%)
         if (includeFees === 'yes') {
-            totalConstruccion += totalConstruccion * 0.10;
+            houseConstructionCost += houseConstructionCost * 0.10;
         }
 
-        return Math.round(totalConstruccion);
+        // Regla de adición separada estricta para la piscina:
+        // Total Estimated Cost = House Construction Cost + Swimming Pool Cost
+        const swimmingPoolCost = getSwimmingPoolCost(pool, quality);
+        const totalEstimatedCost = houseConstructionCost + swimmingPoolCost;
+
+        return Math.round(totalEstimatedCost);
     }
 
     // 3. Calculadora Rápida en Vivo (Garantiza que nunca da €0 y actualiza con el nuevo coste de piscina)
