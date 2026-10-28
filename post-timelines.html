@@ -1,0 +1,725 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MallorcaQuotes | Understanding Construction Timelines in the Balearics</title>
+
+    <!-- Favicon & Search Engine Snippet Icons (MQ Logo) -->
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="icon" type="image/png" sizes="48x48" href="/favicon-48x48.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <meta name="theme-color" content="#283618">
+
+    <style>
+        :root {
+            --olive: #606c38;
+            --dark-olive: #283618;
+            --cream: #fefae0;
+            --sand: #dda15e;
+            --earth: #bc6c25;
+            --white: #ffffff;
+            --charcoal: #2b2d42;
+            --soft-grey: #8d99ae;
+        }
+
+        body {
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            background-color: #faf9f6;
+            color: var(--charcoal);
+            margin: 0;
+            padding: 0;
+            line-height: 1.7;
+        }
+
+        /* ── HEADER ── */
+        .premium-header {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem 2rem;
+            background-color: var(--white);
+            border-bottom: 1px solid #f0ede6;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+        }
+
+        .logo {
+            font-size: 1.4rem;
+            font-weight: 700;
+            letter-spacing: 0.05em;
+            text-decoration: none;
+            color: var(--dark-olive);
+        }
+
+        .logo span {
+            color: var(--sand);
+        }
+
+        .seo-nav {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .seo-nav a {
+            text-decoration: none;
+            color: var(--charcoal);
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+
+        .seo-nav a:hover,
+        .seo-nav a.active {
+            color: var(--sand);
+        }
+
+        .lang-selector {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .lang-btn {
+            background: none;
+            border: 1px solid var(--soft-grey);
+            padding: 0.4rem 0.8rem;
+            font-size: 0.8rem;
+            cursor: pointer;
+            border-radius: 4px;
+            color: var(--charcoal);
+            transition: all 0.3s;
+            font-weight: 600;
+        }
+
+        .lang-btn.active,
+        .lang-btn:hover {
+            background-color: var(--dark-olive);
+            color: var(--cream);
+            border-color: var(--dark-olive);
+        }
+
+        /* ── ARTICLE CONTAINER ── */
+        .article-wrapper {
+            max-width: 820px;
+            margin: 3rem auto 5rem;
+            padding: 0 1.5rem;
+        }
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            color: var(--earth);
+            text-decoration: none;
+            font-size: 0.92rem;
+            font-weight: 600;
+            margin-bottom: 2rem;
+            transition: color 0.2s;
+        }
+
+        .back-link:hover {
+            color: var(--dark-olive);
+            text-decoration: underline;
+        }
+
+        .article-card {
+            background: var(--white);
+            border-radius: 8px;
+            border: 1px solid #f0ede6;
+            box-shadow: 0 4px 25px rgba(0,0,0,0.03);
+            padding: 3.5rem;
+        }
+
+        .article-tag {
+            display: inline-block;
+            font-size: 0.78rem;
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            color: var(--sand);
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .article-title {
+            font-family: 'Playfair Display', Georgia, serif;
+            font-size: 2.35rem;
+            color: var(--dark-olive);
+            line-height: 1.25;
+            margin: 0 0 1.5rem;
+        }
+
+        .article-meta {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            font-size: 0.85rem;
+            color: var(--soft-grey);
+            padding-bottom: 1.8rem;
+            border-bottom: 1px solid #f0ede6;
+            margin-bottom: 2.2rem;
+        }
+
+        .lead-paragraph {
+            font-size: 1.15rem;
+            line-height: 1.8;
+            color: #374151;
+            font-weight: 400;
+            margin-bottom: 2.2rem;
+        }
+
+        .article-body h2 {
+            font-family: 'Playfair Display', Georgia, serif;
+            font-size: 1.55rem;
+            color: var(--dark-olive);
+            margin: 2.5rem 0 1rem;
+            line-height: 1.35;
+        }
+
+        .article-body h3 {
+            font-family: 'Playfair Display', Georgia, serif;
+            font-size: 1.25rem;
+            color: var(--charcoal);
+            margin: 1.8rem 0 0.8rem;
+        }
+
+        .article-body p {
+            font-size: 1rem;
+            color: #4b5563;
+            margin-bottom: 1.4rem;
+        }
+
+        .article-body ul, .article-body ol {
+            margin: 0 0 1.6rem;
+            padding-left: 1.6rem;
+            color: #4b5563;
+        }
+
+        .article-body li {
+            margin-bottom: 0.6rem;
+        }
+
+        .article-body a {
+            color: var(--olive);
+            text-decoration: underline;
+            font-weight: 500;
+        }
+
+        .article-body a:hover {
+            color: var(--dark-olive);
+        }
+
+        .callout-box {
+            background-color: #faf9f6;
+            border-left: 4px solid var(--sand);
+            border-radius: 4px;
+            padding: 1.5rem;
+            margin: 2rem 0;
+            font-size: 0.95rem;
+        }
+
+        .callout-box strong {
+            color: var(--dark-olive);
+            display: block;
+            margin-bottom: 0.4rem;
+        }
+
+        .timeline-step {
+            position: relative;
+            padding-left: 2rem;
+            margin-bottom: 2.2rem;
+            border-left: 2px solid var(--sand);
+        }
+
+        .timeline-step::before {
+            content: '';
+            position: absolute;
+            left: -7px;
+            top: 4px;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background-color: var(--dark-olive);
+        }
+
+        .timeline-step h3 {
+            margin-top: 0;
+            margin-bottom: 0.4rem;
+            color: var(--dark-olive);
+        }
+
+        .timeline-step .timeline-time {
+            display: inline-block;
+            font-size: 0.82rem;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: var(--earth);
+            font-weight: 700;
+            margin-bottom: 0.6rem;
+        }
+
+        /* ── IN-ARTICLE CTA ── */
+        .article-cta-box {
+            background: linear-gradient(135deg, var(--dark-olive), var(--olive));
+            border-radius: 6px;
+            padding: 2.2rem;
+            color: var(--cream);
+            margin: 3.5rem 0 1.5rem;
+            text-align: center;
+        }
+
+        .article-cta-box h3 {
+            font-family: 'Playfair Display', Georgia, serif;
+            font-size: 1.45rem;
+            color: var(--cream);
+            margin: 0 0 0.6rem;
+        }
+
+        .article-cta-box p {
+            font-size: 0.95rem;
+            color: #fefae0cc;
+            margin: 0 0 1.5rem;
+        }
+
+        .btn-calc {
+            display: inline-block;
+            background-color: var(--sand);
+            color: var(--white);
+            text-decoration: none !important;
+            padding: 0.85rem 2rem;
+            border-radius: 4px;
+            font-weight: 600;
+            transition: background-color 0.25s;
+        }
+
+        .btn-calc:hover {
+            background-color: var(--earth);
+        }
+
+        /* ── FOOTER ── */
+        .site-footer {
+            background-color: var(--white);
+            border-top: 1px solid #f0ede6;
+            padding: 2.2rem 1.5rem;
+            margin-top: 4rem;
+            color: var(--soft-grey);
+            font-size: 0.85rem;
+        }
+
+        .footer-content {
+            max-width: 800px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 0.75rem;
+            text-align: center;
+        }
+
+        .footer-copy {
+            margin: 0;
+            line-height: 1.5;
+        }
+
+        .footer-links {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.8rem;
+            flex-wrap: wrap;
+        }
+
+        .footer-links a {
+            color: var(--soft-grey);
+            text-decoration: none;
+            transition: color 0.2s ease;
+        }
+
+        .footer-links a:hover {
+            color: var(--dark-olive);
+            text-decoration: underline;
+        }
+
+        .footer-sep {
+            color: #d1d5db;
+            font-size: 0.75rem;
+        }
+
+        @media (max-width: 768px) {
+            .article-card { padding: 2rem 1.5rem; }
+            .article-title { font-size: 1.85rem; }
+            .seo-nav { gap: 1rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- CABECERA PREMIUM -->
+    <header class="premium-header">
+        <a href="index.html" class="logo">MALLORCA<span>QUOTES</span></a>
+        <nav class="seo-nav">
+            <a href="index.html#calculator" data-i18n="nav-calc">Calculator</a>
+            <a href="inspiration.html" data-i18n="nav-inspiration">Inspiration</a>
+            <a href="blog.html" class="active" style="color: var(--sand);" data-i18n="nav-blog">Blog</a>
+            <a href="contact.html" data-i18n="nav-contact">Contact</a>
+        </nav>
+        <div class="lang-selector">
+            <button type="button" onclick="changeLanguage('en')" id="btn-lang-en" class="lang-btn active">EN</button>
+            <button type="button" onclick="changeLanguage('es')" id="btn-lang-es" class="lang-btn">ES</button>
+            <button type="button" onclick="changeLanguage('de')" id="btn-lang-de" class="lang-btn">DE</button>
+        </div>
+    </header>
+
+    <div class="article-wrapper">
+        <a href="blog.html" class="back-link" data-i18n="art-back">← Back to Insights</a>
+
+        <article class="article-card">
+            <span class="article-tag" data-i18n="art3-tag">Construction</span>
+            <h1 class="article-title" data-i18n="art3-title">Understanding Construction Timelines in the Balearics</h1>
+            
+            <div class="article-meta">
+                <span data-i18n="art3-meta-read">9 min read</span>
+                <span>•</span>
+                <span data-i18n="art3-meta-loc">Licensing &amp; Delivery Breakdown</span>
+                <span>•</span>
+                <span data-i18n="art3-meta-target">Realistic 28–34 Month Roadmaps</span>
+            </div>
+
+            <div class="article-body" id="article-content">
+                <!-- Se inyecta dinámicamente según idioma -->
+            </div>
+
+            <div class="article-cta-box">
+                <h3 data-i18n="art-cta-title">Estimate Your Villa Construction Costs</h3>
+                <p data-i18n="art-cta-sub">Run our live parametric calculator to see exact construction brackets and professional fee projections for your land.</p>
+                <a href="index.html#calculator" class="btn-calc" data-i18n="art-cta-btn">Open Free Estimator →</a>
+            </div>
+        </article>
+    </div>
+
+    <!-- FOOTER PREMIUM CON ENLACES LEGALES Y PRIVACIDAD -->
+    <footer class="site-footer">
+        <div class="footer-content">
+             <p class="footer-copy" data-i18n="footer-copy">&copy; 2026 MallorcaQuotes. Indicative estimates only. Not a contractual offer.</p>
+             <div class="footer-links">
+                 <a href="privacy.html" data-i18n="footer-privacy">Privacy Policy</a>
+                 <span class="footer-sep">|</span>
+                 <a href="legal.html" data-i18n="footer-legal">Legal Notice</a>
+             </div>
+        </div>
+    </footer>
+
+    <!-- SCRIPT DE IDIOMAS Y CONTENIDO COMPLETO -->
+    <script>
+    const articleBodies = {
+        en: `
+            <p class="lead-paragraph">Real estate sales agents in the Balearics routinely pitch buyers that they can build their dream home in "about 12 to 14 months." That statement is technically true only if you count solely the day the builder starts digging until the roof is tiled. When assessing the complete project from plot purchase to popping champagne in the living room with permanent electricity and water running, a realistic timeframe is 26 to 34 months. Failing to plan for this island reality is the single most common cause of client frustration and budget overruns.</p>
+
+            <h2>The Real Roadmap: Month-by-Month Sequence</h2>
+
+            <div class="timeline-step">
+                <span class="timeline-time">Months 1 to 3</span>
+                <h3>Phase 1: Due Diligence, Site Surveys &amp; Concept Design</h3>
+                <p>Before closing on land, complete an in-depth urbanistic consultation at the relevant Ayuntamiento. Never rely on estate agent assurances about buildable area or height restrictions under the local <a href="glossary.html#lpo">PGOU</a>.</p>
+                <p>Once secured, your architect commissions the <a href="glossary.html#geotecnia">estudio geotécnico</a> and topographical mapping. During these months, you iterate through concept floor plans, orienting bedrooms to prevailing light and testing volume distributions against municipal setbacks.</p>
+            </div>
+
+            <div class="timeline-step">
+                <span class="timeline-time">Months 4 to 5</span>
+                <h3>Phase 2: Proyecto Básico Drafting &amp; Submission</h3>
+                <p>Your architect drafts the <a href="glossary.html#proyecto-basico">Proyecto Básico</a>. This official document defines plot coverage, total volume, facade elevations, and compliance with Balearic regional habitat regulations. Once signed and endorsed by the Official College of Architects (COAIB), it is registered at the municipal town hall, initiating the official licensing timer.</p>
+            </div>
+
+            <div class="timeline-step">
+                <span class="timeline-time">Months 6 to 18</span>
+                <h3>Phase 3: The Town Hall Queue (La Espera Municipal)</h3>
+                <p>This is where international timelines derail. Town hall technical departments across Mallorca face significant backlogs. How long you wait depends heavily on your municipality:</p>
+                <ul>
+                    <li><strong>Calvià and Andratx:</strong> 12 to 16 months for urban plots.</li>
+                    <li><strong>Palma (Ciutat):</strong> 14 to 20 months due to high application volumes.</li>
+                    <li><strong>Santanyí, Campos, Ses Salines:</strong> 8 to 14 months for consolidated urban residential land.</li>
+                    <li><strong>Rural Land (Suelo Rústico):</strong> If your plot requires additional clearance from the Consell de Mallorca (Comissió d'Urbanisme) or regional water authorities (Recursos Hídricos), expect 18 to 24 months before receiving license approval.</li>
+                </ul>
+                <div class="callout-box">
+                    <strong>Critical Project Management Rule:</strong>
+                    Do not sit idle during this waiting period. High-performing developers use this window to complete the <a href="glossary.html#proyecto-ejecutivo">Proyecto de Ejecución</a>, finalize structural calculations, and conduct a structured competitive tender among 3 vetted Balearic contractors. When the license drops, your builder is ready to mobilize within 14 days.
+                </div>
+            </div>
+
+            <div class="timeline-step">
+                <span class="timeline-time">Months 19 to 24</span>
+                <h3>Phase 4: Site Mobilisation, Groundworks &amp; Concrete Frame</h3>
+                <p>With the physical <a href="glossary.html#licencia-obras">Licencia de Obras</a> in hand, construction commences. Earthmoving machinery breaks bedrock, installs underground drainage, and pours foundations (<a href="glossary.html#cimentacion">cimentación</a>). In Mallorca, building the reinforced concrete post-and-beam frame (<a href="glossary.html#estructura">estructura</a>) typically takes 4 to 6 months depending on basement excavation requirements.</p>
+            </div>
+
+            <div class="timeline-step">
+                <span class="timeline-time">Months 25 to 29</span>
+                <h3>Phase 5: Enclosure, Technical Systems &amp; Pool Shell</h3>
+                <p>The villa is sealed from weather. Work proceeds across multiple specialized trades:</p>
+                <ul>
+                    <li>Exterior masonry, <a href="glossary.html#sistema-etics">SATE insulation</a>, and traditional <a href="glossary.html#pedra-en-sec">pedra en sec</a> stone cladding.</li>
+                    <li>Plumbing, electrical conduits, and low-temperature <a href="glossary.html#suelo-radiante">suelo radiante</a> pipework.</li>
+                    <li>Roof waterproofing membranes (<a href="glossary.html#impermeabilizacion">impermeabilización</a>) with 10-year manufacturer warranties.</li>
+                    <li>Gunite concrete spraying for the <a href="glossary.html#piscina-desbordante">swimming pool</a> shell.</li>
+                </ul>
+            </div>
+
+            <div class="timeline-step">
+                <span class="timeline-time">Months 30 to 32</span>
+                <h3>Phase 6: High-End Finishes, Carpentry &amp; Landscaping</h3>
+                <p>The phase requiring maximum supervision. Floor screeds are prepared and hand-troweled with continuous <a href="glossary.html#microcemento">microcement</a> or rectified porcelain slabs. Minimalist ceiling-recessed window frames are laser-leveled and glazed. Bespoke interior oak carpentry, custom kitchens, and designer sanitaryware are installed. Externally, Mediterranean landscaping and irrigation networks take shape.</p>
+            </div>
+
+            <div class="timeline-step">
+                <span class="timeline-time">Months 33 to 34</span>
+                <h3>Phase 7: Final Approvals, Habitation Certificate &amp; Utilities</h3>
+                <p>Physical construction is finished, but you cannot legally sleep in the villa yet. The final bureaucratic chain requires:</p>
+                <ol>
+                    <li>Signing the Certificado Final de Obra (CFO) by both the architect and the aparejador.</li>
+                    <li>Municipal technician site inspection for the <a href="glossary.html#lpo">Licencia de Primera Ocupación (LPO)</a>.</li>
+                    <li>Conselleria d'Habitatge inspection to issue the official <a href="glossary.html#cedula-habitabilidad">Cédula de Habitabilidad</a>.</li>
+                    <li>Contracting permanent electrical supply with Endesa Distribución and water connections with the municipal water company (e.g., Emaya, Calvià 2000, or Aqualia).</li>
+                </ol>
+                <p>Allow 6 to 10 weeks for Endesa to mount final meters and energize the installation from the street substation.</p>
+            </div>
+        `,
+        es: `
+            <p class="lead-paragraph">Los intermediarios inmobiliarios en Baleares suelen asegurar con ligereza a los compradores que construir una vivienda unifamiliar lleva "unos 12 o 14 meses". Esa afirmación solo es cierta si se cuenta exclusivamente desde el día en que la retroexcavadora inicia el vaciado hasta que se remata la última teja. Cuando se analiza el proyecto de forma rigurosa desde la adquisición de la parcela hasta la entrada efectiva a vivir con suministros definitivos de agua y luz, el plazo real oscila entre los 26 y los 34 meses. Ignorar este calendario insular es el motivo principal de desviaciones presupuestarias y frustración.</p>
+
+            <h2>Calendario Real: Cronograma Fase a Fase</h2>
+
+            <div class="timeline-step">
+                <span class="timeline-time">Meses 1 a 3</span>
+                <h3>Fase 1: Diligencia Debida, Levantamiento y Anteproyecto</h3>
+                <p>Antes de escriturar el suelo, es imprescindible consultar el planeamiento urbanístico (<a href="glossary.html#lpo">PGOU</a>) en el Ayuntamiento correspondiente. No base su decisión en fichas comerciales de agencias respecto a coeficientes de edificabilidad o alturas máximas.</p>
+                <p>Firmada la compra, el equipo facultativo encarga el <a href="glossary.html#geotecnia">estudio geotécnico</a> del terreno y la topografía. Durante este trimestre se ajustan las distribuciones espaciales, orientando los dormitorios a la luz natural y contrastando retranqueos y lindes.</p>
+            </div>
+
+            <div class="timeline-step">
+                <span class="timeline-time">Meses 4 a 5</span>
+                <h3>Fase 2: Redacción y Presentación del Proyecto Básico</h3>
+                <p>El arquitecto elabora el <a href="glossary.html#proyecto-basico">Proyecto Básico</a>. Este documento formal define volúmenes, ocupación sobre parcela, fachadas y cumplimiento del decreto de habitabilidad de Baleares. Una vez visado en el Colegio Oficial de Arquitectos (COAIB), se registra en el Ayuntamiento para abrir el expediente municipal.</p>
+            </div>
+
+            <div class="timeline-step">
+                <span class="timeline-time">Meses 6 a 18</span>
+                <h3>Fase 3: La Espera Municipal (El Cuello de Botella)</h3>
+                <p>En este punto se dilatan los calendarios. Los departamentos de urbanismo en Mallorca sufren una notable sobrecarga de expedientes. Los tiempos de espera varían drásticamente según el municipio:</p>
+                <ul>
+                    <li><strong>Calvià y Andratx:</strong> De 12 a 16 meses para solares urbanos consolidados.</li>
+                    <li><strong>Palma (Cort):</strong> De 14 a 20 meses debido a la alta densidad de solicitudes.</li>
+                    <li><strong>Santanyí, Campos y Ses Salines:</strong> De 8 a 14 meses en suelo urbano.</li>
+                    <li><strong>Suelo Rústico:</strong> Si la finca requiere informes sectoriales del Consell de Mallorca (Comissió d'Urbanisme) o de Recursos Hídricos, el trámite previo puede alcanzar entre 18 y 24 meses antes de obtener la licencia de obras.</li>
+                </ul>
+                <div class="callout-box">
+                    <strong>Regla Estratégica de Gestión:</strong>
+                    Nunca deje pasar este periodo en blanco. Los promotores experimentados aprovechan la espera para redactar el <a href="glossary.html#proyecto-ejecutivo">Proyecto de Ejecución</a> completo, calcular estructuras y licitar la obra entre 3 constructoras solventes de Baleares. Con la licencia en mano, la contrata arranca en menos de dos semanas.
+                </div>
+            </div>
+
+            <div class="timeline-step">
+                <span class="timeline-time">Meses 19 a 24</span>
+                <h3>Fase 4: Replanteo, Movimiento de Tierras y Estructura</h3>
+                <p>Con la <a href="glossary.html#licencia-obras">Licencia de Obras</a> concedida, comienza la obra física. La maquinaria pesada realiza el desmonte en roca, instala el saneamiento enterrado y ejecuta la <a href="glossary.html#cimentacion">cimentación</a>. La <a href="glossary.html#estructura">estructura</a> de hormigón armado (pilares y forjados) suele requerir entre 4 y 6 meses, según la presencia de sótano o desniveles.</p>
+            </div>
+
+            <div class="timeline-step">
+                <span class="timeline-time">Meses 25 a 29</span>
+                <h3>Fase 5: Cerramientos, Instalaciones y Vaso de Piscina</h3>
+                <p>La vivienda queda estanca frente al clima. En esta fase convergen oficios simultáneos:</p>
+                <ul>
+                    <li>Muros exteriores, aislamiento térmico <a href="glossary.html#sistema-etics">SATE</a> y revestimiento en <a href="glossary.html#pedra-en-sec">pedra en sec</a> tradicional.</li>
+                    <li>Tendido de fontanería, electricidad y serpentines de <a href="glossary.html#suelo-radiante">suelo radiante</a> por agua.</li>
+                    <li>Membranas de <a href="glossary.html#impermeabilizacion">impermeabilización</a> en cubiertas planas con garantía decenal.</li>
+                    <li>Gunitado del vaso de hormigón para la <a href="glossary.html#piscina-desbordante">piscina desbordante</a>.</li>
+                </ul>
+            </div>
+
+            <div class="timeline-step">
+                <span class="timeline-time">Meses 30 a 32</span>
+                <h3>Fase 6: Acabados Premium, Carpintería y Paisajismo</h3>
+                <p>Fase que demanda la mayor exigencia estética y supervisión técnica. Se aplican pavimentos continuos en <a href="glossary.html#microcemento">microcemento</a> o gres porcelánico de gran formato. Se ajustan con láser las guías empotradas de las cristaleras minimalistas. Se instalan cocinas de diseño y carpintería de roble a medida, mientras en el exterior se implanta el jardín mediterráneo y el riego automático.</p>
+            </div>
+
+            <div class="timeline-step">
+                <span class="timeline-time">Meses 33 a 34</span>
+                <h3>Fase 7: Fin de Obra, Cédula de Habitabilidad y Suministros</h3>
+                <p>La edificación está físicamente concluida, pero aún no es legalmente habitable. El cierre administrativo requiere:</p>
+                <ol>
+                    <li>Firma del Certificado Final de Obra (CFO) por el arquitecto y el aparejador.</li>
+                    <li>Inspección técnica municipal para el otorgamiento de la <a href="glossary.html#lpo">Licencia de Primera Ocupación (LPO)</a>.</li>
+                    <li>Inspección del Govern Balear para la emisión de la <a href="glossary.html#cedula-habitabilidad">Cédula de Habitabilidad</a> definitiva.</li>
+                    <li>Contratación y enganche de suministro eléctrico definitivo con Endesa Distribución y agua corriente municipal (Emaya, Calvià 2000, Aqualia).</li>
+                </ol>
+                <p>Reserve entre 6 y 10 semanas para que la compañía distribuidora instale los contadores definitivos y energice la instalación desde la red general.</p>
+            </div>
+        `,
+        de: `
+            <p class="lead-paragraph">Immobilienmakler auf den Balearen behaupten gern, dass der Bau einer Neubauvilla in „etwa 12 bis 14 Monaten“ abgeschlossen sei. Das stimmt allenfalls für die reine Rohbau- und Ausbauphase, vom ersten Spatenstich bis zum Setzen der letzten Fliese. Betrachtet man das Gesamtprojekt realistisch – vom Grundstückskauf bis zum Einzug mit funktionierendem Strom- und Wasseranschluss – liegt der Zeitrahmen bei 26 bis 34 Monaten. Wer diesen behördlichen und bauzeitlichen Ablauf ignoriert, riskiert massive Kostenüberziehungen.</p>
+
+            <h2>Der realistische Bauablauf: Monat für Monat</h2>
+
+            <div class="timeline-step">
+                <span class="timeline-time">Monat 1 bis 3</span>
+                <h3>Phase 1: Due Diligence, Vermessung &amp; Entwurfsplanung</h3>
+                <p>Vor der notariellen Beurkundung des Grundstücks ist eine detaillierte baurechtliche Prüfung im Bauamt des jeweiligen Rathauses (<a href="glossary.html#lpo">PGOU</a>) unerlässlich. Verlassen Sie sich keinesfalls auf Maklerangaben bezüglich Bebaubarkeit oder Grenzabständen.</p>
+                <p>Nach dem Kauf beauftragt der Architekt das <a href="glossary.html#geotecnia">Bodengutachten (Estudio Geotécnico)</a> und die Geländevermessung. In dieser Phase entstehen die Grundrissvarianten unter Berücksichtigung von Sonnenlauf, Windrichtungen und Baugrenzen.</p>
+            </div>
+
+            <div class="timeline-step">
+                <span class="timeline-time">Monat 4 bis 5</span>
+                <h3>Phase 2: Einreichung des Basisprojekts (Proyecto Básico)</h3>
+                <p>Der Architekt erstellt das Basisprojekt (<a href="glossary.html#proyecto-basico">Proyecto Básico</a>). Dieses Dokument definiert Bauvolumen, Grundstücksausnutzung und Fassadenhöhen gemäß balearischer Bauordnung. Nach Prüfung durch die Architektenkammer (COAIB) wird der Bauantrag beim Rathaus eingereicht – die behördliche Wartezeit beginnt.</p>
+            </div>
+
+            <div class="timeline-step">
+                <span class="timeline-time">Monat 6 bis 18</span>
+                <h3>Phase 3: Behördenwartezeit (Der mallorquinische Engpass)</h3>
+                <p>Hier geraten ausländische Terminpläne regelmäßig ins Stocken. Die Bauämter auf Mallorca sind chronisch überlastet. Die Bearbeitungszeiten variieren erheblich je nach Gemeinde:</p>
+                <ul>
+                    <li><strong>Calvià und Andratx:</strong> 12 bis 16 Monate für urbane Grundstücke.</li>
+                    <li><strong>Palma:</strong> 14 bis 20 Monate aufgrund des extrem hohen Antragsaufkommens.</li>
+                    <li><strong>Santanyí, Campos und Ses Salines:</strong> 8 bis 14 Monate im erschlossenen Bauland.</li>
+                    <li><strong>Rústico-Land (Landwirtschaftlicher Boden):</strong> Erfordert das Grundstück zusätzliche Genehmigungen des Inselrats (Consell de Mallorca) oder der Wasserbehörde (Recursos Hídricos), dauert die Genehmigung 18 bis 24 Monate.</li>
+                </ul>
+                <div class="callout-box">
+                    <strong>Wichtige Projektsteuerungsregel:</strong>
+                    Nutzen Sie diese Wartezeit aktiv. Professionelle Bauherren erarbeiten parallel die detaillierte Ausführungsplanung (<a href="glossary.html#proyecto-ejecutivo">Proyecto de Ejecución</a>) und führen eine strukturierte Ausschreibung unter 3 etablierten Bauunternehmen durch. Bei Erhalt der Lizenz kann die Baustelle binnen 14 Tagen beginnen.
+                </div>
+            </div>
+
+            <div class="timeline-step">
+                <span class="timeline-time">Monat 19 bis 24</span>
+                <h3>Phase 4: Erdarbeiten, Fundamente und Rohbau</h3>
+                <p>Mit Erteilung der <a href="glossary.html#licencia-obras">Baugenehmigung (Licencia de Obras)</a> starten die Bauarbeiten. Bagger brechen den Fels, Versorgungsleitungen werden verlegt und die Fundamente (<a href="glossary.html#cimentacion">Cimentación</a>) gegossen. Für das Stahlbetontragwerk (<a href="glossary.html#estructura">Estructura</a>) sind 4 bis 6 Monate einzuplanen.</p>
+            </div>
+
+            <div class="timeline-step">
+                <span class="timeline-time">Monat 25 bis 29</span>
+                <h3>Phase 5: Gebäudehülle, Haustechnik &amp; Poolbau</h3>
+                <p>Das Gebäude wird witterungsdicht geschlossen. Mehrere Gewerke arbeiten parallel:</p>
+                <ul>
+                    <li>Mauerwerk, Fassadendämmung (<a href="glossary.html#sistema-etics">WDVS / SATE</a>) und Natursteinverkleidung (<a href="glossary.html#pedra-en-sec">Pedra en Sec</a>).</li>
+                    <li>Rohinstallationen für Elektro, Sanitär und <a href="glossary.html#suelo-radiante">Fußbodenheizung</a>.</li>
+                    <li>Dachabdichtung (<a href="glossary.html#impermeabilizacion">Impermeabilización</a>) mit zehnjähriger Garantie.</li>
+                    <li>Spritzbetonarbeiten für den <a href="glossary.html#piscina-desbordante">Infinity-Pool</a>.</li>
+                </ul>
+            </div>
+
+            <div class="timeline-step">
+                <span class="timeline-time">Monat 30 bis 32</span>
+                <h3>Phase 6: Hochwertiger Innenausbau &amp; Gartenanlage</h3>
+                <p>Diese Phase erfordert intensivste Bauüberwachung: Verlegung von fugenlosem <a href="glossary.html#microcemento">Mikrozement</a> oder großformatigem Feinsteinzeug. Millimetergenauer Einbau der rahmenlosen Schiebefenster. Montage der maßgefertigten Tischlerküchen und Einbauschränke. Zeitgleich wird der mediterrane Garten angelegt.</p>
+            </div>
+
+            <div class="timeline-step">
+                <span class="timeline-time">Monat 33 bis 34</span>
+                <h3>Phase 7: Bauabnahme, Bewohnbarkeitsbescheinigung &amp; Zähler</h3>
+                <p>Das Haus ist fertiggestellt, darf aber noch nicht legal bewohnt werden. Der bürokratische Abschluss erfordert:</p>
+                <ol>
+                    <li>Unterzeichnung des Bauabnahmezeugnisses (CFO) durch Architekt und Bauleiter.</li>
+                    <li>Behördliche Endabnahme durch das Bauamt für die Erstbezugslizenz (<a href="glossary.html#lpo">LPO</a>).</li>
+                    <li>Inspektion der balearischen Wohnungsbaubehörde für die <a href="glossary.html#cedula-habitabilidad">Cédula de Habitabilidad</a>.</li>
+                    <li>Beantragung und Montage der endgültigen Stromzähler durch Endesa Distribución und Wasserzähler.</li>
+                </ol>
+                <p>Kalkulieren Sie 6 bis 10 Wochen ein, bis Endesa den definitiven Baustromanschluss auf den regulären Hausanschluss umstellt.</p>
+            </div>
+        `
+    };
+
+    const dictionary = {
+        en: {
+            "nav-calc": "Calculator",
+            "nav-inspiration": "Inspiration",
+            "nav-blog": "Blog",
+            "nav-contact": "Contact",
+            "art-back": "← Back to Insights",
+            "art3-tag": "Construction",
+            "art3-title": "Understanding Construction Timelines in the Balearics",
+            "art3-meta-read": "9 min read",
+            "art3-meta-loc": "Licensing & Delivery Breakdown",
+            "art3-meta-target": "Realistic 28–34 Month Roadmaps",
+            "art-cta-title": "Estimate Your Villa Construction Costs",
+            "art-cta-sub": "Run our live parametric calculator to see exact construction brackets and professional fee projections for your land.",
+            "art-cta-btn": "Open Free Estimator →",
+            "footer-copy": "&copy; 2026 MallorcaQuotes. Indicative estimates only. Not a contractual offer.",
+            "footer-privacy": "Privacy Policy",
+            "footer-legal": "Legal Notice"
+        },
+        es: {
+            "nav-calc": "Calculadora",
+            "nav-inspiration": "Inspiración",
+            "nav-blog": "Blog",
+            "nav-contact": "Contacto",
+            "art-back": "← Volver a Publicaciones",
+            "art3-tag": "Construcción",
+            "art3-title": "Claves de los Plazos de Construcción en Baleares",
+            "art3-meta-read": "9 min de lectura",
+            "art3-meta-loc": "Desglose de Licencias y Ejecución",
+            "art3-meta-target": "Cronograma Real de 28 a 34 Meses",
+            "art-cta-title": "Calcule los Costes de Construcción de su Villa",
+            "art-cta-sub": "Utilice nuestra calculadora paramétrica en tiempo real para conocer partidas de obra y honorarios facultativos en su terreno.",
+            "art-cta-btn": "Abrir Calculadora Gratuita →",
+            "footer-copy": "&copy; 2026 MallorcaQuotes. Estimaciones orientativas. No constituye oferta contractual.",
+            "footer-privacy": "Política de Privacidad",
+            "footer-legal": "Aviso Legal"
+        },
+        de: {
+            "nav-calc": "Rechner",
+            "nav-inspiration": "Inspiration",
+            "nav-blog": "Blog",
+            "nav-contact": "Kontakt",
+            "art-back": "← Zurück zu Einblicke",
+            "art3-tag": "Bauausführung",
+            "art3-title": "Bauzeiten auf den Balearen verstehen",
+            "art3-meta-read": "9 Min. Lesezeit",
+            "art3-meta-loc": "Genehmigungs- und Bauphasen",
+            "art3-meta-target": "Realistische Planung 28–34 Monate",
+            "art-cta-title": "Baukosten Ihrer Villa präzise berechnen",
+            "art-cta-sub": "Nutzen Sie unseren parametrischen Rechner zur Kalkulation von Bausummen und Nebenkosten für Ihr Baugrundstück.",
+            "art-cta-btn": "Kostenlosen Rechner starten →",
+            "footer-copy": "&copy; 2026 MallorcaQuotes. Nur Richtwerte. Kein verbindliches Angebot.",
+            "footer-privacy": "Datenschutzerklärung",
+            "footer-legal": "Impressum"
+        }
+    };
+
+    let currentLanguage = 'en';
+
+    function changeLanguage(lang) {
+        if (!dictionary[lang]) lang = 'en';
+        currentLanguage = lang;
+
+        document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
+        const targetBtn = document.getElementById(`btn-lang-${lang}`);
+        if (targetBtn) targetBtn.classList.add('active');
+
+        document.querySelectorAll('[data-i18n]').forEach(element => {
+            const key = element.getAttribute('data-i18n');
+            if (dictionary[lang] && dictionary[lang][key]) {
+                element.innerHTML = dictionary[lang][key];
+            }
+        });
+
+        const articleContentEl = document.getElementById('article-content');
+        if (articleContentEl && articleBodies[lang]) {
+            articleContentEl.innerHTML = articleBodies[lang];
+        }
+
+        localStorage.setItem('mallorcaquotes-lang', lang);
+        document.documentElement.lang = lang;
+    }
+    window.changeLanguage = changeLanguage;
+
+    document.addEventListener('DOMContentLoaded', () => {
+        const savedLang = localStorage.getItem('mallorcaquotes-lang') || 'en';
+        changeLanguage(savedLang);
+    });
+    </script>
+</body>
+</html>
