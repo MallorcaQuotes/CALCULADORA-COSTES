@@ -216,6 +216,56 @@
             padding: 3rem 0;
             display: none;
         }
+
+        /* ── FOOTER MINIMALISTA Y ELEGANTE ── */
+        .site-footer {
+            background-color: var(--white);
+            border-top: 1px solid #f0ede6;
+            padding: 2.2rem 1.5rem;
+            margin-top: 4rem;
+            color: var(--soft-grey);
+            font-size: 0.85rem;
+        }
+
+        .footer-content {
+            max-width: 900px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 0.75rem;
+            text-align: center;
+        }
+
+        .footer-copy {
+            margin: 0;
+            line-height: 1.5;
+        }
+
+        .footer-links {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.8rem;
+            flex-wrap: wrap;
+        }
+
+        .footer-links a {
+            color: var(--soft-grey);
+            text-decoration: none;
+            transition: color 0.2s ease;
+        }
+
+        .footer-links a:hover {
+            color: var(--dark-olive);
+            text-decoration: underline;
+        }
+
+        .footer-sep {
+            color: #d1d5db;
+            font-size: 0.75rem;
+        }
     </style>
 </head>
 <body>
@@ -227,7 +277,6 @@
             <a href="index.html#calculator" data-i18n="nav-calc">Calculator</a>
             <a href="inspiration.html" data-i18n="nav-inspiration">Inspiration</a>
             <a href="blog.html" class="active" style="color: var(--sand);" data-i18n="nav-blog">Blog</a>
-            <a href="glossary.html" data-i18n="nav-glossary">Glossary</a>
             <a href="contact.html" data-i18n="nav-contact">Contact</a>
         </nav>
         <div class="lang-selector">
@@ -279,10 +328,32 @@
                 </div>
             </article>
 
+            <!-- ARTÍCULO 4: GLOSARIO DE CONSTRUCCIÓN E INMOBILIARIA -->
+            <article class="blog-card" data-title="glossary glosario glossar dictionary pem lpo icio aerotermia terms technical building construction arquitectura terms">
+                <div class="blog-card-content">
+                    <span class="blog-card-tag" data-i18n="b-tag-4">Dictionary & Reference</span>
+                    <h3 class="blog-card-title" data-i18n="b-title-4">Balearic Property & Construction Glossary (37 Essential Terms)</h3>
+                    <p class="blog-card-excerpt" data-i18n="b-excerpt-4">A complete technical guide to Spanish building terminology, permits (PEM, ICIO, LPO), structural systems, and luxury Mediterranean finishes.</p>
+                    <a href="glossary.html" class="blog-card-link" data-i18n="b-link-guide">Read Guide →</a>
+                </div>
+            </article>
+
             <!-- MENSAJE SI NO SE ENCUENTRAN RESULTADOS -->
             <div class="no-results" id="no-results-msg" data-i18n="b-no-results">No articles match your search. Please try another keyword.</div>
         </div>
     </div> <!-- Cierre de blog-container -->
+
+    <!-- FOOTER PREMIUM CON ENLACES LEGALES Y PRIVACIDAD -->
+    <footer class="site-footer">
+        <div class="footer-content">
+             <p class="footer-copy" data-i18n="footer-copy">&copy; 2026 MallorcaQuotes. Indicative estimates only. Not a contractual offer.</p>
+             <div class="footer-links">
+                 <a href="privacy.html" data-i18n="footer-privacy">Privacy Policy</a>
+                 <span class="footer-sep">|</span>
+                 <a href="legal.html" data-i18n="footer-legal">Legal Notice</a>
+             </div>
+        </div>
+    </footer>
 
     <!-- ========================================== -->
     <!-- SCRIPT DE IDIOMAS Y BÚSQUEDA               -->
@@ -293,7 +364,6 @@
             "nav-calc": "Calculator",
             "nav-inspiration": "Inspiration",
             "nav-blog": "Blog",
-            "nav-glossary": "Glossary",
             "nav-contact": "Contact",
             "blog-main-title": "Our Insights",
             "blog-subtitle": "Discover expert advice, tax guides, and construction trends in Mallorca.",
@@ -307,15 +377,20 @@
             "b-tag-3": "Construction",
             "b-title-3": "Understanding Construction Timelines in the Balearics",
             "b-excerpt-3": "From securing the building license from the local Ayuntamiento to the final certificate of occupancy (Cédula de Habitabilidad). A realistic month-by-month projection.",
+            "b-tag-4": "Dictionary & Reference",
+            "b-title-4": "Balearic Property & Construction Glossary (37 Essential Terms)",
+            "b-excerpt-4": "A complete technical guide to Spanish building terminology, permits (PEM, ICIO, LPO), structural systems, and luxury Mediterranean finishes.",
             "b-link-guide": "Read Guide →",
             "b-link-art": "Read Article →",
-            "b-no-results": "No articles match your search. Please try another keyword."
+            "b-no-results": "No articles match your search. Please try another keyword.",
+            "footer-copy": "&copy; 2026 MallorcaQuotes. Indicative estimates only. Not a contractual offer.",
+            "footer-privacy": "Privacy Policy",
+            "footer-legal": "Legal Notice"
         },
         es: {
             "nav-calc": "Calculadora",
             "nav-inspiration": "Inspiración",
             "nav-blog": "Blog",
-            "nav-glossary": "Glosario",
             "nav-contact": "Contacto",
             "blog-main-title": "Nuestras Publicaciones",
             "blog-subtitle": "Descubra consejos de expertos, guías fiscales y tendencias de construcción en Mallorca.",
@@ -329,15 +404,20 @@
             "b-tag-3": "Construcción",
             "b-title-3": "Claves de los Plazos de Construcción en Baleares",
             "b-excerpt-3": "Desde la obtención de la licencia municipal en el Ayuntamiento hasta la Cédula de Habitabilidad. Una proyección mes a mes realista.",
+            "b-tag-4": "Diccionario y Referencia",
+            "b-title-4": "Glosario de Construcción e Inmobiliaria en Baleares (37 Términos Clave)",
+            "b-excerpt-4": "Guía técnica completa sobre trámites urbanísticos (PEM, ICIO, LPO), sistemas constructivos y acabados mediterráneos de alta gama en Mallorca.",
             "b-link-guide": "Leer Guía →",
             "b-link-art": "Leer Artículo →",
-            "b-no-results": "Ningún artículo coincide con su búsqueda. Intente con otra palabra clave."
+            "b-no-results": "Ningún artículo coincide con su búsqueda. Intente con otra palabra clave.",
+            "footer-copy": "&copy; 2026 MallorcaQuotes. Estimaciones orientativas. No constituye oferta contractual.",
+            "footer-privacy": "Política de Privacidad",
+            "footer-legal": "Aviso Legal"
         },
         de: {
             "nav-calc": "Rechner",
             "nav-inspiration": "Inspiration",
             "nav-blog": "Blog",
-            "nav-glossary": "Glossar",
             "nav-contact": "Kontakt",
             "blog-main-title": "Unsere Einblicke",
             "blog-subtitle": "Entdecken Sie Expertenrat, Steuerleitfäden und Bautrends auf Mallorca.",
@@ -351,9 +431,15 @@
             "b-tag-3": "Bauausführung",
             "b-title-3": "Bauzeiten auf den Balearen verstehen",
             "b-excerpt-3": "Vom Erhalt der Baugenehmigung beim örtlichen Ayuntamiento bis zur Bewohnbarkeitsbescheinigung (Cédula de Habitabilidad). Eine realistische Monatsplanung.",
+            "b-tag-4": "Wörterbuch & Referenz",
+            "b-title-4": "Bau- & Immobilien-Glossar für die Balearen (37 Schlüsselbegriffe)",
+            "b-excerpt-4": "Vollständiger technischer Leitfaden zu spanischen Baugenehmigungen (PEM, ICIO, LPO), Bausystemen und mediterranen Premium-Materialien.",
             "b-link-guide": "Leitfaden lesen →",
             "b-link-art": "Artikel lesen →",
-            "b-no-results": "Keine Artikel entsprechen Ihrer Suche. Bitte versuchen Sie ein anderes Stichwort."
+            "b-no-results": "Keine Artikel entsprechen Ihrer Suche. Bitte versuchen Sie ein anderes Stichwort.",
+            "footer-copy": "&copy; 2026 MallorcaQuotes. Nur Richtwerte. Kein verbindliches Angebot.",
+            "footer-privacy": "Datenschutzerklärung",
+            "footer-legal": "Impressum"
         }
     };
 

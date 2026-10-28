@@ -230,6 +230,56 @@
         .btn-outline:hover {
             background-color: #f0ede6;
         }
+
+        /* ── FOOTER MINIMALISTA Y ELEGANTE ── */
+        .site-footer {
+            background-color: var(--white);
+            border-top: 1px solid #f0ede6;
+            padding: 2.2rem 1.5rem;
+            margin-top: 4rem;
+            color: var(--soft-grey);
+            font-size: 0.85rem;
+        }
+
+        .footer-content {
+            max-width: 800px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 0.75rem;
+            text-align: center;
+        }
+
+        .footer-copy {
+            margin: 0;
+            line-height: 1.5;
+        }
+
+        .footer-links {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.8rem;
+            flex-wrap: wrap;
+        }
+
+        .footer-links a {
+            color: var(--soft-grey);
+            text-decoration: none;
+            transition: color 0.2s ease;
+        }
+
+        .footer-links a:hover {
+            color: var(--dark-olive);
+            text-decoration: underline;
+        }
+
+        .footer-sep {
+            color: #d1d5db;
+            font-size: 0.75rem;
+        }
     </style>
 </head>
 <body>
@@ -241,7 +291,6 @@
             <a href="index.html#calculator" data-i18n="nav-calc">Calculator</a>
             <a href="inspiration.html" class="active" style="color: var(--sand);" data-i18n="nav-inspiration">Inspiration</a>
             <a href="blog.html" data-i18n="nav-blog">Blog</a>
-            <a href="glossary.html" data-i18n="nav-glossary">Glossary</a>
             <a href="contact.html" data-i18n="nav-contact">Contact</a>
         </nav>
         <div class="lang-selector">
@@ -285,6 +334,18 @@
         </div>
     </div>
 
+    <!-- FOOTER PREMIUM CON ENLACES LEGALES Y PRIVACIDAD -->
+    <footer class="site-footer">
+        <div class="footer-content">
+             <p class="footer-copy" data-i18n="footer-copy">&copy; 2026 MallorcaQuotes. Indicative estimates only. Not a contractual offer.</p>
+             <div class="footer-links">
+                 <a href="privacy.html" data-i18n="footer-privacy">Privacy Policy</a>
+                 <span class="footer-sep">|</span>
+                 <a href="legal.html" data-i18n="footer-legal">Legal Notice</a>
+             </div>
+        </div>
+    </footer>
+
     <!-- ========================================== -->
     <!-- SCRIPT DE IDIOMAS MULTILINGÜE              -->
     <!-- ========================================== -->
@@ -294,7 +355,6 @@
             "nav-calc": "Calculator",
             "nav-inspiration": "Inspiration",
             "nav-blog": "Blog",
-            "nav-glossary": "Glossary",
             "nav-contact": "Contact",
             "cs-badge": "Architectural Editorial · Coming Soon",
             "cs-title": "Curated Architectural Inspiration",
@@ -306,13 +366,15 @@
             "cs-f3-title": "Outdoor Sanctuaries",
             "cs-f3-desc": "Infinity pools, pergolas, and Mediterranean xeriscape garden designs.",
             "cs-btn-calc": "Calculate Your Project Budget →",
-            "cs-btn-contact": "Send Your Architectural Plans"
+            "cs-btn-contact": "Send Your Architectural Plans",
+            "footer-copy": "&copy; 2026 MallorcaQuotes. Indicative estimates only. Not a contractual offer.",
+            "footer-privacy": "Privacy Policy",
+            "footer-legal": "Legal Notice"
         },
         es: {
             "nav-calc": "Calculadora",
             "nav-inspiration": "Inspiración",
             "nav-blog": "Blog",
-            "nav-glossary": "Glosario",
             "nav-contact": "Contacto",
             "cs-badge": "Editorial Arquitectónica · Próximamente",
             "cs-title": "Inspiración Arquitectónica Exclusiva",
@@ -324,13 +386,15 @@
             "cs-f3-title": "Santuarios Exteriores",
             "cs-f3-desc": "Piscinas desbordantes, pérgolas y paisajismo mediterráneo sostenible.",
             "cs-btn-calc": "Calcular Presupuesto de su Obra →",
-            "cs-btn-contact": "Enviar Planos del Proyecto"
+            "cs-btn-contact": "Enviar Planos del Proyecto",
+            "footer-copy": "&copy; 2026 MallorcaQuotes. Estimaciones orientativas. No constituye oferta contractual.",
+            "footer-privacy": "Política de Privacidad",
+            "footer-legal": "Aviso Legal"
         },
         de: {
             "nav-calc": "Rechner",
             "nav-inspiration": "Inspiration",
             "nav-blog": "Blog",
-            "nav-glossary": "Glossar",
             "nav-contact": "Kontakt",
             "cs-badge": "Architektur-Editorial · Demnächst verfügbar",
             "cs-title": "Kuratierte Architektur-Inspiration",
@@ -342,7 +406,10 @@
             "cs-f3-title": "Rückzugsorte im Freien",
             "cs-f3-desc": "Infinity-Pools, Pergolen und nachhaltige mediterrane Gartengestaltung.",
             "cs-btn-calc": "Baukosten jetzt kalkulieren →",
-            "cs-btn-contact": "Projektpläne einreichen"
+            "cs-btn-contact": "Projektpläne einreichen",
+            "footer-copy": "&copy; 2026 MallorcaQuotes. Nur Richtwerte. Kein verbindliches Angebot.",
+            "footer-privacy": "Datenschutzerklärung",
+            "footer-legal": "Impressum"
         }
     };
 

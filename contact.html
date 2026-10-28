@@ -253,6 +253,56 @@
             text-align: center;
             line-height: 1.5;
         }
+
+        /* ── FOOTER MINIMALISTA Y ELEGANTE ── */
+        .site-footer {
+            background-color: var(--white);
+            border-top: 1px solid #f0ede6;
+            padding: 2.2rem 1.5rem;
+            margin-top: 4rem;
+            color: var(--soft-grey);
+            font-size: 0.85rem;
+        }
+
+        .footer-content {
+            max-width: 800px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 0.75rem;
+            text-align: center;
+        }
+
+        .footer-copy {
+            margin: 0;
+            line-height: 1.5;
+        }
+
+        .footer-links {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.8rem;
+            flex-wrap: wrap;
+        }
+
+        .footer-links a {
+            color: var(--soft-grey);
+            text-decoration: none;
+            transition: color 0.2s ease;
+        }
+
+        .footer-links a:hover {
+            color: var(--dark-olive);
+            text-decoration: underline;
+        }
+
+        .footer-sep {
+            color: #d1d5db;
+            font-size: 0.75rem;
+        }
     </style>
 </head>
 <body>
@@ -264,7 +314,6 @@
             <a href="index.html#calculator" data-i18n="nav-calc">Calculator</a>
             <a href="inspiration.html" data-i18n="nav-inspiration">Inspiration</a>
             <a href="blog.html" data-i18n="nav-blog">Blog</a>
-            <a href="glossary.html" data-i18n="nav-glossary">Glossary</a>
             <a href="contact.html" class="active" style="color: var(--sand);" data-i18n="nav-contact">Contact</a>
         </nav>
         <div class="lang-selector">
@@ -379,6 +428,18 @@
         </div>
     </div>
 
+    <!-- FOOTER PREMIUM CON ENLACES LEGALES Y PRIVACIDAD -->
+    <footer class="site-footer">
+        <div class="footer-content">
+             <p class="footer-copy" data-i18n="footer-copy">&copy; 2026 MallorcaQuotes. Indicative estimates only. Not a contractual offer.</p>
+             <div class="footer-links">
+                 <a href="privacy.html" data-i18n="footer-privacy">Privacy Policy</a>
+                 <span class="footer-sep">|</span>
+                 <a href="legal.html" data-i18n="footer-legal">Legal Notice</a>
+             </div>
+        </div>
+    </footer>
+
     <!-- ========================================== -->
     <!-- SCRIPT DE IDIOMAS Y ENVÍO                 -->
     <!-- ========================================== -->
@@ -388,7 +449,6 @@
             "nav-calc": "Calculator",
             "nav-inspiration": "Inspiration",
             "nav-blog": "Blog",
-            "nav-glossary": "Glossary",
             "nav-contact": "Contact",
             "contact-title": "Direct Technical Consultation",
             "contact-subtitle": "Independent cost analysis and custom contractor tender for your villa in Mallorca.",
@@ -415,13 +475,15 @@
             "btn-submit": "Submit Project for Custom Budget",
             "res-title": "Project received successfully!",
             "res-desc": "Our senior cost engineer will review your project documentation and calculate the bill of quantities. We will get in touch with you within 12 to 24 business hours.",
-            "conf-notice": "🔒 Strictly Confidential. Your documentation is exclusively analyzed by our technical department under non-disclosure standards."
+            "conf-notice": "🔒 Strictly Confidential. Your documentation is exclusively analyzed by our technical department under non-disclosure standards.",
+            "footer-copy": "&copy; 2026 MallorcaQuotes. Indicative estimates only. Not a contractual offer.",
+            "footer-privacy": "Privacy Policy",
+            "footer-legal": "Legal Notice"
         },
         es: {
             "nav-calc": "Calculadora",
             "nav-inspiration": "Inspiración",
             "nav-blog": "Blog",
-            "nav-glossary": "Glosario",
             "nav-contact": "Contacto",
             "contact-title": "Consulta Técnica Directa",
             "contact-subtitle": "Estudio de costes independiente y licitación de contrata para su villa en Mallorca.",
@@ -448,13 +510,15 @@
             "btn-submit": "Enviar Proyecto para Presupuesto a Medida",
             "res-title": "¡Proyecto recibido correctamente!",
             "res-desc": "Nuestro departamento técnico revisará la documentación de planos y elaborará el desglose por partidas de contrata. Nos pondremos en contacto en un plazo de 12 a 24 horas laborables.",
-            "conf-notice": "🔒 Confidencialidad Rigurosa. Toda su documentación es analizada exclusivamente por nuestro equipo técnico bajo acuerdo de confidencialidad."
+            "conf-notice": "🔒 Confidencialidad Rigurosa. Toda su documentación es analizada exclusivamente por nuestro equipo técnico bajo acuerdo de confidencialidad.",
+            "footer-copy": "&copy; 2026 MallorcaQuotes. Estimaciones orientativas. No constituye oferta contractual.",
+            "footer-privacy": "Política de Privacidad",
+            "footer-legal": "Aviso Legal"
         },
         de: {
             "nav-calc": "Rechner",
             "nav-inspiration": "Inspiration",
             "nav-blog": "Blog",
-            "nav-glossary": "Glossar",
             "nav-contact": "Kontakt",
             "contact-title": "Direkte Technische Beratung",
             "contact-subtitle": "Unabhängige Kostenanalyse und Bauunternehmer-Ausschreibung für Ihre Villa auf Mallorca.",
@@ -481,7 +545,10 @@
             "btn-submit": "Projekt für maßgeschneidertes Budget einreichen",
             "res-title": "Projekt erfolgreich eingegangen!",
             "res-desc": "Unser leitender Bauingenieur wird Ihre Projektdokumentation prüfen und das Leistungsverzeichnis kalkulieren. Wir melden uns innerhalb von 12 bis 24 Geschäftsstunden bei Ihnen.",
-            "conf-notice": "🔒 Streng vertraulich. Ihre Unterlagen werden ausschließlich von unserer Fachabteilung unter Geheimhaltungsstandards analysiert."
+            "conf-notice": "🔒 Streng vertraulich. Ihre Unterlagen werden ausschließlich von unserer Fachabteilung unter Geheimhaltungsstandards analysiert.",
+            "footer-copy": "&copy; 2026 MallorcaQuotes. Nur Richtwerte. Kein verbindliches Angebot.",
+            "footer-privacy": "Datenschutzerklärung",
+            "footer-legal": "Impressum"
         }
     };
 

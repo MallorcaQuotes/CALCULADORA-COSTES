@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MallorcaQuotes | Privacy Policy</title>
+
+    <!-- Favicon & Search Engine Snippet Icons (MQ Logo) -->
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="icon" type="image/png" sizes="48x48" href="/favicon-48x48.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <meta name="theme-color" content="#283618">
+
+    <style>
+        :root {
+            --olive: #606c38;
+            --dark-olive: #283618;
+            --cream: #fefae0;
+            --sand: #dda15e;
+            --earth: #bc6c25;
+            --white: #ffffff;
+            --charcoal: #2b2d42;
+            --soft-grey: #8d99ae;
+        }
+
+        body {
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            background-color: #faf9f6;
+            color: var(--charcoal);
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+        }
+
+        /* ── HEADER ── */
+        .premium-header {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem 2rem;
+            background-color: var(--white);
+            border-bottom: 1px solid #f0ede6;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+        }
+
+        .logo {
+            font-size: 1.4rem;
+            font-weight: 700;
+            letter-spacing: 0.05em;
+            text-decoration: none;
+            color: var(--dark-olive);
+        }
+
+        .logo span {
+            color: var(--sand);
+        }
+
+        .seo-nav {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .seo-nav a {
+            text-decoration: none;
+            color: var(--charcoal);
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+
+        .seo-nav a:hover,
+        .seo-nav a.active {
+            color: var(--sand);
+        }
+
+        .lang-selector {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .lang-btn {
+            background: none;
+            border: 1px solid var(--soft-grey);
+            padding: 0.4rem 0.8rem;
+            font-size: 0.8rem;
+            cursor: pointer;
+            border-radius: 4px;
+            color: var(--charcoal);
+            transition: all 0.3s;
+            font-weight: 600;
+        }
+
+        .lang-btn.active,
+        .lang-btn:hover {
+            background-color: var(--dark-olive);
+            color: var(--cream);
+            border-color: var(--dark-olive);
+        }
+
+        /* ── LEGAL CONTAINER ── */
+        .legal-wrapper {
+            max-width: 840px;
+            margin: 3.5rem auto;
+            padding: 2.5rem;
+            background: var(--white);
+            border-radius: 8px;
+            border: 1px solid #f0ede6;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.03);
+        }
+
+        .legal-header {
+            border-bottom: 1px solid var(--sand);
+            padding-bottom: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .legal-header h1 {
+            font-family: 'Playfair Display', Georgia, serif;
+            font-size: 2.2rem;
+            color: var(--dark-olive);
+            margin: 0 0 0.5rem;
+        }
+
+        .legal-header p {
+            color: var(--soft-grey);
+            font-size: 0.95rem;
+            margin: 0;
+        }
+
+        .legal-section {
+            margin-bottom: 2rem;
+        }
+
+        .legal-section h2 {
+            font-family: 'Playfair Display', Georgia, serif;
+            font-size: 1.3rem;
+            color: var(--dark-olive);
+            margin: 0 0 0.8rem;
+        }
+
+        .legal-section p, .legal-section ul {
+            font-size: 0.95rem;
+            color: #4b5563;
+            line-height: 1.7;
+            margin: 0 0 1rem;
+        }
+
+        .legal-section ul {
+            padding-left: 1.5rem;
+        }
+
+        .legal-section li {
+            margin-bottom: 0.5rem;
+        }
+
+        /* ── FOOTER ── */
+        .site-footer {
+            background-color: var(--white);
+            border-top: 1px solid #f0ede6;
+            padding: 2.2rem 1.5rem;
+            margin-top: 4rem;
+            color: var(--soft-grey);
+            font-size: 0.85rem;
+        }
+
+        .footer-content {
+            max-width: 800px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 0.75rem;
+            text-align: center;
+        }
+
+        .footer-copy {
+            margin: 0;
+            line-height: 1.5;
+        }
+
+        .footer-links {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.8rem;
+            flex-wrap: wrap;
+        }
+
+        .footer-links a {
+            color: var(--soft-grey);
+            text-decoration: none;
+            transition: color 0.2s ease;
+        }
+
+        .footer-links a:hover {
+            color: var(--dark-olive);
+            text-decoration: underline;
+        }
+
+        .footer-links a.active {
+            color: var(--dark-olive);
+            font-weight: 600;
+        }
+
+        .footer-sep {
+            color: #d1d5db;
+            font-size: 0.75rem;
+        }
+
+        @media (max-width: 600px) {
+            .legal-wrapper { margin: 1.5rem 1rem 3rem; padding: 1.5rem; }
+            .legal-header h1 { font-size: 1.7rem; }
+            .seo-nav { gap: 1rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- CABECERA PREMIUM -->
+    <header class="premium-header">
+        <a href="index.html" class="logo">MALLORCA<span>QUOTES</span></a>
+        <nav class="seo-nav">
+            <a href="index.html#calculator" data-i18n="nav-calc">Calculator</a>
+            <a href="inspiration.html" data-i18n="nav-inspiration">Inspiration</a>
+            <a href="blog.html" data-i18n="nav-blog">Blog</a>
+            <a href="contact.html" data-i18n="nav-contact">Contact</a>
+        </nav>
+        <div class="lang-selector">
+            <button type="button" onclick="changeLanguage('en')" id="btn-lang-en" class="lang-btn active">EN</button>
+            <button type="button" onclick="changeLanguage('es')" id="btn-lang-es" class="lang-btn">ES</button>
+            <button type="button" onclick="changeLanguage('de')" id="btn-lang-de" class="lang-btn">DE</button>
+        </div>
+    </header>
+
+    <div class="legal-wrapper">
+        <div class="legal-header">
+            <h1 data-i18n="priv-title">Privacy Policy (GDPR Compliance)</h1>
+            <p data-i18n="priv-subtitle">Information on the processing of personal data in accordance with Regulation (EU) 2016/679 (GDPR).</p>
+        </div>
+
+        <div class="legal-section">
+            <h2 data-i18n="priv-s1-title">1. Data Controller</h2>
+            <p data-i18n="priv-s1-desc">The data controller for the processing of personal data collected through this website is MallorcaQuotes (hereinafter, "the Controller"), operating from the Balearic Islands, Spain. For any inquiry regarding your personal information, you can contact our technical team via the contact form on this website.</p>
+        </div>
+
+        <div class="legal-section">
+            <h2 data-i18n="priv-s2-title">2. Purpose of Processing and Legal Basis</h2>
+            <p data-i18n="priv-s2-desc">MallorcaQuotes processes personal data provided by users (such as name, email address, phone number, and project parameters) strictly for the following purposes:</p>
+            <ul>
+                <li data-i18n="priv-s2-p1">To calculate, process, and deliver customized indicative construction estimates and itemized architectural budgets requested by the user.</li>
+                <li data-i18n="priv-s2-p2">To respond to direct technical inquiries and project plan submissions.</li>
+                <li data-i18n="priv-s2-p3">To manage communications strictly related to the requested construction consultation.</li>
+            </ul>
+            <p data-i18n="priv-s2-basis">The legal basis for processing this data is the explicit and unambiguous consent given by the user upon submitting the estimation or contact form (Art. 6.1.a GDPR).</p>
+        </div>
+
+        <div class="legal-section">
+            <h2 data-i18n="priv-s3-title">3. Data Retention and Recipients</h2>
+            <p data-i18n="priv-s3-desc">Personal data will only be kept for as long as necessary to fulfill the requested consultation or until the user exercises their right of erasure. Data is transmitted securely via Formspree Inc. (acting as a data processor adhering to standard contractual clauses) and is never sold, leased, or disclosed to third parties for commercial or marketing purposes.</p>
+        </div>
+
+        <div class="legal-section">
+            <h2 data-i18n="priv-s4-title">4. User Rights (ARCO-POL)</h2>
+            <p data-i18n="priv-s4-desc">Under the General Data Protection Regulation, users have the right to:</p>
+            <ul>
+                <li data-i18n="priv-s4-r1">Request access to their personal data stored by MallorcaQuotes.</li>
+                <li data-i18n="priv-s4-r2">Request the rectification of inaccurate or incomplete data.</li>
+                <li data-i18n="priv-s4-r3">Request the deletion (erasure) of their data when it is no longer needed.</li>
+                <li data-i18n="priv-s4-r4">Request the limitation of processing or object to data processing.</li>
+                <li data-i18n="priv-s4-r5">Request data portability.</li>
+            </ul>
+            <p data-i18n="priv-s4-claim">You also have the right to lodge a complaint with the competent supervisory authority (in Spain, the Agencia Española de Protección de Datos - AEPD).</p>
+        </div>
+    </div>
+
+    <!-- FOOTER PREMIUM CON ENLACES LEGALES Y PRIVACIDAD -->
+    <footer class="site-footer">
+        <div class="footer-content">
+             <p class="footer-copy" data-i18n="footer-copy">&copy; 2026 MallorcaQuotes. Indicative estimates only. Not a contractual offer.</p>
+             <div class="footer-links">
+                 <a href="privacy.html" class="active" data-i18n="footer-privacy">Privacy Policy</a>
+                 <span class="footer-sep">|</span>
+                 <a href="legal.html" data-i18n="footer-legal">Legal Notice</a>
+             </div>
+        </div>
+    </footer>
+
+    <!-- SCRIPT DE IDIOMAS -->
+    <script>
+    const dictionary = {
+        en: {
+            "nav-calc": "Calculator",
+            "nav-inspiration": "Inspiration",
+            "nav-blog": "Blog",
+            "nav-contact": "Contact",
+            "priv-title": "Privacy Policy (GDPR Compliance)",
+            "priv-subtitle": "Information on the processing of personal data in accordance with Regulation (EU) 2016/679 (GDPR).",
+            "priv-s1-title": "1. Data Controller",
+            "priv-s1-desc": "The data controller for the processing of personal data collected through this website is MallorcaQuotes, operating from the Balearic Islands, Spain. For any inquiry regarding your personal information, you can contact our technical team via the contact form on this website.",
+            "priv-s2-title": "2. Purpose of Processing and Legal Basis",
+            "priv-s2-desc": "MallorcaQuotes processes personal data provided by users (such as name, email address, phone number, and project parameters) strictly for the following purposes:",
+            "priv-s2-p1": "To calculate, process, and deliver customized indicative construction estimates and itemized architectural budgets requested by the user.",
+            "priv-s2-p2": "To respond to direct technical inquiries and project plan submissions.",
+            "priv-s2-p3": "To manage communications strictly related to the requested construction consultation.",
+            "priv-s2-basis": "The legal basis for processing this data is the explicit and unambiguous consent given by the user upon submitting the estimation or contact form (Art. 6.1.a GDPR).",
+            "priv-s3-title": "3. Data Retention and Recipients",
+            "priv-s3-desc": "Personal data will only be kept for as long as necessary to fulfill the requested consultation or until the user exercises their right of erasure. Data is transmitted securely via Formspree Inc. (acting as a data processor adhering to standard contractual clauses) and is never sold, leased, or disclosed to third parties for commercial or marketing purposes.",
+            "priv-s4-title": "4. User Rights (GDPR)",
+            "priv-s4-desc": "Under the General Data Protection Regulation, users have the right to:",
+            "priv-s4-r1": "Request access to their personal data stored by MallorcaQuotes.",
+            "priv-s4-r2": "Request the rectification of inaccurate or incomplete data.",
+            "priv-s4-r3": "Request the deletion (erasure) of their data when it is no longer needed.",
+            "priv-s4-r4": "Request the limitation of processing or object to data processing.",
+            "priv-s4-r5": "Request data portability.",
+            "priv-s4-claim": "You also have the right to lodge a complaint with the competent supervisory authority (in Spain, the Agencia Española de Protección de Datos - AEPD).",
+            "footer-copy": "&copy; 2026 MallorcaQuotes. Indicative estimates only. Not a contractual offer.",
+            "footer-privacy": "Privacy Policy",
+            "footer-legal": "Legal Notice"
+        },
+        es: {
+            "nav-calc": "Calculadora",
+            "nav-inspiration": "Inspiración",
+            "nav-blog": "Blog",
+            "nav-contact": "Contacto",
+            "priv-title": "Política de Privacidad (Cumplimiento RGPD)",
+            "priv-subtitle": "Información relativa al tratamiento de datos personales conforme al Reglamento (UE) 2016/679 (RGPD) y LOPD-GDD.",
+            "priv-s1-title": "1. Responsable del Tratamiento",
+            "priv-s1-desc": "El responsable del tratamiento de los datos personales recogidos a través de este sitio web es MallorcaQuotes, con ámbito de actuación en las Islas Baleares, España. Para cualquier consulta sobre sus datos personales, puede contactar con nuestro equipo técnico a través del formulario de contacto.",
+            "priv-s2-title": "2. Finalidad del Tratamiento y Base Jurídica",
+            "priv-s2-desc": "MallorcaQuotes trata los datos personales facilitados por los usuarios (nombre, correo electrónico, teléfono y parámetros de proyecto) para las siguientes finalidades:",
+            "priv-s2-p1": "Calcular, procesar y remitir presupuestos estimativos e informes de costes de construcción solicitados por el usuario.",
+            "priv-s2-p2": "Atender consultas técnicas directas y recepción de proyectos arquitectónicos.",
+            "priv-s2-p3": "Gestionar las comunicaciones estrictamente necesarias vinculadas a la solicitud de asesoramiento.",
+            "priv-s2-basis": "La base legal para el tratamiento de los datos es el consentimiento explícito prestado por el usuario al enviar el formulario (Art. 6.1.a RGPD).",
+            "priv-s3-title": "3. Conservación y Destinatarios",
+            "priv-s3-desc": "Los datos se conservarán durante el tiempo necesario para atender la consulta o hasta que el usuario solicite su supresión. La transmisión se realiza mediante canal cifrado a través de Formspree Inc. (encargado de tratamiento) y en ningún caso se ceden ni comercializan a terceros.",
+            "priv-s4-title": "4. Derechos del Usuario (ARCO-POL)",
+            "priv-s4-desc": "Conforme a la normativa europea, el usuario puede ejercer en cualquier momento los derechos de:",
+            "priv-s4-r1": "Acceso a sus datos personales.",
+            "priv-s4-r2": "Rectificación de datos inexactos o incompletos.",
+            "priv-s4-r3": "Supresión de sus datos cuando ya no sean necesarios.",
+            "priv-s4-r4": "Limitación del tratamiento y oposición al mismo.",
+            "priv-s4-r5": "Portabilidad de sus datos en formato estructurado.",
+            "priv-s4-claim": "Asimismo, tiene derecho a presentar una reclamación ante la Agencia Española de Protección de Datos (AEPD).",
+            "footer-copy": "&copy; 2026 MallorcaQuotes. Estimaciones orientativas. No constituye oferta contractual.",
+            "footer-privacy": "Política de Privacidad",
+            "footer-legal": "Aviso Legal"
+        },
+        de: {
+            "nav-calc": "Rechner",
+            "nav-inspiration": "Inspiration",
+            "nav-blog": "Blog",
+            "nav-contact": "Kontakt",
+            "priv-title": "Datenschutzerklärung (DSGVO-Konformität)",
+            "priv-subtitle": "Informationen zur Verarbeitung personenbezogener Daten gemäß der Verordnung (EU) 2016/679 (DSGVO).",
+            "priv-s1-title": "1. Verantwortlicher für die Datenverarbeitung",
+            "priv-s1-desc": "Verantwortlicher für die Erhebung und Verarbeitung personenbezogener Daten auf dieser Website ist MallorcaQuotes, tätig auf den Balearischen Inseln, Spanien. Bei Fragen zum Datenschutz können Sie unser Team über das Kontaktformular erreichen.",
+            "priv-s2-title": "2. Zweck der Verarbeitung und Rechtsgrundlage",
+            "priv-s2-desc": "MallorcaQuotes verarbeitet die vom Nutzer bereitgestellten Daten (Name, E-Mail-Adresse, Telefonnummer und Bauparameter) für folgende Zwecke:",
+            "priv-s2-p1": "Berechnung, Erstellung und Zusendung individueller indikativer Baukostenschätzungen und Leistungsverzeichnisse.",
+            "priv-s2-p2": "Beantwortung technischer Beratungsanfragen und Prüfung eingereichter Pläne.",
+            "priv-s2-p3": "Durchführung der zur Projektberatung erforderlichen Kommunikation.",
+            "priv-s2-basis": "Die Rechtsgrundlage für diese Datenverarbeitung ist die ausdrückliche Einwilligung des Nutzers bei Absenden des Formulars (Art. 6 Abs. 1 lit. a DSGVO).",
+            "priv-s3-title": "3. Speicherdauer und Weitergabe an Dritte",
+            "priv-s3-desc": "Die Daten werden nur so lange gespeichert, wie es für die Bearbeitung der Anfrage erforderlich ist oder bis der Nutzer die Löschung verlangt. Die Übertragung erfolgt verschlüsselt über Formspree Inc. (Auftragsverarbeiter). Daten werden weder verkauft noch an unbefugte Dritte weitergegeben.",
+            "priv-s4-title": "4. Rechte der betroffenen Person (DSGVO)",
+            "priv-s4-desc": "Gemäß der Datenschutz-Grundverordnung stehen Ihnen folgende Rechte zu:",
+            "priv-s4-r1": "Recht auf Auskunft über die gespeicherten personenbezogenen Daten.",
+            "priv-s4-r2": "Recht auf Berichtigung unrichtiger Daten.",
+            "priv-s4-r3": "Recht auf Löschung der Daten.",
+            "priv-s4-r4": "Recht auf Einschränkung der Verarbeitung und Widerspruchsrecht.",
+            "priv-s4-r5": "Recht auf Datenübertragbarkeit.",
+            "priv-s4-claim": "Sie haben zudem das Recht, eine Beschwerde bei der zuständigen Aufsichtsbehörde (z. B. AEPD in Spanien) einzureichen.",
+            "footer-copy": "&copy; 2026 MallorcaQuotes. Nur Richtwerte. Kein verbindliches Angebot.",
+            "footer-privacy": "Datenschutzerklärung",
+            "footer-legal": "Impressum"
+        }
+    };
+
+    let currentLanguage = 'en';
+
+    function changeLanguage(lang) {
+        if (!dictionary[lang]) lang = 'en';
+        currentLanguage = lang;
+
+        document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
+        const targetBtn = document.getElementById(`btn-lang-${lang}`);
+        if (targetBtn) targetBtn.classList.add('active');
+
+        document.querySelectorAll('[data-i18n]').forEach(element => {
+            const key = element.getAttribute('data-i18n');
+            if (dictionary[lang] && dictionary[lang][key]) {
+                element.innerHTML = dictionary[lang][key];
+            }
+        });
+
+        localStorage.setItem('mallorcaquotes-lang', lang);
+        document.documentElement.lang = lang;
+    }
+    window.changeLanguage = changeLanguage;
+
+    document.addEventListener('DOMContentLoaded', () => {
+        const savedLang = localStorage.getItem('mallorcaquotes-lang') || 'en';
+        changeLanguage(savedLang);
+    });
+    </script>
+</body>
+</html>

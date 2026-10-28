@@ -218,6 +218,56 @@
             margin-top: 1rem;
             line-height: 1.5;
         }
+
+        /* ── FOOTER MINIMALISTA Y ELEGANTE ── */
+        .site-footer {
+            background-color: var(--white);
+            border-top: 1px solid #f0ede6;
+            padding: 2.2rem 1.5rem;
+            margin-top: 4rem;
+            color: var(--soft-grey);
+            font-size: 0.85rem;
+        }
+
+        .footer-content {
+            max-width: 800px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 0.75rem;
+            text-align: center;
+        }
+
+        .footer-copy {
+            margin: 0;
+            line-height: 1.5;
+        }
+
+        .footer-links {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.8rem;
+            flex-wrap: wrap;
+        }
+
+        .footer-links a {
+            color: var(--soft-grey);
+            text-decoration: none;
+            transition: color 0.2s ease;
+        }
+
+        .footer-links a:hover {
+            color: var(--dark-olive);
+            text-decoration: underline;
+        }
+
+        .footer-sep {
+            color: #d1d5db;
+            font-size: 0.75rem;
+        }
     </style>
 </head>
 <body>
@@ -229,7 +279,6 @@
             <a href="index.html#calculator" data-i18n="nav-calc">Calculator</a>
             <a href="inspiration.html" data-i18n="nav-inspiration">Inspiration</a>
             <a href="blog.html" data-i18n="nav-blog">Blog</a>
-            <a href="glossary.html" data-i18n="nav-glossary">Glossary</a>
             <a href="contact.html" data-i18n="nav-contact">Contact</a>
         </nav>
         <div class="lang-selector">
@@ -538,6 +587,18 @@
         </div>
 
     </div> <!-- Cierre de main-wrapper -->
+ 
+     <!-- FOOTER PREMIUM CON ENLACES LEGALES Y PRIVACIDAD -->
+     <footer class="site-footer">
+         <div class="footer-content">
+             <p class="footer-copy" data-i18n="footer-copy">&copy; 2026 MallorcaQuotes. Indicative estimates only. Not a contractual offer.</p>
+             <div class="footer-links">
+                 <a href="privacy.html" data-i18n="footer-privacy">Privacy Policy</a>
+                 <span class="footer-sep">|</span>
+                 <a href="legal.html" data-i18n="footer-legal">Legal Notice</a>
+             </div>
+         </div>
+     </footer>
 
     <!-- ========================================== -->
     <!-- SCRIPT ÚNICO, LIMPIO Y ROBUSTO             -->
@@ -1074,7 +1135,6 @@
             "nav-calc": "Calculator",
             "nav-inspiration": "Inspiration",
             "nav-blog": "Blog",
-            "nav-glossary": "Glossary",
             "nav-contact": "Contact",
             "main-title": "Know the cost before you build",
             "main-subtitle": "Get an indicative and premium cost estimate for building your new home in Mallorca.",
@@ -1138,13 +1198,15 @@
             "txt-d-res-title": "Estimated Construction Cost",
             "txt-d-success": "Request successfully received!",
             "txt-d-explain": "In accordance with our premium validation policies, a manager from our team will verify the construction variables entered against current market indices on the island of Mallorca. Your detailed architectural itemized estimate will be sent to your email within 12 to 48 hours.",
-            "txt-d-disclaimer": "<strong>Indicative Legal Disclaimer:</strong> This estimate is based on parametric data provided by the user and average market values in Mallorca. It does not constitute a contractual offer or a final construction quotation."
+            "txt-d-disclaimer": "<strong>Indicative Legal Disclaimer:</strong> This estimate is based on parametric data provided by the user and average market values in Mallorca. It does not constitute a contractual offer or a final construction quotation.",
+            "footer-copy": "&copy; 2026 MallorcaQuotes. Indicative estimates only. Not a contractual offer.",
+            "footer-privacy": "Privacy Policy",
+            "footer-legal": "Legal Notice"
         },
         es: {
             "nav-calc": "Calculadora",
             "nav-inspiration": "Inspiración",
             "nav-blog": "Blog",
-            "nav-glossary": "Glosario",
             "nav-contact": "Contacto",
             "main-title": "Conoce el coste antes de construir",
             "main-subtitle": "Obtén una estimación de costes premium e indicativa para construir tu nueva casa en Mallorca.",
@@ -1208,13 +1270,15 @@
             "txt-d-res-title": "Presupuesto de Construcción Estimado",
             "txt-d-success": "¡Solicitud recibida correctamente!",
             "txt-d-explain": "De acuerdo con nuestras políticas de validación premium, un responsable de nuestro equipo verificará las variables de construcción introducidas frente a los índices de mercado actuales en la isla de Mallorca. Su presupuesto detallado por partidas arquitectónicas será enviado a su correo electrónico en un plazo de 12 a 48 horas.",
-            "txt-d-disclaimer": "<strong>Aviso Legal Indicativo:</strong> Esta estimación se basa en información paramétrica proporcionada por el usuario y en los valores medios de mercado de la isla de Mallorca. No constituye una oferta contractual ni un presupuesto final de construcción."
+            "txt-d-disclaimer": "<strong>Aviso Legal Indicativo:</strong> Esta estimación se basa en información paramétrica proporcionada por el usuario y en los valores medios de mercado de la isla de Mallorca. No constituye una oferta contractual ni un presupuesto final de construcción.",
+            "footer-copy": "&copy; 2026 MallorcaQuotes. Estimaciones orientativas. No constituye oferta contractual.",
+            "footer-privacy": "Política de Privacidad",
+            "footer-legal": "Aviso Legal"
         },
         de: {
             "nav-calc": "Rechner",
             "nav-inspiration": "Inspiration",
             "nav-blog": "Blog",
-            "nav-glossary": "Glossar",
             "nav-contact": "Kontakt",
             "main-title": "Erfahren Sie die Kosten, bevor Sie bauen",
             "main-subtitle": "Erhalten Sie eine unverbindliche Richtwert-Schätzung für den Neubau Ihrer Villa auf Mallorca.",
@@ -1278,7 +1342,10 @@
             "txt-d-res-title": "Geschätzte Baukosten",
             "txt-d-success": "Anfrage erfolgreich eingegangen!",
             "txt-d-explain": "Gemäß unseren Premium-Validierungsrichtlinien wird ein Verantwortlicher unseres Teams die eingegebenen Bauvariablen mit den aktuellen Marktindizes auf der Insel Mallorca abgleichen. Ihr detaillierter architektonischer Kostenvoranschlag wird innerhalb von 12 bis 48 Stunden an Ihre E-Mail-Adresse gesendet.",
-            "txt-d-disclaimer": "<strong>Unverbindlicher rechtlicher Hinweis:</strong> Diese Schätzung basiert auf parametrischen Angaben des Nutzers und durchschnittlichen Marktwerten auf der Insel Mallorca. Sie stellt kein vertragliches Angebot und keinen endgültigen Kostenvoranschlag dar."
+            "txt-d-disclaimer": "<strong>Unverbindlicher rechtlicher Hinweis:</strong> Diese Schätzung basiert auf parametrischen Angaben des Nutzers und durchschnittlichen Marktwerten auf der Insel Mallorca. Sie stellt kein vertragliches Angebot und keinen endgültigen Kostenvoranschlag dar.",
+            "footer-copy": "&copy; 2026 MallorcaQuotes. Nur Richtwerte. Kein verbindliches Angebot.",
+            "footer-privacy": "Datenschutzerklärung",
+            "footer-legal": "Impressum"
         }
     };
 

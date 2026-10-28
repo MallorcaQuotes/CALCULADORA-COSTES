@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MallorcaQuotes | Legal Notice & Terms</title>
+
+    <!-- Favicon & Search Engine Snippet Icons (MQ Logo) -->
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="icon" type="image/png" sizes="48x48" href="/favicon-48x48.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <meta name="theme-color" content="#283618">
+
+    <style>
+        :root {
+            --olive: #606c38;
+            --dark-olive: #283618;
+            --cream: #fefae0;
+            --sand: #dda15e;
+            --earth: #bc6c25;
+            --white: #ffffff;
+            --charcoal: #2b2d42;
+            --soft-grey: #8d99ae;
+        }
+
+        body {
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            background-color: #faf9f6;
+            color: var(--charcoal);
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+        }
+
+        /* ── HEADER ── */
+        .premium-header {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem 2rem;
+            background-color: var(--white);
+            border-bottom: 1px solid #f0ede6;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+        }
+
+        .logo {
+            font-size: 1.4rem;
+            font-weight: 700;
+            letter-spacing: 0.05em;
+            text-decoration: none;
+            color: var(--dark-olive);
+        }
+
+        .logo span {
+            color: var(--sand);
+        }
+
+        .seo-nav {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .seo-nav a {
+            text-decoration: none;
+            color: var(--charcoal);
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+
+        .seo-nav a:hover,
+        .seo-nav a.active {
+            color: var(--sand);
+        }
+
+        .lang-selector {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .lang-btn {
+            background: none;
+            border: 1px solid var(--soft-grey);
+            padding: 0.4rem 0.8rem;
+            font-size: 0.8rem;
+            cursor: pointer;
+            border-radius: 4px;
+            color: var(--charcoal);
+            transition: all 0.3s;
+            font-weight: 600;
+        }
+
+        .lang-btn.active,
+        .lang-btn:hover {
+            background-color: var(--dark-olive);
+            color: var(--cream);
+            border-color: var(--dark-olive);
+        }
+
+        /* ── LEGAL CONTAINER ── */
+        .legal-wrapper {
+            max-width: 840px;
+            margin: 3.5rem auto;
+            padding: 2.5rem;
+            background: var(--white);
+            border-radius: 8px;
+            border: 1px solid #f0ede6;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.03);
+        }
+
+        .legal-header {
+            border-bottom: 1px solid var(--sand);
+            padding-bottom: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .legal-header h1 {
+            font-family: 'Playfair Display', Georgia, serif;
+            font-size: 2.2rem;
+            color: var(--dark-olive);
+            margin: 0 0 0.5rem;
+        }
+
+        .legal-header p {
+            color: var(--soft-grey);
+            font-size: 0.95rem;
+            margin: 0;
+        }
+
+        .legal-section {
+            margin-bottom: 2rem;
+        }
+
+        .legal-section h2 {
+            font-family: 'Playfair Display', Georgia, serif;
+            font-size: 1.3rem;
+            color: var(--dark-olive);
+            margin: 0 0 0.8rem;
+        }
+
+        .legal-section p, .legal-section ul {
+            font-size: 0.95rem;
+            color: #4b5563;
+            line-height: 1.7;
+            margin: 0 0 1rem;
+        }
+
+        /* ── FOOTER ── */
+        .site-footer {
+            background-color: var(--white);
+            border-top: 1px solid #f0ede6;
+            padding: 2.2rem 1.5rem;
+            margin-top: 4rem;
+            color: var(--soft-grey);
+            font-size: 0.85rem;
+        }
+
+        .footer-content {
+            max-width: 800px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 0.75rem;
+            text-align: center;
+        }
+
+        .footer-copy {
+            margin: 0;
+            line-height: 1.5;
+        }
+
+        .footer-links {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.8rem;
+            flex-wrap: wrap;
+        }
+
+        .footer-links a {
+            color: var(--soft-grey);
+            text-decoration: none;
+            transition: color 0.2s ease;
+        }
+
+        .footer-links a:hover {
+            color: var(--dark-olive);
+            text-decoration: underline;
+        }
+
+        .footer-links a.active {
+            color: var(--dark-olive);
+            font-weight: 600;
+        }
+
+        .footer-sep {
+            color: #d1d5db;
+            font-size: 0.75rem;
+        }
+
+        @media (max-width: 600px) {
+            .legal-wrapper { margin: 1.5rem 1rem 3rem; padding: 1.5rem; }
+            .legal-header h1 { font-size: 1.7rem; }
+            .seo-nav { gap: 1rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- CABECERA PREMIUM -->
+    <header class="premium-header">
+        <a href="index.html" class="logo">MALLORCA<span>QUOTES</span></a>
+        <nav class="seo-nav">
+            <a href="index.html#calculator" data-i18n="nav-calc">Calculator</a>
+            <a href="inspiration.html" data-i18n="nav-inspiration">Inspiration</a>
+            <a href="blog.html" data-i18n="nav-blog">Blog</a>
+            <a href="contact.html" data-i18n="nav-contact">Contact</a>
+        </nav>
+        <div class="lang-selector">
+            <button type="button" onclick="changeLanguage('en')" id="btn-lang-en" class="lang-btn active">EN</button>
+            <button type="button" onclick="changeLanguage('es')" id="btn-lang-es" class="lang-btn">ES</button>
+            <button type="button" onclick="changeLanguage('de')" id="btn-lang-de" class="lang-btn">DE</button>
+        </div>
+    </header>
+
+    <div class="legal-wrapper">
+        <div class="legal-header">
+            <h1 data-i18n="legal-title">Legal Notice & Terms of Use</h1>
+            <p data-i18n="legal-subtitle">Compliance with Spanish Information Society Services and Electronic Commerce Act (LSSI-CE).</p>
+        </div>
+
+        <div class="legal-section">
+            <h2 data-i18n="legal-s1-title">1. Website Ownership and Identification</h2>
+            <p data-i18n="legal-s1-desc">In compliance with Article 10 of Spanish Law 34/2002 (LSSI-CE), this website (mallorcaquotes.com) is operated by MallorcaQuotes, providing independent parametric cost calculation and technical consulting for residential construction in Mallorca and the Balearic Islands.</p>
+        </div>
+
+        <div class="legal-section">
+            <h2 data-i18n="legal-s2-title">2. Non-Contractual Nature of Estimations (Disclaimer)</h2>
+            <p data-i18n="legal-s2-desc">All calculations, budgets, and estimates provided through the interactive tools on mallorcaquotes.com are strictly indicative, non-binding, and parametric. They are calculated using statistical market averages for the Balearic Islands and do not constitute a formal contractual quote, an architectural project tender, or a legally binding construction contract until formalized in writing with authorized construction contractors.</p>
+        </div>
+
+        <div class="legal-section">
+            <h2 data-i18n="legal-s3-title">3. Intellectual Property</h2>
+            <p data-i18n="legal-s3-desc">All software code, mathematical calculation models, design assets, brand identifiers, logo marks, glossary articles, texts, and curated editorial materials published on this website are the intellectual property of MallorcaQuotes or used under appropriate license. Any reproduction, distribution, or transformation without prior written permission is strictly prohibited.</p>
+        </div>
+
+        <div class="legal-section">
+            <h2 data-i18n="legal-s4-title">4. Applicable Law and Jurisdiction</h2>
+            <p data-i18n="legal-s4-desc">The terms and conditions governing this website are subject to Spanish law. For the resolution of any dispute or claim arising from the use of this website, the parties submit to the exclusive jurisdiction of the Courts of Palma de Mallorca, Balearic Islands, Spain.</p>
+        </div>
+    </div>
+
+    <!-- FOOTER PREMIUM CON ENLACES LEGALES Y PRIVACIDAD -->
+    <footer class="site-footer">
+        <div class="footer-content">
+             <p class="footer-copy" data-i18n="footer-copy">&copy; 2026 MallorcaQuotes. Indicative estimates only. Not a contractual offer.</p>
+             <div class="footer-links">
+                 <a href="privacy.html" data-i18n="footer-privacy">Privacy Policy</a>
+                 <span class="footer-sep">|</span>
+                 <a href="legal.html" class="active" data-i18n="footer-legal">Legal Notice</a>
+             </div>
+        </div>
+    </footer>
+
+    <!-- SCRIPT DE IDIOMAS -->
+    <script>
+    const dictionary = {
+        en: {
+            "nav-calc": "Calculator",
+            "nav-inspiration": "Inspiration",
+            "nav-blog": "Blog",
+            "nav-contact": "Contact",
+            "legal-title": "Legal Notice & Terms of Use",
+            "legal-subtitle": "Compliance with Spanish Information Society Services and Electronic Commerce Act (LSSI-CE).",
+            "legal-s1-title": "1. Website Ownership and Identification",
+            "legal-s1-desc": "In compliance with Article 10 of Spanish Law 34/2002 (LSSI-CE), this website (mallorcaquotes.com) is operated by MallorcaQuotes, providing independent parametric cost calculation and technical consulting for residential construction in Mallorca and the Balearic Islands.",
+            "legal-s2-title": "2. Non-Contractual Nature of Estimations (Disclaimer)",
+            "legal-s2-desc": "All calculations, budgets, and estimates provided through the interactive tools on mallorcaquotes.com are strictly indicative, non-binding, and parametric. They are calculated using statistical market averages for the Balearic Islands and do not constitute a formal contractual quote, an architectural project tender, or a legally binding construction contract until formalized in writing with authorized construction contractors.",
+            "legal-s3-title": "3. Intellectual Property",
+            "legal-s3-desc": "All software code, mathematical calculation models, design assets, brand identifiers, logo marks, glossary articles, texts, and curated editorial materials published on this website are the intellectual property of MallorcaQuotes or used under appropriate license. Any reproduction, distribution, or transformation without prior written permission is strictly prohibited.",
+            "legal-s4-title": "4. Applicable Law and Jurisdiction",
+            "legal-s4-desc": "The terms and conditions governing this website are subject to Spanish law. For the resolution of any dispute or claim arising from the use of this website, the parties submit to the exclusive jurisdiction of the Courts of Palma de Mallorca, Balearic Islands, Spain.",
+            "footer-copy": "&copy; 2026 MallorcaQuotes. Indicative estimates only. Not a contractual offer.",
+            "footer-privacy": "Privacy Policy",
+            "footer-legal": "Legal Notice"
+        },
+        es: {
+            "nav-calc": "Calculadora",
+            "nav-inspiration": "Inspiración",
+            "nav-blog": "Blog",
+            "nav-contact": "Contacto",
+            "legal-title": "Aviso Legal y Condiciones de Uso",
+            "legal-subtitle": "En cumplimiento de la Ley de Servicios de la Sociedad de la Información y de Comercio Electrónico (LSSI-CE).",
+            "legal-s1-title": "1. Identificación y Titularidad del Sitio Web",
+            "legal-s1-desc": "En cumplimiento del artículo 10 de la Ley 34/2002 (LSSI-CE), se informa de que este sitio web (mallorcaquotes.com) es operado por MallorcaQuotes, prestando servicios de cálculo paramétrico y consultoría técnica para la construcción residencial en Mallorca y las Islas Baleares.",
+            "legal-s2-title": "2. Carácter No Contractual de las Estimaciones (Aviso Legal)",
+            "legal-s2-desc": "Todos los cálculos, partidas y presupuestos facilitados a través de las herramientas de mallorcaquotes.com tienen carácter estrictamente orientativo, no vinculante y paramétrico. Están fundamentados en promedios estadísticos de mercado en Baleares y no constituyen oferta contractual ni compromiso vinculante de obra hasta su formalización por escrito con las constructoras adjudicatarias.",
+            "legal-s3-title": "3. Propiedad Intelectual e Industrial",
+            "legal-s3-desc": "El código fuente, los motores matemáticos de cálculo, los logotipos, diseños visuales, artículos del glosario y contenidos editoriales son propiedad intelectual de MallorcaQuotes o se utilizan bajo licencia. Queda prohibida su reproducción o distribución sin autorización previa por escrito.",
+            "legal-s4-title": "4. Legislación Aplicable y Jurisdicción",
+            "legal-s4-desc": "Las relaciones derivadas del uso de este sitio web se rigen por la legislación española. Para la resolución de cualquier controversia, las partes se someten a los Juzgados y Tribunales de Palma de Mallorca, Islas Baleares.",
+            "footer-copy": "&copy; 2026 MallorcaQuotes. Estimaciones orientativas. No constituye oferta contractual.",
+            "footer-privacy": "Política de Privacidad",
+            "footer-legal": "Aviso Legal"
+        },
+        de: {
+            "nav-calc": "Rechner",
+            "nav-inspiration": "Inspiration",
+            "nav-blog": "Blog",
+            "nav-contact": "Kontakt",
+            "legal-title": "Impressum & Nutzungsbedingungen",
+            "legal-subtitle": "Angaben gemäß dem spanischen Gesetz über Dienste der Informationsgesellschaft und elektronischen Geschäftsverkehr (LSSI-CE).",
+            "legal-s1-title": "1. Betreiber der Website & Identifikation",
+            "legal-s1-desc": "Gemäß Artikel 10 des spanischen Gesetzes 34/2002 (LSSI-CE) wird diese Website (mallorcaquotes.com) von MallorcaQuotes betrieben. Die Plattform bietet unabhängige parametrische Kostenberechnungen und technische Beratung für den Neubau von Villen auf Mallorca und den Balearen.",
+            "legal-s2-title": "2. Unverbindlicher Charakter der Kostenschätzungen (Haftungsausschluss)",
+            "legal-s2-desc": "Alle über mallorcaquotes.com erstellten Berechnungen und Kostenvoranschläge sind rein indikativ, unverbindlich und basieren auf statistischen Marktrichtwerten der Balearen. Sie stellen weder ein rechtlich bindendes Angebot noch einen Bauvertrag dar, solange sie nicht schriftlich mit den ausführenden Bauunternehmern vereinbart wurden.",
+            "legal-s3-title": "3. Urheberrecht & Geistiges Eigentum",
+            "legal-s3-desc": "Sämtlicher Quellcode, Berechnungsmodelle, Marken, Logos, Glossarartikel und Texte auf dieser Website unterliegen dem geistigen Eigentum von MallorcaQuotes oder lizenzierten Partnern. Die Vervielfältigung oder Verbreitung ohne vorherige schriftliche Genehmigung ist untersagt.",
+            "legal-s4-title": "4. Anwendbares Recht und Gerichtsstand",
+            "legal-s4-desc": "Es gilt spanisches Recht. Ausschließlicher Gerichtsstand für sämtliche Streitigkeiten aus der Nutzung dieser Website ist Palma de Mallorca, Balearische Inseln, Spanien.",
+            "footer-copy": "&copy; 2026 MallorcaQuotes. Nur Richtwerte. Kein verbindliches Angebot.",
+            "footer-privacy": "Datenschutzerklärung",
+            "footer-legal": "Impressum"
+        }
+    };
+
+    let currentLanguage = 'en';
+
+    function changeLanguage(lang) {
+        if (!dictionary[lang]) lang = 'en';
+        currentLanguage = lang;
+
+        document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
+        const targetBtn = document.getElementById(`btn-lang-${lang}`);
+        if (targetBtn) targetBtn.classList.add('active');
+
+        document.querySelectorAll('[data-i18n]').forEach(element => {
+            const key = element.getAttribute('data-i18n');
+            if (dictionary[lang] && dictionary[lang][key]) {
+                element.innerHTML = dictionary[lang][key];
+            }
+        });
+
+        localStorage.setItem('mallorcaquotes-lang', lang);
+        document.documentElement.lang = lang;
+    }
+    window.changeLanguage = changeLanguage;
+
+    document.addEventListener('DOMContentLoaded', () => {
+        const savedLang = localStorage.getItem('mallorcaquotes-lang') || 'en';
+        changeLanguage(savedLang);
+    });
+    </script>
+</body>
+</html>
