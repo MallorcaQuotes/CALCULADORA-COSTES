@@ -1,0 +1,1016 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MallorcaQuotes | Construction & Real Estate Glossary</title>
+
+    <!-- Favicon & Search Engine Snippet Icons (MQ Logo) -->
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="icon" type="image/png" sizes="48x48" href="/favicon-48x48.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <meta name="theme-color" content="#283618">
+
+    <style>
+        :root {
+            --olive: #606c38;
+            --dark-olive: #283618;
+            --cream: #fefae0;
+            --sand: #dda15e;
+            --earth: #bc6c25;
+            --white: #ffffff;
+            --charcoal: #2b2d42;
+            --soft-grey: #8d99ae;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Sticky header offset so anchor targets aren't hidden behind the nav */
+        [id] {
+            scroll-margin-top: 100px;
+        }
+
+        /* Highlight animation on target */
+        :target > .glossary-term {
+            animation: highlightTerm 1.8s ease-out;
+        }
+
+        @keyframes highlightTerm {
+            0%   { background-color: rgba(96, 108, 56, 0.15); }
+            100% { background-color: transparent; }
+        }
+
+        body {
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            background-color: #faf9f6;
+            color: var(--charcoal);
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+        }
+
+        /* ── HEADER ── */
+        .premium-header {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem 2rem;
+            background-color: var(--white);
+            border-bottom: 1px solid #f0ede6;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.04);
+        }
+
+        .logo {
+            font-size: 1.4rem;
+            font-weight: 700;
+            letter-spacing: 0.05em;
+            text-decoration: none;
+            color: var(--dark-olive);
+        }
+
+        .logo span {
+            color: var(--sand);
+        }
+
+        .seo-nav {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .seo-nav a {
+            text-decoration: none;
+            color: var(--charcoal);
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+
+        .seo-nav a:hover,
+        .seo-nav a.active {
+            color: var(--sand);
+        }
+
+        .lang-selector {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .lang-btn {
+            background: none;
+            border: 1px solid var(--soft-grey);
+            padding: 0.4rem 0.8rem;
+            font-size: 0.8rem;
+            cursor: pointer;
+            border-radius: 4px;
+            color: var(--charcoal);
+            transition: all 0.3s;
+            font-weight: 600;
+        }
+
+        .lang-btn.active,
+        .lang-btn:hover {
+            background-color: var(--dark-olive);
+            color: var(--cream);
+            border-color: var(--dark-olive);
+        }
+
+        /* ── PAGE WRAPPER ── */
+        .glossary-wrapper {
+            max-width: 900px;
+            margin: 3rem auto;
+            padding: 0 2rem 4rem;
+        }
+
+        /* ── PAGE HEADER ── */
+        .page-header {
+            text-align: center;
+            margin-bottom: 3.5rem;
+            padding-bottom: 2rem;
+            border-bottom: 1px solid #e8e4db;
+        }
+
+        .page-header h1 {
+            font-family: 'Playfair Display', Georgia, serif;
+            font-size: 2.4rem;
+            color: var(--dark-olive);
+            margin: 0 0 0.8rem;
+        }
+
+        .page-header p {
+            color: var(--soft-grey);
+            font-size: 1.05rem;
+            max-width: 620px;
+            margin: 0 auto;
+        }
+
+        /* ── CATEGORY SECTION ── */
+        .category-section {
+            margin-bottom: 3rem;
+        }
+
+        .category-heading {
+            font-family: 'Playfair Display', Georgia, serif;
+            font-size: 1.4rem;
+            color: var(--dark-olive);
+            margin: 0 0 1.5rem;
+            padding-bottom: 0.6rem;
+            border-bottom: 2px solid var(--sand);
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+        }
+
+        .category-heading .cat-icon {
+            font-size: 1.3rem;
+        }
+
+        /* ── GLOSSARY CARD ── */
+        .glossary-card {
+            background: var(--white);
+            border: 1px solid #f0ede6;
+            border-radius: 6px;
+            margin-bottom: 1rem;
+            overflow: hidden;
+            transition: box-shadow 0.25s;
+        }
+
+        .glossary-card:hover {
+            box-shadow: 0 4px 18px rgba(0,0,0,0.06);
+        }
+
+        .glossary-term {
+            padding: 1.2rem 1.5rem;
+            transition: background-color 0.4s;
+        }
+
+        .term-header {
+            display: flex;
+            align-items: baseline;
+            gap: 0.8rem;
+            flex-wrap: wrap;
+            margin-bottom: 0.5rem;
+        }
+
+        .term-title {
+            font-family: 'Playfair Display', Georgia, serif;
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--dark-olive);
+            margin: 0;
+        }
+
+        .term-acronym {
+            font-size: 0.75rem;
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            color: var(--white);
+            background-color: var(--olive);
+            padding: 0.15rem 0.55rem;
+            border-radius: 3px;
+            text-transform: uppercase;
+            flex-shrink: 0;
+        }
+
+        .term-body {
+            font-size: 0.93rem;
+            color: #555;
+            line-height: 1.65;
+            margin: 0;
+        }
+
+        /* ── CTA STRIP ── */
+        .glossary-cta {
+            margin-top: 3rem;
+            padding: 2rem;
+            background: linear-gradient(135deg, var(--dark-olive), var(--olive));
+            border-radius: 8px;
+            text-align: center;
+            color: var(--cream);
+        }
+
+        .glossary-cta h3 {
+            font-family: 'Playfair Display', Georgia, serif;
+            font-size: 1.4rem;
+            margin: 0 0 0.6rem;
+        }
+
+        .glossary-cta p {
+            font-size: 0.95rem;
+            margin: 0 0 1.4rem;
+            opacity: 0.88;
+        }
+
+        .cta-btn {
+            display: inline-block;
+            background-color: var(--sand);
+            color: var(--white);
+            text-decoration: none;
+            padding: 0.85rem 2rem;
+            border-radius: 4px;
+            font-weight: 700;
+            font-size: 0.95rem;
+            transition: background-color 0.3s;
+        }
+
+        .cta-btn:hover {
+            background-color: var(--earth);
+        }
+
+        /* ── FOOTER ── */
+        .site-footer {
+            text-align: center;
+            padding: 1.5rem;
+            font-size: 0.82rem;
+            color: var(--soft-grey);
+            border-top: 1px solid #e8e4db;
+            margin-top: 2rem;
+        }
+
+        @media (max-width: 600px) {
+            .glossary-wrapper { padding: 0 1rem 3rem; }
+            .page-header h1 { font-size: 1.8rem; }
+            .seo-nav { gap: 1rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- CABECERA PREMIUM -->
+    <header class="premium-header">
+        <a href="index.html" class="logo">MALLORCA<span>QUOTES</span></a>
+        <nav class="seo-nav">
+            <a href="index.html#calculator" data-i18n="nav-calc">Calculator</a>
+            <a href="inspiration.html" data-i18n="nav-inspiration">Inspiration</a>
+            <a href="blog.html" data-i18n="nav-blog">Blog</a>
+            <a href="glossary.html" class="active" style="color: var(--sand);" data-i18n="nav-glossary">Glossary</a>
+            <a href="contact.html" data-i18n="nav-contact">Contact</a>
+        </nav>
+        <div class="lang-selector">
+            <button type="button" onclick="changeLanguage('en')" id="btn-lang-en" class="lang-btn active">EN</button>
+            <button type="button" onclick="changeLanguage('es')" id="btn-lang-es" class="lang-btn">ES</button>
+            <button type="button" onclick="changeLanguage('de')" id="btn-lang-de" class="lang-btn">DE</button>
+        </div>
+    </header>
+
+    <div class="glossary-wrapper">
+
+        <!-- PAGE HEADER -->
+        <div class="page-header">
+            <h1 data-i18n="gloss-page-title">Construction & Real Estate Glossary</h1>
+            <p data-i18n="gloss-page-subtitle">A bilingual reference of technical terms used in building, architecture, and property acquisition in Mallorca and the Balearic Islands.</p>
+        </div>
+
+        <!-- ══════════════════════════════════════════════ -->
+        <!-- CATEGORY 1: PLANNING & LEGAL DOCUMENTS        -->
+        <!-- ══════════════════════════════════════════════ -->
+        <section class="category-section">
+            <h2 class="category-heading"><span class="cat-icon">📋</span> <span data-i18n="cat-planning">Planning &amp; Legal Documents</span></h2>
+
+            <article class="glossary-card" id="pem">
+                <div class="glossary-term">
+                    <div class="term-header">
+                        <h3 class="term-title" data-i18n="term-pem-title">Budget for Material Execution</h3>
+                        <span class="term-acronym">PEM</span>
+                    </div>
+                    <p class="term-body" data-i18n="term-pem-desc">The net construction cost of a project, excluding VAT, professional fees, and municipal taxes. It is the baseline figure used by architects to calculate their fees and by the Ayuntamiento to determine the ICIO tax. All parametric estimates on MallorcaQuotes are based on the PEM.</p>
+                </div>
+            </article>
+
+            <article class="glossary-card" id="proyecto-basico">
+                <div class="glossary-term">
+                    <div class="term-header">
+                        <h3 class="term-title" data-i18n="term-pb-title">Basic Project (Proyecto Básico)</h3>
+                    </div>
+                    <p class="term-body" data-i18n="term-pb-desc">The first formal architectural document submitted to the Ayuntamiento to obtain the building licence (Licencia de Obras). It defines the general layout, volumes, and land use compliance but does not yet contain full structural or technical engineering details.</p>
+                </div>
+            </article>
+
+            <article class="glossary-card" id="proyecto-ejecutivo">
+                <div class="glossary-term">
+                    <div class="term-header">
+                        <h3 class="term-title" data-i18n="term-pe-title">Executive Project (Proyecto de Ejecución)</h3>
+                    </div>
+                    <p class="term-body" data-i18n="term-pe-desc">The full technical construction document prepared after the building licence is granted. It includes all structural, electrical, plumbing, thermal insulation, and finishing specifications required to begin physical construction works.</p>
+                </div>
+            </article>
+
+            <article class="glossary-card" id="licencia-obras">
+                <div class="glossary-term">
+                    <div class="term-header">
+                        <h3 class="term-title" data-i18n="term-lo-title">Building Licence (Licencia de Obras)</h3>
+                        <span class="term-acronym">LO</span>
+                    </div>
+                    <p class="term-body" data-i18n="term-lo-desc">The municipal building permit issued by the Ayuntamiento authorising the start of construction. Obtaining it typically takes 6–18 months in the Balearic Islands and requires prior approval of the Proyecto Básico.</p>
+                </div>
+            </article>
+
+            <article class="glossary-card" id="icio">
+                <div class="glossary-term">
+                    <div class="term-header">
+                        <h3 class="term-title" data-i18n="term-icio-title">Tax on Construction, Installations and Works</h3>
+                        <span class="term-acronym">ICIO</span>
+                    </div>
+                    <p class="term-body" data-i18n="term-icio-desc">A municipal tax levied on the PEM of any construction or renovation project. In most Balearic municipalities the ICIO rate is between 2.5% and 4% of the PEM. It is paid to the Ayuntamiento when the building licence is issued.</p>
+                </div>
+            </article>
+
+            <article class="glossary-card" id="cedula-habitabilidad">
+                <div class="glossary-term">
+                    <div class="term-header">
+                        <h3 class="term-title" data-i18n="term-ch-title">Certificate of Occupancy (Cédula de Habitabilidad)</h3>
+                        <span class="term-acronym">CH</span>
+                    </div>
+                    <p class="term-body" data-i18n="term-ch-desc">The official document issued by the Balearic Government confirming that a property meets all habitability standards (minimum surface areas, light, ventilation, and sanitation). It is mandatory to obtain a utility supply contract (water, electricity, gas) and to legally occupy a new home.</p>
+                </div>
+            </article>
+
+            <article class="glossary-card" id="lpo">
+                <div class="glossary-term">
+                    <div class="term-header">
+                        <h3 class="term-title" data-i18n="term-lpo-title">Land Use Plan (Plan de Ordenación Urbana)</h3>
+                        <span class="term-acronym">LPO / PGOU</span>
+                    </div>
+                    <p class="term-body" data-i18n="term-lpo-desc">The master planning instrument of each municipality that classifies land as urban, urbanisable, or protected rural (rústico). It determines maximum buildable area, plot coverage, height limits, and setbacks. Every construction project in Mallorca must comply with the PGOU of the relevant municipality.</p>
+                </div>
+            </article>
+
+            <article class="glossary-card" id="nota-simple">
+                <div class="glossary-term">
+                    <div class="term-header">
+                        <h3 class="term-title" data-i18n="term-ns-title">Property Register Extract (Nota Simple)</h3>
+                    </div>
+                    <p class="term-body" data-i18n="term-ns-desc">A non-certified summary extract from the Spanish Property Registry (Registro de la Propiedad) showing the legal owner, plot boundaries, any mortgages, and registered encumbrances. Essential due-diligence document before any purchase or construction project.</p>
+                </div>
+            </article>
+
+            <article class="glossary-card" id="itp">
+                <div class="glossary-term">
+                    <div class="term-header">
+                        <h3 class="term-title" data-i18n="term-itp-title">Property Transfer Tax (Impuesto de Transmisiones Patrimoniales)</h3>
+                        <span class="term-acronym">ITP</span>
+                    </div>
+                    <p class="term-body" data-i18n="term-itp-desc">The tax paid by the buyer on the acquisition of a second-hand (resale) property in Spain. In the Balearic Islands it is graduated from 8% to 13% depending on the purchase price. It does not apply to new-build properties, where IVA (VAT) applies instead.</p>
+                </div>
+            </article>
+        </section>
+
+        <!-- ══════════════════════════════════════════════ -->
+        <!-- CATEGORY 2: CONSTRUCTION & STRUCTURE          -->
+        <!-- ══════════════════════════════════════════════ -->
+        <section class="category-section">
+            <h2 class="category-heading"><span class="cat-icon">🏗️</span> <span data-i18n="cat-construction">Construction &amp; Structure</span></h2>
+
+            <article class="glossary-card" id="estructura">
+                <div class="glossary-term">
+                    <div class="term-header">
+                        <h3 class="term-title" data-i18n="term-est-title">Load-Bearing Structure (Estructura)</h3>
+                    </div>
+                    <p class="term-body" data-i18n="term-est-desc">The primary skeletal framework of a building that bears and transfers all vertical and horizontal loads to the foundations. In contemporary Mallorcan villas it typically consists of reinforced concrete pillars, beams, and flat slabs, often combined with traditional stone masonry load-bearing walls.</p>
+                </div>
+            </article>
+
+            <article class="glossary-card" id="cimentacion">
+                <div class="glossary-term">
+                    <div class="term-header">
+                        <h3 class="term-title" data-i18n="term-cim-title">Foundations (Cimentación)</h3>
+                    </div>
+                    <p class="term-body" data-i18n="term-cim-desc">The underground structural elements that transfer building loads safely to the ground. Common types in the Balearics include spread footings (zapatas aisladas), strip footings (zapatas corridas), and pile systems for rocky or uneven terrain. Foundation type is defined in the geotechnical study.</p>
+                </div>
+            </article>
+
+            <article class="glossary-card" id="cerramiento">
+                <div class="glossary-term">
+                    <div class="term-header">
+                        <h3 class="term-title" data-i18n="term-cerr-title">Facade &amp; Enclosure System (Cerramiento)</h3>
+                    </div>
+                    <p class="term-body" data-i18n="term-cerr-desc">The external envelope system of a building, comprising exterior walls, cladding, thermal insulation, and window/door frames. In premium Mallorcan construction this often includes ventilated stone facades (Santanyí limestone), ETICS thermal systems, and high-performance aluminium joinery.</p>
+                </div>
+            </article>
+
+            <article class="glossary-card" id="particion">
+                <div class="glossary-term">
+                    <div class="term-header">
+                        <h3 class="term-title" data-i18n="term-part-title">Interior Partition Walls (Partición Interior)</h3>
+                    </div>
+                    <p class="term-body" data-i18n="term-part-desc">Non-structural walls that divide the internal floor plan. They can be built from lightweight plasterboard systems (Pladur) or traditional single-leaf brick. Acoustic performance and fire rating vary depending on material choice and room function.</p>
+                </div>
+            </article>
+
+            <article class="glossary-card" id="cubierta">
+                <div class="glossary-term">
+                    <div class="term-header">
+                        <h3 class="term-title" data-i18n="term-cub-title">Roof / Flat Roof (Cubierta)</h3>
+                    </div>
+                    <p class="term-body" data-i18n="term-cub-desc">The upper weatherproof envelope of a building. In modern Mallorcan villa design, flat roofs (cubiertas planas) are predominant, often designed as usable terraces with porcelain or natural stone paving over a waterproof membrane and thermal insulation layer.</p>
+                </div>
+            </article>
+
+            <article class="glossary-card" id="geotecnia">
+                <div class="glossary-term">
+                    <div class="term-header">
+                        <h3 class="term-title" data-i18n="term-geo-title">Geotechnical Study (Estudio Geotécnico)</h3>
+                    </div>
+                    <p class="term-body" data-i18n="term-geo-desc">A subsurface soil and rock investigation report required before designing foundations. It determines bearing capacity, water table depth, rock type, and seismic risk. In the Balearic Islands, rocky calcareous terrain is common but can present irregular bearing conditions that significantly influence foundation costs.</p>
+                </div>
+            </article>
+
+            <article class="glossary-card" id="urbanizacion">
+                <div class="glossary-term">
+                    <div class="term-header">
+                        <h3 class="term-title" data-i18n="term-urb-title">Plot Development Works (Urbanización)</h3>
+                    </div>
+                    <p class="term-body" data-i18n="term-urb-desc">External infrastructure works required to connect a plot to municipal services: road access, water mains, sewer connections, and street lighting. In rural (rústico) plots in Mallorca these connections often involve substantial additional cost not included in the main construction PEM.</p>
+                </div>
+            </article>
+        </section>
+
+        <!-- ══════════════════════════════════════════════ -->
+        <!-- CATEGORY 3: INSTALLATIONS & TECHNICAL SYSTEMS -->
+        <!-- ══════════════════════════════════════════════ -->
+        <section class="category-section">
+            <h2 class="category-heading"><span class="cat-icon">⚙️</span> <span data-i18n="cat-installations">Installations &amp; Technical Systems</span></h2>
+
+            <article class="glossary-card" id="aerotermia">
+                <div class="glossary-term">
+                    <div class="term-header">
+                        <h3 class="term-title" data-i18n="term-aero-title">Air-Source Heat Pump (Aerotermia)</h3>
+                    </div>
+                    <p class="term-body" data-i18n="term-aero-desc">A high-efficiency HVAC technology that extracts thermal energy from outdoor air to provide heating, cooling, and domestic hot water. With a COP of 3–5, it is the preferred sustainable climate system in new Mallorcan villas and qualifies for EU energy efficiency subsidies. Our calculator includes aerotermia as the default premium HVAC option.</p>
+                </div>
+            </article>
+
+            <article class="glossary-card" id="suelo-radiante">
+                <div class="glossary-term">
+                    <div class="term-header">
+                        <h3 class="term-title" data-i18n="term-sr-title">Underfloor Heating (Suelo Radiante)</h3>
+                    </div>
+                    <p class="term-body" data-i18n="term-sr-desc">A radiant heating system with a network of water pipes or electric cables embedded in the floor screed, distributing heat uniformly across the entire floor surface. It works at low water temperatures (28–35 °C), making it highly compatible with heat pumps. Widely specified in high-end Mallorcan villas for comfort and efficiency.</p>
+                </div>
+            </article>
+
+            <article class="glossary-card" id="fotovoltaica">
+                <div class="glossary-term">
+                    <div class="term-header">
+                        <h3 class="term-title" data-i18n="term-fv-title">Photovoltaic Solar Panels (Instalación Fotovoltaica)</h3>
+                    </div>
+                    <p class="term-body" data-i18n="term-fv-desc">A renewable electricity generation system using silicon panels mounted on roofs or ground-mounted structures to convert solar radiation into direct current (DC), which is then inverted to AC for residential use. With over 300 days of sunshine per year, Mallorca offers excellent solar yield. Battery storage systems are increasingly paired with PV installations.</p>
+                </div>
+            </article>
+
+            <article class="glossary-card" id="domotica">
+                <div class="glossary-term">
+                    <div class="term-header">
+                        <h3 class="term-title" data-i18n="term-dom-title">Smart Home / Home Automation (Domótica)</h3>
+                    </div>
+                    <p class="term-body" data-i18n="term-dom-desc">An integrated building control system managing lighting, climate, security, blinds, audio-visual equipment, and access control via a centralised interface (smartphone app, wall panel, or voice control). In premium Mallorcan villas, KNX and Control4 systems are commonly specified.</p>
+                </div>
+            </article>
+
+            <article class="glossary-card" id="saneamiento">
+                <div class="glossary-term">
+                    <div class="term-header">
+                        <h3 class="term-title" data-i18n="term-san-title">Drainage &amp; Sewage System (Saneamiento)</h3>
+                    </div>
+                    <p class="term-body" data-i18n="term-san-desc">The network of pipes, traps, and connections that collect and evacuate waste water and rainwater from a building to the municipal sewer network or, in rural plots, to a registered septic tank (fosa séptica) or treatment plant. Sizing is governed by the Spanish CTE-HS 5 technical building code.</p>
+                </div>
+            </article>
+
+            <article class="glossary-card" id="ite">
+                <div class="glossary-term">
+                    <div class="term-header">
+                        <h3 class="term-title" data-i18n="term-ite-title">Technical Building Inspection (Inspección Técnica de Edificios)</h3>
+                        <span class="term-acronym">ITE</span>
+                    </div>
+                    <p class="term-body" data-i18n="term-ite-desc">A periodic mandatory inspection of existing buildings over 45 years old, assessing the structural condition of facades, roofs, foundations, and common areas. Required in the Balearic Islands before selling or renovating older properties.</p>
+                </div>
+            </article>
+
+            <article class="glossary-card" id="ree">
+                <div class="glossary-term">
+                    <div class="term-header">
+                        <h3 class="term-title" data-i18n="term-ree-title">Energy Efficiency Certificate (Certificado de Eficiencia Energética)</h3>
+                        <span class="term-acronym">CEE</span>
+                    </div>
+                    <p class="term-body" data-i18n="term-ree-desc">A mandatory official document that rates the energy performance of a building from A (most efficient) to G (least efficient). It is required for all new constructions and for any property sale or rental in Spain. The Balearic Islands incentivise new builds achieving an A or B energy rating.</p>
+                </div>
+            </article>
+        </section>
+
+        <!-- ══════════════════════════════════════════════ -->
+        <!-- CATEGORY 4: FINISHES & OUTDOOR SPACES         -->
+        <!-- ══════════════════════════════════════════════ -->
+        <section class="category-section">
+            <h2 class="category-heading"><span class="cat-icon">🏊</span> <span data-i18n="cat-finishes">Finishes &amp; Outdoor Spaces</span></h2>
+
+            <article class="glossary-card" id="microcemento">
+                <div class="glossary-term">
+                    <div class="term-header">
+                        <h3 class="term-title" data-i18n="term-mc-title">Microcement (Microcemento)</h3>
+                    </div>
+                    <p class="term-body" data-i18n="term-mc-desc">A thin polymer-modified cementitious coating (2–3 mm) applied over existing substrates to achieve a seamless, continuous finish on floors, walls, and even wet areas. Signature material in contemporary Mallorcan interior design for its minimalist aesthetic. Requires professional application and periodic sealing.</p>
+                </div>
+            </article>
+
+            <article class="glossary-card" id="pedra-en-sec">
+                <div class="glossary-term">
+                    <div class="term-header">
+                        <h3 class="term-title" data-i18n="term-pes-title">Dry Stone Masonry (Pedra en Sec)</h3>
+                    </div>
+                    <p class="term-body" data-i18n="term-pes-desc">Traditional Mallorcan technique of constructing walls, terraces, and boundary enclosures using local limestone without any mortar. A UNESCO Intangible Cultural Heritage technique, it is widely used in high-end rural villa projects for boundary walls, retaining walls, and rustic facades. Premium execution can cost €250–€500 per linear metre.</p>
+                </div>
+            </article>
+
+            <article class="glossary-card" id="piscina-desbordante">
+                <div class="glossary-term">
+                    <div class="term-header">
+                        <h3 class="term-title" data-i18n="term-pd-title">Infinity Pool (Piscina Desbordante)</h3>
+                    </div>
+                    <p class="term-body" data-i18n="term-pd-desc">A swimming pool design where water overflows over one or more edges into a hidden collection channel, creating the visual illusion of merging with the horizon or landscape. Iconic in luxury Mallorcan villa design for sea-view plots. Requires a separate water collection tank and recirculation pump, adding cost compared to conventional pools. MallorcaQuotes pool pricing covers conventional in-ground pools; an infinity edge adds approximately 25–40% to the pool budget.</p>
+                </div>
+            </article>
+
+            <article class="glossary-card" id="solado-porcelanico">
+                <div class="glossary-term">
+                    <div class="term-header">
+                        <h3 class="term-title" data-i18n="term-sp-title">Large-Format Porcelain Flooring (Solado Porcelánico)</h3>
+                    </div>
+                    <p class="term-body" data-i18n="term-sp-desc">High-fired porcelain tile, often in formats of 60×60 cm to 120×120 cm or larger slabs, used for interior and exterior flooring. Preferred for its durability, low maintenance, and UV resistance in Mediterranean climates. Rectified large-format tiles require precision installation with minimal grout joints.</p>
+                </div>
+            </article>
+
+            <article class="glossary-card" id="carpinteria-exterior">
+                <div class="glossary-term">
+                    <div class="term-header">
+                        <h3 class="term-title" data-i18n="term-ce-title">Exterior Joinery &amp; Glazing (Carpintería Exterior)</h3>
+                    </div>
+                    <p class="term-body" data-i18n="term-ce-desc">Windows, sliding doors, and fixed glazing frames. Premium Mallorcan specifications favour thermally broken aluminium frames with double or triple-pane low-emissivity glass (Ug ≤ 1.1 W/m²K). Large sliding/folding systems (e.g., Schüco, Technal) connecting interior to terraces are a hallmark of luxury villa design and a significant cost line item (€800–€1,500 per m² installed).</p>
+                </div>
+            </article>
+
+            <article class="glossary-card" id="pergola">
+                <div class="glossary-term">
+                    <div class="term-header">
+                        <h3 class="term-title" data-i18n="term-perg-title">Pergola &amp; Shade Structures (Pérgola)</h3>
+                    </div>
+                    <p class="term-body" data-i18n="term-perg-desc">Freestanding or wall-attached outdoor structures providing shade and defining exterior living zones. Options range from timber pergolas with climbing plants to architectural bioclimatic pergolas with motorised adjustable louvres. In Mallorca's climate, exterior shade structures are key for extending outdoor usability through summer.</p>
+                </div>
+            </article>
+
+            <article class="glossary-card" id="paisajismo">
+                <div class="glossary-term">
+                    <div class="term-header">
+                        <h3 class="term-title" data-i18n="term-pais-title">Landscaping &amp; Garden Design (Paisajismo)</h3>
+                    </div>
+                    <p class="term-body" data-i18n="term-pais-desc">The design and implementation of exterior garden spaces, including grading and topsoil preparation, irrigation systems, planting design, and hard landscaping (paths, terraces, retaining walls). Mediterranean xeriscape design using drought-resistant native plants (olive trees, rosemary, lavender, bougainvillea) is increasingly preferred for sustainability and low water consumption.</p>
+                </div>
+            </article>
+
+            <article class="glossary-card" id="alumbrado-exterior">
+                <div class="glossary-term">
+                    <div class="term-header">
+                        <h3 class="term-title" data-i18n="term-ae-title">Exterior Lighting (Alumbrado Exterior)</h3>
+                    </div>
+                    <p class="term-body" data-i18n="term-ae-desc">An architectural outdoor lighting scheme integrating path lights, pool illumination, uplighting for trees and facades, and accent lighting for terraces. In premium Mallorcan villas, DALI or DMX-controlled LED systems integrated with the smart home (domótica) are standard in high-quality specifications.</p>
+                </div>
+            </article>
+
+            <article class="glossary-card" id="acabados-premium">
+                <div class="glossary-term">
+                    <div class="term-header">
+                        <h3 class="term-title" data-i18n="term-ap-title">Premium Interior Finishes (Acabados Premium)</h3>
+                    </div>
+                    <p class="term-body" data-i18n="term-ap-desc">High-end interior finishing specification encompassing natural stone cladding (marble, travertine, limestone), bespoke joinery, solid oak or engineered wood flooring, designer sanitaryware, and custom kitchen cabinetry. Premium finishes can represent 20–35% of total project PEM and are the most significant variable between quality tiers in our calculator's estimates.</p>
+                </div>
+            </article>
+
+            <article class="glossary-card" id="sistema-etics">
+                <div class="glossary-term">
+                    <div class="term-header">
+                        <h3 class="term-title" data-i18n="term-etics-title">External Thermal Insulation Composite System</h3>
+                        <span class="term-acronym">ETICS / SATE</span>
+                    </div>
+                    <p class="term-body" data-i18n="term-etics-desc">An external wall insulation system bonding rigid insulation boards (EPS or mineral wool) to the structural wall, finished with a reinforced render coat. It eliminates thermal bridges and dramatically improves energy efficiency. Required in new constructions to meet the Spanish CTE-HE energy standard.</p>
+                </div>
+            </article>
+
+            <article class="glossary-card" id="impermeabilizacion">
+                <div class="glossary-term">
+                    <div class="term-header">
+                        <h3 class="term-title" data-i18n="term-imp-title">Waterproofing (Impermeabilización)</h3>
+                    </div>
+                    <p class="term-body" data-i18n="term-imp-desc">Membranes, coatings, or sheet systems applied to flat roofs, underground walls, pool shells, and wet rooms to prevent water infiltration. In Mallorca's climate, flat roofs and outdoor terraces require robust waterproofing systems, typically liquid polyurethane or TPO/EPDM membranes, with a guarantee of at least 10 years.</p>
+                </div>
+            </article>
+        </section>
+
+        <!-- CTA STRIP -->
+        <div class="glossary-cta">
+            <h3 data-i18n="gloss-cta-title">Ready to estimate your villa?</h3>
+            <p data-i18n="gloss-cta-desc">Use our parametric calculator to get an indicative construction budget for your Mallorca project in under 3 minutes.</p>
+            <a href="index.html#calculator" class="cta-btn" data-i18n="gloss-cta-btn">Open the Calculator →</a>
+        </div>
+
+    </div>
+
+    <footer class="site-footer">
+        <span data-i18n="footer-copy">&copy; 2025 MallorcaQuotes. Indicative estimates only. Not a contractual offer.</span>
+    </footer>
+
+    <!-- ============================================ -->
+    <!-- SCRIPT DE IDIOMAS MULTILINGÜE               -->
+    <!-- ============================================ -->
+    <script>
+    const dictionary = {
+        en: {
+            /* — Navigation — */
+            "nav-calc": "Calculator",
+            "nav-inspiration": "Inspiration",
+            "nav-blog": "Blog",
+            "nav-glossary": "Glossary",
+            "nav-contact": "Contact",
+
+            /* — Page header — */
+            "gloss-page-title": "Construction &amp; Real Estate Glossary",
+            "gloss-page-subtitle": "A bilingual reference of technical terms used in building, architecture, and property acquisition in Mallorca and the Balearic Islands.",
+
+            /* — Category headings — */
+            "cat-planning": "Planning &amp; Legal Documents",
+            "cat-construction": "Construction &amp; Structure",
+            "cat-installations": "Installations &amp; Technical Systems",
+            "cat-finishes": "Finishes &amp; Outdoor Spaces",
+
+            /* — Category 1: Planning & Legal — */
+            "term-pem-title": "Budget for Material Execution",
+            "term-pem-desc": "The net construction cost of a project, excluding VAT, professional fees, and municipal taxes. It is the baseline figure used by architects to calculate their fees and by the Ayuntamiento to determine the ICIO tax. All parametric estimates on MallorcaQuotes are based on the PEM.",
+            "term-pb-title": "Basic Project (Proyecto Básico)",
+            "term-pb-desc": "The first formal architectural document submitted to the Ayuntamiento to obtain the building licence. It defines the general layout, volumes, and land use compliance but does not yet contain full structural or technical engineering details.",
+            "term-pe-title": "Executive Project (Proyecto de Ejecución)",
+            "term-pe-desc": "The full technical construction document prepared after the building licence is granted. It includes all structural, electrical, plumbing, thermal insulation, and finishing specifications required to begin physical construction works.",
+            "term-lo-title": "Building Licence (Licencia de Obras)",
+            "term-lo-desc": "The municipal building permit issued by the Ayuntamiento authorising the start of construction. Obtaining it typically takes 6–18 months in the Balearic Islands and requires prior approval of the Proyecto Básico.",
+            "term-icio-title": "Tax on Construction, Installations and Works",
+            "term-icio-desc": "A municipal tax levied on the PEM of any construction or renovation project. In most Balearic municipalities the ICIO rate is between 2.5% and 4% of the PEM. It is paid to the Ayuntamiento when the building licence is issued.",
+            "term-ch-title": "Certificate of Occupancy (Cédula de Habitabilidad)",
+            "term-ch-desc": "The official document issued by the Balearic Government confirming that a property meets all habitability standards. It is mandatory to obtain a utility supply contract and to legally occupy a new home.",
+            "term-lpo-title": "Land Use Plan (Plan de Ordenación Urbana)",
+            "term-lpo-desc": "The master planning instrument of each municipality that classifies land as urban, urbanisable, or protected rural (rústico). It determines maximum buildable area, plot coverage, height limits, and setbacks.",
+            "term-ns-title": "Property Register Extract (Nota Simple)",
+            "term-ns-desc": "A non-certified summary extract from the Spanish Property Registry showing the legal owner, plot boundaries, any mortgages, and registered encumbrances. Essential due-diligence document before any purchase or construction project.",
+            "term-itp-title": "Property Transfer Tax (ITP)",
+            "term-itp-desc": "The tax paid by the buyer on the acquisition of a second-hand (resale) property in Spain. In the Balearic Islands it is graduated from 8% to 13% depending on the purchase price. It does not apply to new-build properties, where IVA (VAT) applies instead.",
+
+            /* — Category 2: Construction & Structure — */
+            "term-est-title": "Load-Bearing Structure (Estructura)",
+            "term-est-desc": "The primary skeletal framework of a building that bears and transfers all vertical and horizontal loads to the foundations. In contemporary Mallorcan villas it typically consists of reinforced concrete pillars, beams, and flat slabs, often combined with traditional stone masonry walls.",
+            "term-cim-title": "Foundations (Cimentación)",
+            "term-cim-desc": "The underground structural elements that transfer building loads safely to the ground. Common types in the Balearics include spread footings, strip footings, and pile systems for rocky terrain. Foundation type is defined in the geotechnical study.",
+            "term-cerr-title": "Facade & Enclosure System (Cerramiento)",
+            "term-cerr-desc": "The external envelope system of a building, comprising exterior walls, cladding, thermal insulation, and window/door frames. In premium Mallorcan construction this often includes ventilated stone facades and high-performance aluminium joinery.",
+            "term-part-title": "Interior Partition Walls (Partición Interior)",
+            "term-part-desc": "Non-structural walls that divide the internal floor plan. They can be built from lightweight plasterboard systems (Pladur) or traditional single-leaf brick.",
+            "term-cub-title": "Roof / Flat Roof (Cubierta)",
+            "term-cub-desc": "The upper weatherproof envelope of a building. In modern Mallorcan villa design, flat roofs are predominant, often designed as usable terraces with stone or porcelain paving over a waterproof membrane and insulation layer.",
+            "term-geo-title": "Geotechnical Study (Estudio Geotécnico)",
+            "term-geo-desc": "A subsurface soil and rock investigation report required before designing foundations. It determines bearing capacity, water table depth, and rock type. In the Balearics, rocky calcareous terrain is common but can present irregular bearing conditions.",
+            "term-urb-title": "Plot Development Works (Urbanización)",
+            "term-urb-desc": "External infrastructure works required to connect a plot to municipal services: road access, water mains, sewer connections, and street lighting. In rural plots these connections often involve substantial additional cost not included in the main construction PEM.",
+
+            /* — Category 3: Installations & Technical Systems — */
+            "term-aero-title": "Air-Source Heat Pump (Aerotermia)",
+            "term-aero-desc": "A high-efficiency HVAC technology that extracts thermal energy from outdoor air to provide heating, cooling, and domestic hot water. With a COP of 3–5, it is the preferred sustainable climate system in new Mallorcan villas. Our calculator includes aerotermia as the default premium HVAC option.",
+            "term-sr-title": "Underfloor Heating (Suelo Radiante)",
+            "term-sr-desc": "A radiant heating system with a network of water pipes embedded in the floor screed, distributing heat uniformly. It works at low water temperatures (28–35 °C), making it highly compatible with heat pumps.",
+            "term-fv-title": "Photovoltaic Solar Panels (Instalación Fotovoltaica)",
+            "term-fv-desc": "A renewable electricity generation system using silicon panels to convert solar radiation into electricity. With over 300 days of sunshine per year, Mallorca offers excellent solar yield. Battery storage systems are increasingly paired with PV installations.",
+            "term-dom-title": "Smart Home / Home Automation (Domótica)",
+            "term-dom-desc": "An integrated building control system managing lighting, climate, security, blinds, and access control via a centralised interface. In premium Mallorcan villas, KNX and Control4 systems are commonly specified.",
+            "term-san-title": "Drainage & Sewage System (Saneamiento)",
+            "term-san-desc": "The network of pipes and connections that collect and evacuate waste water and rainwater to the municipal sewer network or, in rural plots, to a registered septic tank. Sizing is governed by the Spanish CTE-HS 5 technical building code.",
+            "term-ite-title": "Technical Building Inspection (ITE)",
+            "term-ite-desc": "A periodic mandatory inspection of existing buildings over 45 years old, assessing the structural condition of facades, roofs, and foundations. Required in the Balearic Islands before selling or renovating older properties.",
+            "term-ree-title": "Energy Efficiency Certificate (CEE)",
+            "term-ree-desc": "A mandatory official document that rates the energy performance of a building from A (most efficient) to G (least efficient). Required for all new constructions and for any property sale or rental in Spain.",
+
+            /* — Category 4: Finishes & Outdoor Spaces — */
+            "term-mc-title": "Microcement (Microcemento)",
+            "term-mc-desc": "A thin polymer-modified cementitious coating (2–3 mm) applied over existing substrates to achieve a seamless, continuous finish on floors and walls. Signature material in contemporary Mallorcan interior design for its minimalist aesthetic.",
+            "term-pes-title": "Dry Stone Masonry (Pedra en Sec)",
+            "term-pes-desc": "Traditional Mallorcan technique of constructing walls using local limestone without any mortar. A UNESCO Intangible Cultural Heritage technique, widely used in high-end rural villa projects. Premium execution can cost €250–€500 per linear metre.",
+            "term-pd-title": "Infinity Pool (Piscina Desbordante)",
+            "term-pd-desc": "A swimming pool design where water overflows over one or more edges into a hidden collection channel, creating the visual illusion of merging with the horizon. Iconic in luxury Mallorcan villa design for sea-view plots. An infinity edge adds approximately 25–40% to the pool budget.",
+            "term-sp-title": "Large-Format Porcelain Flooring (Solado Porcelánico)",
+            "term-sp-desc": "High-fired porcelain tile in formats of 60×60 cm to 120×120 cm or larger, used for interior and exterior flooring. Preferred for its durability and UV resistance in Mediterranean climates.",
+            "term-ce-title": "Exterior Joinery & Glazing (Carpintería Exterior)",
+            "term-ce-desc": "Windows, sliding doors, and fixed glazing frames. Premium Mallorcan specifications favour thermally broken aluminium frames with double or triple-pane low-emissivity glass. Large sliding systems are a hallmark of luxury villa design (€800–€1,500 per m² installed).",
+            "term-perg-title": "Pergola & Shade Structures (Pérgola)",
+            "term-perg-desc": "Freestanding or wall-attached outdoor structures providing shade and defining exterior living zones. Options range from timber pergolas to bioclimatic pergolas with motorised adjustable louvres.",
+            "term-pais-title": "Landscaping & Garden Design (Paisajismo)",
+            "term-pais-desc": "The design and implementation of exterior garden spaces, including irrigation systems, planting design, and hard landscaping. Mediterranean xeriscape design using drought-resistant native plants is increasingly preferred for sustainability.",
+            "term-ae-title": "Exterior Lighting (Alumbrado Exterior)",
+            "term-ae-desc": "An architectural outdoor lighting scheme integrating path lights, pool illumination, uplighting for trees and facades, and accent lighting for terraces. DALI or DMX-controlled LED systems integrated with the smart home are standard in high-quality specifications.",
+            "term-ap-title": "Premium Interior Finishes (Acabados Premium)",
+            "term-ap-desc": "High-end interior finishing specification encompassing natural stone cladding, bespoke joinery, solid wood flooring, designer sanitaryware, and custom kitchen cabinetry. Premium finishes can represent 20–35% of total project PEM.",
+            "term-etics-title": "External Thermal Insulation Composite System (ETICS / SATE)",
+            "term-etics-desc": "An external wall insulation system bonding rigid insulation boards to the structural wall, finished with a reinforced render coat. It eliminates thermal bridges and dramatically improves energy efficiency. Required in new constructions to meet the Spanish CTE-HE energy standard.",
+            "term-imp-title": "Waterproofing (Impermeabilización)",
+            "term-imp-desc": "Membranes, coatings, or sheet systems applied to flat roofs, pool shells, and wet rooms to prevent water infiltration. Flat roofs and outdoor terraces in Mallorca's climate require robust waterproofing systems with a guarantee of at least 10 years.",
+
+            /* — CTA & Footer — */
+            "gloss-cta-title": "Ready to estimate your villa?",
+            "gloss-cta-desc": "Use our parametric calculator to get an indicative construction budget for your Mallorca project in under 3 minutes.",
+            "gloss-cta-btn": "Open the Calculator →",
+            "footer-copy": "© 2025 MallorcaQuotes. Indicative estimates only. Not a contractual offer."
+        },
+
+        es: {
+            /* — Navegación — */
+            "nav-calc": "Calculadora",
+            "nav-inspiration": "Inspiración",
+            "nav-blog": "Blog",
+            "nav-glossary": "Glosario",
+            "nav-contact": "Contacto",
+
+            /* — Encabezado de página — */
+            "gloss-page-title": "Glosario de Construcción e Inmobiliaria",
+            "gloss-page-subtitle": "Referencia bilingüe de términos técnicos utilizados en construcción, arquitectura y compraventa de inmuebles en Mallorca y las Islas Baleares.",
+
+            /* — Encabezados de categoría — */
+            "cat-planning": "Planificación y Documentos Legales",
+            "cat-construction": "Construcción y Estructura",
+            "cat-installations": "Instalaciones y Sistemas Técnicos",
+            "cat-finishes": "Acabados y Espacios Exteriores",
+
+            /* — Categoría 1: Planificación y Legal — */
+            "term-pem-title": "Presupuesto de Ejecución Material",
+            "term-pem-desc": "El coste neto de construcción de un proyecto, sin IVA, honorarios profesionales ni tasas municipales. Es la cifra base que utilizan los arquitectos para calcular sus honorarios y el Ayuntamiento para determinar el ICIO. Todas las estimaciones paramétricas de MallorcaQuotes se basan en el PEM.",
+            "term-pb-title": "Proyecto Básico",
+            "term-pb-desc": "El primer documento arquitectónico formal presentado al Ayuntamiento para obtener la Licencia de Obras. Define la distribución general, volúmenes y cumplimiento urbanístico, pero aún no contiene todos los detalles estructurales o de ingeniería técnica.",
+            "term-pe-title": "Proyecto de Ejecución",
+            "term-pe-desc": "El documento técnico de construcción completo, elaborado tras la concesión de la licencia de obras. Incluye todas las especificaciones estructurales, eléctricas, de fontanería, aislamiento térmico y acabados necesarias para iniciar las obras.",
+            "term-lo-title": "Licencia de Obras",
+            "term-lo-desc": "El permiso municipal de construcción emitido por el Ayuntamiento que autoriza el inicio de las obras. Obtenerlo suele tardar entre 6 y 18 meses en las Islas Baleares y requiere la aprobación previa del Proyecto Básico.",
+            "term-icio-title": "Impuesto sobre Construcciones, Instalaciones y Obras",
+            "term-icio-desc": "Un impuesto municipal que grava el PEM de cualquier proyecto de construcción o reforma. En la mayoría de los municipios baleares, la tasa del ICIO oscila entre el 2,5% y el 4% del PEM. Se abona al Ayuntamiento en el momento de la concesión de la licencia de obras.",
+            "term-ch-title": "Cédula de Habitabilidad",
+            "term-ch-desc": "Documento oficial emitido por el Govern Balear que acredita que un inmueble cumple todos los estándares de habitabilidad. Es obligatoria para contratar los suministros (agua, luz, gas) y para ocupar legalmente una vivienda de nueva construcción.",
+            "term-lpo-title": "Plan de Ordenación Urbana (PGOU)",
+            "term-lpo-desc": "El instrumento de planificación urbanística de cada municipio que clasifica el suelo como urbano, urbanizable o rústico protegido. Determina la edificabilidad máxima, la ocupación de parcela, la altura máxima y los retranqueos.",
+            "term-ns-title": "Nota Simple Registral",
+            "term-ns-desc": "Extracto informativo del Registro de la Propiedad que indica el titular legal, descripción de la finca, hipotecas y cargas inscritas. Documento de diligencia debida indispensable antes de cualquier compra o proyecto de construcción.",
+            "term-itp-title": "Impuesto de Transmisiones Patrimoniales (ITP)",
+            "term-itp-desc": "Impuesto que paga el comprador en la adquisición de un inmueble de segunda mano en España. En las Islas Baleares es progresivo del 8% al 13% según el precio de compra. No se aplica a viviendas de nueva construcción, donde se abona IVA.",
+
+            /* — Categoría 2: Construcción y Estructura — */
+            "term-est-title": "Estructura Portante",
+            "term-est-desc": "El armazón principal de un edificio que soporta y transmite todas las cargas verticales y horizontales a los cimientos. En las villas mallorquinas contemporáneas suele consistir en pilares y forjados de hormigón armado, combinados con muros de mampostería de piedra tradicional.",
+            "term-cim-title": "Cimentación",
+            "term-cim-desc": "Los elementos estructurales subterráneos que transmiten las cargas del edificio al terreno. Los tipos más comunes en Baleares son zapatas aisladas, zapatas corridas y pilotes para terrenos rocosos o irregulares. El tipo de cimentación se define en el estudio geotécnico.",
+            "term-cerr-title": "Cerramiento Exterior",
+            "term-cerr-desc": "El sistema de envolvente exterior del edificio, compuesto por muros exteriores, revestimiento, aislamiento térmico y carpintería. En la construcción premium mallorquina incluye frecuentemente fachadas ventiladas de piedra de Santanyí y carpintería de aluminio de alto rendimiento.",
+            "term-part-title": "Partición Interior",
+            "term-part-desc": "Muros no estructurales que dividen la distribución interior. Pueden construirse con sistemas ligeros de pladur o con tabicón de ladrillo cerámico tradicional.",
+            "term-cub-title": "Cubierta Plana",
+            "term-cub-desc": "El cerramiento superior impermeable del edificio. En el diseño de villas mallorquinas modernas predominan las cubiertas planas, frecuentemente diseñadas como terrazas transitables con pavimento de piedra o porcelánico sobre lámina impermeabilizante y capa de aislamiento.",
+            "term-geo-title": "Estudio Geotécnico",
+            "term-geo-desc": "Informe de investigación del suelo y la roca necesario antes de diseñar la cimentación. Determina la capacidad portante, la profundidad del nivel freático y el tipo de roca. En Baleares es habitual el terreno calcáreo rocoso, que puede presentar condiciones de carga irregulares.",
+            "term-urb-title": "Obras de Urbanización",
+            "term-urb-desc": "Obras de infraestructura exterior para conectar una parcela a los servicios municipales: acceso rodado, red de agua, alcantarillado y alumbrado público. En parcelas rústicas estas conexiones suelen suponer un coste adicional significativo, no incluido en el PEM de la construcción principal.",
+
+            /* — Categoría 3: Instalaciones y Sistemas Técnicos — */
+            "term-aero-title": "Aerotermia (Bomba de Calor Aire-Agua)",
+            "term-aero-desc": "Tecnología de climatización de alta eficiencia que extrae energía térmica del aire exterior para proporcionar calefacción, refrigeración y agua caliente sanitaria. Con un COP de 3 a 5, es el sistema climático sostenible preferido en las nuevas villas mallorquinas. Nuestra calculadora incluye la aerotermia como opción HVAC premium por defecto.",
+            "term-sr-title": "Suelo Radiante",
+            "term-sr-desc": "Sistema de calefacción radiante con una red de tubos de agua embutidos en el mortero de nivelación del suelo, que distribuye el calor de forma uniforme. Trabaja a bajas temperaturas de impulsión (28–35 °C), lo que lo hace altamente compatible con bombas de calor.",
+            "term-fv-title": "Instalación Fotovoltaica",
+            "term-fv-desc": "Sistema de generación de energía eléctrica renovable mediante paneles de silicio que convierten la radiación solar en electricidad. Con más de 300 días de sol al año, Mallorca ofrece un rendimiento solar excelente. Los sistemas de almacenamiento en batería se combinan cada vez más con las instalaciones FV.",
+            "term-dom-title": "Domótica / Smart Home",
+            "term-dom-desc": "Sistema integrado de gestión del edificio que controla iluminación, climatización, seguridad, persianas y control de accesos desde una interfaz centralizada. En las villas mallorquinas premium, los sistemas KNX y Control4 son las especificaciones más habituales.",
+            "term-san-title": "Red de Saneamiento",
+            "term-san-desc": "La red de tuberías y conexiones que recoge y evacua las aguas residuales y pluviales hacia la red municipal de alcantarillado o, en parcelas rústicas, hacia una fosa séptica o planta de tratamiento registrada.",
+            "term-ite-title": "Inspección Técnica de Edificios (ITE)",
+            "term-ite-desc": "Inspección periódica obligatoria de edificios con más de 45 años, que evalúa el estado estructural de fachadas, cubiertas y cimientos. Obligatoria en las Islas Baleares antes de vender o reformar inmuebles más antiguos.",
+            "term-ree-title": "Certificado de Eficiencia Energética (CEE)",
+            "term-ree-desc": "Documento oficial obligatorio que califica el comportamiento energético de un edificio de la A (más eficiente) a la G (menos eficiente). Requerido en todas las nuevas construcciones y para cualquier venta o alquiler de inmuebles en España.",
+
+            /* — Categoría 4: Acabados y Espacios Exteriores — */
+            "term-mc-title": "Microcemento",
+            "term-mc-desc": "Revestimiento cementoso modificado con polímeros de escaso espesor (2–3 mm) que se aplica sobre sustratos existentes para obtener un acabado continuo y sin juntas en suelos y paredes. Material emblemático del diseño de interiores mallorquín contemporáneo por su estética minimalista.",
+            "term-pes-title": "Mampostería de Pedra en Sec",
+            "term-pes-desc": "Técnica constructiva tradicional mallorquina de muros y terrazas con piedra caliza local sin ningún mortero. Declarada Patrimonio Cultural Inmaterial de la Humanidad por la UNESCO, es ampliamente utilizada en villas rurales de lujo. La ejecución premium puede costar entre 250 y 500 € por metro lineal.",
+            "term-pd-title": "Piscina Desbordante (Infinity Pool)",
+            "term-pd-desc": "Diseño de piscina en el que el agua desborda por uno o más bordes hacia un canal de recogida oculto, creando la ilusión visual de fundirse con el horizonte. Icónica en el diseño de villas de lujo mallorquinas para parcelas con vistas al mar. El borde desbordante añade aproximadamente un 25–40% al presupuesto de la piscina.",
+            "term-sp-title": "Solado Porcelánico de Gran Formato",
+            "term-sp-desc": "Baldosa de gres porcelánico de alta cocción en formatos de 60×60 cm a 120×120 cm o losas mayores, para pavimentos interiores y exteriores. Preferido por su durabilidad, bajo mantenimiento y resistencia a los rayos UV en climas mediterráneos.",
+            "term-ce-title": "Carpintería Exterior y Acristalamiento",
+            "term-ce-desc": "Ventanas, puertas correderas y fijos de vidrio. Las especificaciones premium mallorquinas utilizan marcos de aluminio con rotura de puente térmico y vidrio bajo emisivo doble o triple. Los grandes sistemas deslizantes son un sello del diseño de villas de lujo (800–1.500 € por m² instalado).",
+            "term-perg-title": "Pérgola y Estructuras de Sombra",
+            "term-perg-desc": "Estructuras exteriores exentas o adosadas que proporcionan sombra y definen zonas de vida al aire libre. Las opciones van desde pérgolas de madera con vegetación hasta pérgolas bioclimáticas con lamas motorizadas orientables.",
+            "term-pais-title": "Paisajismo y Diseño de Jardín",
+            "term-pais-desc": "El diseño e implantación de los espacios de jardín exterior, incluyendo sistemas de riego, diseño de plantación y pavimentación exterior. El diseño xeriscaping mediterráneo con plantas autóctonas resistentes a la sequía es cada vez más demandado por su sostenibilidad.",
+            "term-ae-title": "Alumbrado Exterior",
+            "term-ae-desc": "Esquema de iluminación arquitectónica exterior que integra balizas de camino, iluminación de piscina, proyectores de árboles y fachadas, e iluminación de acento en terrazas. Los sistemas LED controlados por DALI o DMX, integrados con la domótica, son estándar en especificaciones de alta calidad.",
+            "term-ap-title": "Acabados Interiores Premium",
+            "term-ap-desc": "Especificación de acabados interiores de alta gama que incluye revestimientos de piedra natural (mármol, travertino), carpintería a medida, tarima de madera maciza o ingeniería, sanitarios de diseño y cocina de cabinetería personalizada. Los acabados premium pueden representar entre el 20% y el 35% del PEM total.",
+            "term-etics-title": "Sistema de Aislamiento Térmico por el Exterior (SATE / ETICS)",
+            "term-etics-desc": "Sistema de aislamiento por el exterior que adhiere placas rígidas de aislante (EPS o lana mineral) al muro estructural, acabado con una capa de mortero reforzado. Elimina los puentes térmicos y mejora drásticamente la eficiencia energética. Exigido en obras nuevas para cumplir el CTE-HE.",
+            "term-imp-title": "Impermeabilización",
+            "term-imp-desc": "Membranas, revestimientos o láminas aplicados en cubiertas planas, vasos de piscina y locales húmedos para evitar la infiltración de agua. Las cubiertas planas y terrazas exteriores en el clima de Mallorca requieren sistemas robustos con una garantía mínima de 10 años.",
+
+            /* — CTA y Pie de página — */
+            "gloss-cta-title": "¿Listo para estimar su villa?",
+            "gloss-cta-desc": "Utilice nuestra calculadora paramétrica para obtener un presupuesto de construcción orientativo para su proyecto en Mallorca en menos de 3 minutos.",
+            "gloss-cta-btn": "Abrir la Calculadora →",
+            "footer-copy": "© 2025 MallorcaQuotes. Estimaciones orientativas. No constituye oferta contractual."
+        },
+
+        de: {
+            /* — Navigation — */
+            "nav-calc": "Rechner",
+            "nav-inspiration": "Inspiration",
+            "nav-blog": "Blog",
+            "nav-glossary": "Glossar",
+            "nav-contact": "Kontakt",
+
+            /* — Seitenkopf — */
+            "gloss-page-title": "Bau- &amp; Immobilien-Glossar",
+            "gloss-page-subtitle": "Zweisprachige Referenz technischer Fachbegriffe aus den Bereichen Bauen, Architektur und Immobilienerwerb auf Mallorca und den Balearischen Inseln.",
+
+            /* — Kategorieüberschriften — */
+            "cat-planning": "Planung &amp; Rechtliche Dokumente",
+            "cat-construction": "Konstruktion &amp; Struktur",
+            "cat-installations": "Installationen &amp; Technische Systeme",
+            "cat-finishes": "Ausstattung &amp; Außenbereiche",
+
+            /* — Kategorie 1: Planung & Rechtliche Dokumente — */
+            "term-pem-title": "Budget für die Materialausführung (PEM)",
+            "term-pem-desc": "Die Nettobaukosten eines Projekts, ohne Mehrwertsteuer, Honorare und Kommunalsteuern. Dies ist die Basisgröße, die Architekten für die Berechnung ihrer Honorare und das Ayuntamiento für die Ermittlung der ICIO-Steuer verwenden. Alle parametrischen Schätzungen auf MallorcaQuotes basieren auf dem PEM.",
+            "term-pb-title": "Basisbauprojekt (Proyecto Básico)",
+            "term-pb-desc": "Das erste formale Architekturdokument, das beim Ayuntamiento eingereicht wird, um die Baugenehmigung zu erhalten. Es definiert den allgemeinen Grundriss, Volumina und Bebauungsplanung, enthält aber noch keine vollständigen Konstruktions- oder Technikdetails.",
+            "term-pe-title": "Ausführungsplanung (Proyecto de Ejecución)",
+            "term-pe-desc": "Das vollständige technische Baudokument nach Erteilung der Baugenehmigung. Es umfasst alle Spezifikationen für Statik, Elektro, Sanitär, Wärmedämmung und Ausbau, die zum Baubeginn erforderlich sind.",
+            "term-lo-title": "Baugenehmigung (Licencia de Obras)",
+            "term-lo-desc": "Die kommunale Baugenehmigung des Ayuntamiento, die den Baubeginn autorisiert. Auf den Balearen dauert die Erteilung in der Regel 6–18 Monate und erfordert die vorherige Genehmigung des Proyecto Básico.",
+            "term-icio-title": "Bausteuer (ICIO)",
+            "term-icio-desc": "Eine Kommunalsteuer, die auf den PEM jedes Bau- oder Renovierungsprojekts erhoben wird. In den meisten balearischen Gemeinden beträgt der ICIO-Satz zwischen 2,5 % und 4 % des PEM und wird bei Erteilung der Baugenehmigung fällig.",
+            "term-ch-title": "Bewohnbarkeitsbescheinigung (Cédula de Habitabilidad)",
+            "term-ch-desc": "Offizielle Bescheinigung der Balearenregierung, dass eine Immobilie alle Bewohnbarkeitsstandards erfüllt. Sie ist Voraussetzung für den Abschluss von Versorgungsverträgen und die legale Inbezugnahme eines Neubaus.",
+            "term-lpo-title": "Flächennutzungsplan (PGOU)",
+            "term-lpo-desc": "Das Stadtplanungsinstrument jeder Gemeinde, das Grundstücke als urban, erschließbar oder als geschütztes Rústico-Land klassifiziert. Er bestimmt die maximale Bebauungsfläche, Grundstücksauslastung, Gebäudehöhe und Grenzabstände.",
+            "term-ns-title": "Grundbuchauszug (Nota Simple)",
+            "term-ns-desc": "Ein nicht beglaubigter Registerauszug aus dem spanischen Grundbuch (Registro de la Propiedad), der Eigentümer, Grundstücksgrenzen, Hypotheken und eingetragene Lasten ausweist. Unverzichtbares Due-Diligence-Dokument vor jedem Kauf oder Bauprojekt.",
+            "term-itp-title": "Grunderwerbsteuer (ITP)",
+            "term-itp-desc": "Die vom Käufer beim Erwerb einer Gebrauchtimmobilie in Spanien zu zahlende Steuer. Auf den Balearen beträgt sie je nach Kaufpreis gestaffelt 8 % bis 13 %. Sie gilt nicht für Neubauten, bei denen stattdessen Mehrwertsteuer (IVA) anfällt.",
+
+            /* — Kategorie 2: Konstruktion & Struktur — */
+            "term-est-title": "Tragende Struktur (Estructura)",
+            "term-est-desc": "Das primäre Skelett eines Gebäudes, das alle vertikalen und horizontalen Lasten zu den Fundamenten überträgt. In modernen mallorquinischen Villen besteht es typischerweise aus Stahlbetonstützen, Unterzügen und Flachdecken, oft kombiniert mit traditionellem Steinmauerwerk.",
+            "term-cim-title": "Fundament (Cimentación)",
+            "term-cim-desc": "Die unterirdischen Bauteile, die Gebäudelasten sicher in den Baugrund einleiten. Auf den Balearen kommen häufig Einzelfundamente, Streifenfundamente und Pfahlsysteme für felsigen Untergrund zum Einsatz.",
+            "term-cerr-title": "Fassade & Gebäudehülle (Cerramiento)",
+            "term-cerr-desc": "Das Außenhüllensystem des Gebäudes aus Außenwänden, Verkleidung, Wärmedämmung und Fenstern/Türen. Im Premium-Bauwesen auf Mallorca sind hinterlüftete Steinfassaden (Santanyí-Kalkstein) und Hochleistungsaluminium-Fensterkonstruktionen typisch.",
+            "term-part-title": "Innenwände (Partición Interior)",
+            "term-part-desc": "Nicht tragende Wände zur Raumaufteilung. Sie können aus Gipskartonplatten (Pladur) oder traditionellem Ziegelmauerwerk gefertigt werden.",
+            "term-cub-title": "Flachdach (Cubierta Plana)",
+            "term-cub-desc": "Der obere Witterungsschutzabschluss eines Gebäudes. Im modernen mallorquinischen Villenbau dominieren Flachdächer, die oft als begehbare Terrassen mit Stein- oder Feinsteinzeug-Belag über Abdichtungsmembran und Dämmschicht ausgeführt werden.",
+            "term-geo-title": "Baugrunduntersuchung (Estudio Geotécnico)",
+            "term-geo-desc": "Bericht zur Untersuchung von Boden und Gestein vor der Fundamentplanung. Er bestimmt Tragfähigkeit, Grundwasserspiegel und Gesteinsart. Auf den Balearen ist kalksteiniger Felsboden häufig, kann aber unregelmäßige Tragbedingungen aufweisen.",
+            "term-urb-title": "Erschließungsarbeiten (Urbanización)",
+            "term-urb-desc": "Externe Infrastrukturarbeiten zum Anschluss eines Grundstücks an kommunale Versorgungsleitungen: Straßenzufahrt, Wasseranschluss, Kanalisation und Straßenbeleuchtung. Bei Rústico-Grundstücken auf Mallorca können diese Anschlüsse erhebliche Zusatzkosten verursachen.",
+
+            /* — Kategorie 3: Installationen & Technische Systeme — */
+            "term-aero-title": "Luft-Wasser-Wärmepumpe (Aerotermia)",
+            "term-aero-desc": "Hocheffiziente Klimatechnik, die thermische Energie aus der Außenluft gewinnt, um Heizung, Kühlung und Warmwasser bereitzustellen. Mit einem COP von 3–5 ist sie das bevorzugte nachhaltige Klimasystem in Neubauvillas auf Mallorca. Unser Rechner enthält Aerotermia als Standard-Premium-HVAC-Option.",
+            "term-sr-title": "Fußbodenheizung (Suelo Radiante)",
+            "term-sr-desc": "Strahlungsheizsystem mit einem Netz aus Wasserrohren im Estrich, das Wärme gleichmäßig über die gesamte Bodenfläche verteilt. Betrieb bei niedrigen Vorlauftemperaturen (28–35 °C) – ideal in Kombination mit Wärmepumpen.",
+            "term-fv-title": "Photovoltaikanlage",
+            "term-fv-desc": "Dezentrale Stromerzeugungsanlage aus Siliziummodulen, die Sonnenstrahlung in Strom umwandeln. Mit über 300 Sonnentagen pro Jahr bietet Mallorca hervorragenden Solarertrag. Batteriespeichersysteme werden zunehmend mit PV-Anlagen kombiniert.",
+            "term-dom-title": "Smart Home / Hausautomation (Domótica)",
+            "term-dom-desc": "Integriertes Gebäudesteuerungssystem für Beleuchtung, Klima, Sicherheit, Beschattung und Zugangskontrolle über eine zentrale Schnittstelle. In Premium-Villen auf Mallorca sind KNX und Control4 die gängigsten Systeme.",
+            "term-san-title": "Abwassersystem (Saneamiento)",
+            "term-san-desc": "Das Rohr- und Anschlussnetz zur Ableitung von Schmutz- und Regenwasser an das kommunale Kanalnetz oder bei Rústico-Grundstücken an eine registrierte Klärgrube. Die Dimensionierung richtet sich nach der spanischen Baunorm CTE-HS 5.",
+            "term-ite-title": "Technische Gebäudeinspektion (ITE)",
+            "term-ite-desc": "Periodische Pflichtinspektion für Gebäude über 45 Jahre, bei der der Strukturzustand von Fassaden, Dächern und Fundamenten bewertet wird. Auf den Balearen vor dem Verkauf oder der Renovierung älterer Immobilien erforderlich.",
+            "term-ree-title": "Energieausweis (Certificado de Eficiencia Energética)",
+            "term-ree-desc": "Offizielles Pflichtdokument, das die Energieeffizienz eines Gebäudes von A (effizienteste) bis G (ineffizienteste) bewertet. Für alle Neubauten sowie für jeglichen Immobilienverkauf oder -vermietung in Spanien erforderlich.",
+
+            /* — Kategorie 4: Ausstattung & Außenbereiche — */
+            "term-mc-title": "Mikrozement (Microcemento)",
+            "term-mc-desc": "Dünnschichtige polymermodifizierte Zementbeschichtung (2–3 mm) auf vorhandenen Untergründen für fugenlose Böden und Wände. Charaktermaterial im zeitgenössischen mallorquinischen Innendesign für seine minimalistische Ästhetik.",
+            "term-pes-title": "Trockensteinmauerwerk (Pedra en Sec)",
+            "term-pes-desc": "Traditionelle mallorquinische Bautechnik für Mauern und Terrassen aus heimischem Kalkstein ohne Mörtel. Von der UNESCO als immaterielles Kulturerbe anerkannt und weit verbreitet in Luxuslandhäusern. Premium-Ausführung kann 250–500 € pro Laufmeter kosten.",
+            "term-pd-title": "Infinity-Pool (Piscina Desbordante)",
+            "term-pd-desc": "Schwimmbaddesign, bei dem das Wasser über einen oder mehrere Rand(s) in einen versteckten Auffangkanal überläuft und so die visuelle Illusion schafft, mit dem Horizont zu verschmelzen. Ikonisch in Luxusvillen auf Mallorca mit Meeresblick. Ein Infinity-Rand erhöht das Poolbudget um ca. 25–40 %.",
+            "term-sp-title": "Großformatige Feinsteinzeugplatten (Solado Porcelánico)",
+            "term-sp-desc": "Hochgebrannte Feinsteinzeugfliesen in Formaten von 60×60 cm bis 120×120 cm oder größer, für Innen- und Außenböden. Bevorzugt wegen Langlebigkeit und UV-Beständigkeit im Mittelmeerklima.",
+            "term-ce-title": "Außenfenster & -türen (Carpintería Exterior)",
+            "term-ce-desc": "Fenster, Schiebetüren und feststehende Verglasungen. Premium-Ausführungen auf Mallorca bevorzugen Aluminiumrahmen mit Wärmedämmbrücke und Zweifach- oder Dreifachverglasung mit Niedrigemissionsglas. Große Schiebesysteme sind ein Markenzeichen von Luxusvillen (800–1.500 € pro m² eingebaut).",
+            "term-perg-title": "Pergola & Beschattungsanlagen (Pérgola)",
+            "term-perg-desc": "Freistehende oder wandmontierte Außenstrukturen, die Schatten spenden und Außenwohnbereiche definieren. Optionen reichen von Holzpergolen mit Kletterpflanzen bis zu bioklimatischen Pergolen mit motorisierten Lamellen.",
+            "term-pais-title": "Landschaftsgestaltung & Gartenplanung (Paisajismo)",
+            "term-pais-desc": "Planung und Anlage von Außengartenbereichen einschließlich Bewässerungssystemen, Bepflanzungskonzepten und Hartbelägen. Mediterranes Xeriscaping mit trockenresistenten heimischen Pflanzen ist aufgrund seiner Nachhaltigkeit zunehmend gefragt.",
+            "term-ae-title": "Außenbeleuchtung (Alumbrado Exterior)",
+            "term-ae-desc": "Architektonisches Außenbeleuchtungskonzept mit Wegeleuchten, Poolbeleuchtung, Anstrahlern für Bäume und Fassaden sowie Akzentlicht für Terrassen. DALI- oder DMX-gesteuerte LED-Systeme in die Hausautomation integriert sind bei hochwertigen Ausführungen Standard.",
+            "term-ap-title": "Premium-Innenausstattung (Acabados Premium)",
+            "term-ap-desc": "Hochwertige Innenausstattungsspezifikation mit Natursteinverkleidungen (Marmor, Travertin), Maßtischlerei, Massivholz- oder Ingenieurholzböden, Designsanitär und individuell gefertigter Kücheneinrichtung. Premium-Ausstattung kann 20–35 % des gesamten PEM ausmachen.",
+            "term-etics-title": "Wärmedämmverbundsystem (WDVS / ETICS)",
+            "term-etics-desc": "Außenwanddämmsystem, das Dämmplatten (EPS oder Mineralwolle) mit dem Tragwerk verklebt und mit einem armierten Putz abschließt. Eliminiert Wärmebrücken und verbessert die Energieeffizienz erheblich. In Neubauten gemäß spanischer Baunorm CTE-HE erforderlich.",
+            "term-imp-title": "Abdichtung (Impermeabilización)",
+            "term-imp-desc": "Membranen, Beschichtungen oder Bahnen für Flachdächer, Poolschalen und Nassbereiche zum Schutz vor Wassereintritt. Flachdächer und Außenterrassen im Mallorca-Klima erfordern robuste Abdichtungssysteme mit mindestens 10 Jahren Garantie.",
+
+            /* — CTA und Fußzeile — */
+            "gloss-cta-title": "Bereit, Ihre Villa zu kalkulieren?",
+            "gloss-cta-desc": "Nutzen Sie unseren parametrischen Rechner und erhalten Sie in unter 3 Minuten eine indikative Baukostenschätzung für Ihr Mallorca-Projekt.",
+            "gloss-cta-btn": "Rechner öffnen →",
+            "footer-copy": "© 2025 MallorcaQuotes. Nur Richtwerte. Kein verbindliches Angebot."
+        }
+    };
+
+    let currentLanguage = 'en';
+
+    function changeLanguage(lang) {
+        if (!dictionary[lang]) lang = 'en';
+        currentLanguage = lang;
+
+        // Update language button states
+        document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
+        const targetBtn = document.getElementById(`btn-lang-${lang}`);
+        if (targetBtn) targetBtn.classList.add('active');
+
+        // Translate all data-i18n elements
+        document.querySelectorAll('[data-i18n]').forEach(element => {
+            const key = element.getAttribute('data-i18n');
+            if (dictionary[lang] && dictionary[lang][key]) {
+                element.innerHTML = dictionary[lang][key];
+            }
+        });
+
+        // Translate placeholders
+        document.querySelectorAll('[data-i18n-ph]').forEach(element => {
+            const key = element.getAttribute('data-i18n-ph');
+            if (dictionary[lang] && dictionary[lang][key]) {
+                element.setAttribute('placeholder', dictionary[lang][key]);
+            }
+        });
+
+        // Persist preference and update html lang attribute
+        localStorage.setItem('mallorcaquotes-lang', lang);
+        document.documentElement.lang = lang;
+    }
+    window.changeLanguage = changeLanguage;
+
+    // Initialise on DOM load
+    document.addEventListener('DOMContentLoaded', () => {
+        const savedLang = localStorage.getItem('mallorcaquotes-lang') || 'en';
+        changeLanguage(savedLang);
+    });
+    </script>
+</body>
+</html>
