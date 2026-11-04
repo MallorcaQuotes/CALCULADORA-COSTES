@@ -312,6 +312,8 @@
         <a href="index.html" class="logo">MALLORCA<span>QUOTES</span></a>
         <nav class="seo-nav">
             <a href="index.html#calculator" data-i18n="nav-calc">Calculator</a>
+            <a href="index.html#audits" data-i18n="nav-audits">Site Audits</a>
+            <a href="index.html#about-us" data-i18n="nav-about">About Us</a>
             <a href="inspiration.html" data-i18n="nav-inspiration">Inspiration</a>
             <a href="blog.html" data-i18n="nav-blog">Blog</a>
             <a href="contact.html" class="active" style="color: var(--sand);" data-i18n="nav-contact">Contact</a>
@@ -447,6 +449,8 @@
     const dictionary = {
         en: {
             "nav-calc": "Calculator",
+            "nav-audits": "Site Audits",
+            "nav-about": "About Us",
             "nav-inspiration": "Inspiration",
             "nav-blog": "Blog",
             "nav-contact": "Contact",
@@ -482,6 +486,8 @@
         },
         es: {
             "nav-calc": "Calculadora",
+            "nav-audits": "Auditorías de Obra",
+            "nav-about": "Sobre Nosotros",
             "nav-inspiration": "Inspiración",
             "nav-blog": "Blog",
             "nav-contact": "Contacto",
@@ -517,6 +523,8 @@
         },
         de: {
             "nav-calc": "Rechner",
+            "nav-audits": "Bau-Audits",
+            "nav-about": "Über Uns",
             "nav-inspiration": "Inspiration",
             "nav-blog": "Blog",
             "nav-contact": "Kontakt",
@@ -642,6 +650,24 @@
     document.addEventListener('DOMContentLoaded', () => {
         const savedLang = localStorage.getItem('mallorcaquotes-lang') || 'en';
         changeLanguage(savedLang);
+
+        // Preselección si el usuario proviene de las tarjetas de Remote Site Audits
+        const urlParams = new URLSearchParams(window.location.search);
+        const planParam = urlParams.get('plan');
+        if (planParam) {
+            const planNames = {
+                'essential': 'Plan Essential (0.9%)',
+                'smart-control': 'Plan Smart Control (1.5% [Recommended])',
+                'full-oversight': 'Plan Full Oversight (2.3%)'
+            };
+            const planText = planNames[planParam] || planParam;
+            const notesEl = document.getElementById('project-notes');
+            if (notesEl && !notesEl.value) {
+                notesEl.value = (savedLang === 'es') ? `Interesado en contratar Remote Site Audits (Project Management): ${planText}.`
+                    : ((savedLang === 'de') ? `Interesse an Bau-Audits aus der Ferne (Projektmanagement): ${planText}.`
+                    : `Interested in Remote Site Audits (Project Management): ${planText}.`);
+            }
+        }
     });
     </script>
 </body>

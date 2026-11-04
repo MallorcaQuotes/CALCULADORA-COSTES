@@ -17,14 +17,22 @@
     <!-- Estilos de Diseño Mediterráneo Premium -->
     <style>
         :root {
-            --olive: #606c38;
+            --olive: #4d5722;
             --dark-olive: #283618;
             --cream: #fefae0;
-            --sand: #dda15e;
+            --sand: #c5863c;
             --earth: #bc6c25;
             --white: #ffffff;
-            --charcoal: #2b2d42;
-            --soft-grey: #8d99ae;
+            --charcoal: #212529;
+            --soft-grey: #475569; /* WCAG 2.1 AA / AAA compliant: > 7.0:1 contrast on white */
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        [id] {
+            scroll-margin-top: 100px;
         }
 
         body {
@@ -37,13 +45,18 @@
         }
 
         .premium-header {
+            position: sticky;
+            top: 0;
+            z-index: 100;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 1.5rem 2rem;
-            background-color: var(--white);
+            padding: 1.2rem 2rem;
+            background-color: rgba(255, 255, 255, 0.96);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
             border-bottom: 1px solid #f0ede6;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.03);
         }
 
         .logo {
@@ -57,12 +70,12 @@
 
         .logo span {
             font-weight: 300;
-            color: var(--sand);
+            color: var(--earth);
         }
 
         .seo-nav {
             display: flex;
-            gap: 2rem;
+            gap: 1.8rem;
         }
 
         .seo-nav a {
@@ -74,10 +87,10 @@
         }
 
         .seo-nav a:hover {
-            color: var(--sand);
+            color: var(--earth);
         }
 
-        @media (max-width: 680px) {
+        @media (max-width: 820px) {
             .premium-header {
                 flex-direction: column;
                 gap: 1rem;
@@ -85,7 +98,7 @@
                 text-align: center;
             }
             .seo-nav {
-                gap: 1.2rem;
+                gap: 1.1rem;
                 flex-wrap: wrap;
                 justify-content: center;
             }
@@ -98,7 +111,7 @@
 
         .lang-btn {
             background: none;
-            border: 1px solid var(--soft-grey);
+            border: 1px solid #94a3b8;
             padding: 0.4rem 0.8rem;
             font-size: 0.8rem;
             cursor: pointer;
@@ -115,18 +128,28 @@
         }
 
         .main-wrapper {
-            max-width: 800px;
-            margin: 3rem auto;
+            max-width: 980px;
+            margin: 2.5rem auto;
             padding: 2rem;
             background: var(--white);
-            border-radius: 8px;
+            border-radius: 10px;
             box-shadow: 0 4px 20px rgba(0,0,0,0.04);
             border: 1px solid #f0ede6;
         }
 
-        h1, h3, h4 {
+        @media (max-width: 600px) {
+            .main-wrapper {
+                margin: 1rem auto;
+                padding: 1.2rem;
+                border-radius: 0;
+                border: none;
+            }
+        }
+
+        h1, h2, h3, h4 {
             font-family: 'Playfair Display', Georgia, serif;
             margin-top: 0;
+            color: var(--dark-olive);
         }
 
         .form-group {
@@ -176,17 +199,19 @@
         .btn:disabled {
             opacity: 0.55;
             cursor: not-allowed;
-            background-color: var(--soft-grey) !important;
-            border-color: var(--soft-grey) !important;
+            background-color: #94a3b8 !important;
+            border-color: #94a3b8 !important;
         }
 
         .btn-secondary {
-            background-color: #e2e8f0;
-            color: var(--charcoal);
+            background-color: #f1f5f9;
+            color: #1e293b;
+            border: 1px solid #cbd5e1;
         }
 
         .btn-secondary:hover {
-            background-color: #cbd5e0;
+            background-color: #e2e8f0;
+            color: #0f172a;
         }
 
         .step-buttons {
@@ -209,7 +234,7 @@
             padding: 2rem;
             background-color: #faf9f6;
             border-left: 4px solid var(--sand);
-            border-radius: 4px;
+            border-radius: 6px;
         }
 
         .disclaimer {
@@ -217,6 +242,331 @@
             color: var(--soft-grey);
             margin-top: 1rem;
             line-height: 1.5;
+        }
+
+        .field-clarification {
+            display: block;
+            margin-top: 0.4rem;
+            font-size: 0.85rem;
+            color: var(--soft-grey);
+            line-height: 1.4;
+        }
+
+        .calc-form-container {
+            max-width: 760px;
+            margin: 0 auto;
+        }
+
+        /* ── SECTION HEADERS & BADGES ── */
+        .section-header {
+            text-align: center;
+            max-width: 760px;
+            margin: 0 auto 2rem;
+        }
+
+        .section-badge {
+            display: inline-block;
+            background-color: rgba(77, 87, 34, 0.12);
+            color: var(--dark-olive);
+            font-size: 0.8rem;
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            padding: 0.35rem 0.95rem;
+            border-radius: 20px;
+            margin-bottom: 0.8rem;
+        }
+
+        .section-header h2 {
+            font-size: 2rem;
+            color: var(--dark-olive);
+            margin: 0 0 0.8rem;
+        }
+
+        .section-lead {
+            font-size: 1.05rem;
+            color: var(--soft-grey);
+            line-height: 1.6;
+            margin: 0 0 1.5rem;
+        }
+
+        /* ── REMOTE SITE AUDITS (PROJECT MANAGEMENT) ── */
+        .audits-section {
+            margin: 4.5rem 0;
+            padding: 3rem 2rem;
+            background: #ffffff;
+            border-radius: 12px;
+            border: 1px solid #e8e5de;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.03);
+        }
+
+        .audits-live-calc {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.6rem;
+            background: #fbfaf7;
+            border: 1px solid var(--sand);
+            border-radius: 30px;
+            padding: 0.55rem 1.4rem;
+            font-size: 0.92rem;
+            color: var(--charcoal);
+            box-shadow: 0 2px 6px rgba(0,0,0,0.03);
+            margin-top: 0.5rem;
+        }
+
+        .audits-live-calc strong {
+            color: var(--earth);
+            font-size: 1.1rem;
+        }
+
+        .audits-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.8rem;
+            align-items: stretch;
+            margin-top: 2.5rem;
+        }
+
+        @media (max-width: 920px) {
+            .audits-grid {
+                grid-template-columns: 1fr;
+                max-width: 480px;
+                margin-left: auto;
+                margin-right: auto;
+            }
+            .audits-section {
+                padding: 2rem 1.2rem;
+            }
+        }
+
+        .audit-card {
+            background: #faf9f6;
+            border: 1px solid #e5e2da;
+            border-radius: 10px;
+            padding: 2.2rem 1.6rem;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+        }
+
+        .audit-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 24px rgba(0,0,0,0.06);
+            border-color: var(--sand);
+        }
+
+        .audit-card.featured {
+            background: #ffffff;
+            border: 2px solid var(--olive);
+            box-shadow: 0 10px 30px rgba(77, 87, 34, 0.12);
+            transform: scale(1.02);
+        }
+
+        .audit-card.featured:hover {
+            transform: scale(1.02) translateY(-4px);
+        }
+
+        .card-ribbon {
+            position: absolute;
+            top: -13px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--dark-olive);
+            color: var(--cream);
+            font-size: 0.75rem;
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            padding: 0.35rem 1.1rem;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(40, 54, 24, 0.25);
+            white-space: nowrap;
+        }
+
+        .card-header {
+            text-align: center;
+            border-bottom: 1px solid #e8e5de;
+            padding-bottom: 1.4rem;
+            margin-bottom: 1.4rem;
+        }
+
+        .card-title {
+            font-size: 1.3rem;
+            color: var(--dark-olive);
+            margin: 0 0 0.8rem;
+        }
+
+        .card-price {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.2rem;
+        }
+
+        .price-rate {
+            font-size: 2.3rem;
+            font-weight: 700;
+            color: var(--charcoal);
+            line-height: 1;
+        }
+
+        .card-price .price-basis {
+            font-size: 0.85rem;
+            color: var(--soft-grey);
+            font-weight: 500;
+        }
+
+        .card-est-fee {
+            margin-top: 0.8rem;
+            display: inline-block;
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--earth);
+            background: rgba(188, 108, 37, 0.08);
+            padding: 0.35rem 0.8rem;
+            border-radius: 6px;
+        }
+
+        .card-features {
+            list-style: none;
+            padding: 0;
+            margin: 0 0 1.6rem;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 0.85rem;
+        }
+
+        .card-features li {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.65rem;
+            font-size: 0.92rem;
+            color: var(--charcoal);
+            line-height: 1.45;
+        }
+
+        .feat-icon {
+            color: var(--olive);
+            font-weight: 700;
+            font-size: 1rem;
+            line-height: 1.3;
+            flex-shrink: 0;
+        }
+
+        .card-extension {
+            background: #f4f3ef;
+            border-left: 3px solid var(--sand);
+            padding: 0.7rem 0.85rem;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            color: #334155;
+            line-height: 1.45;
+            margin-bottom: 1.5rem;
+            display: flex;
+            gap: 0.5rem;
+            align-items: flex-start;
+        }
+
+        .card-extension p {
+            margin: 0;
+        }
+
+        .plan-btn {
+            text-align: center;
+            text-decoration: none;
+            display: block;
+            width: 100%;
+            box-sizing: border-box;
+            padding: 0.85rem 1rem;
+            font-size: 0.95rem;
+            font-weight: 600;
+            border-radius: 4px;
+            transition: all 0.25s ease;
+        }
+
+        /* ── ABOUT US SECTION (CORPORATIVA & ANÓNIMA) ── */
+        .about-section {
+            margin: 4.5rem 0 3.5rem;
+        }
+
+        .about-card {
+            background: #ffffff;
+            border: 1px solid #e8e5de;
+            border-left: 5px solid var(--dark-olive);
+            border-radius: 10px;
+            padding: 2.8rem 2.4rem;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.03);
+        }
+
+        .about-badge {
+            display: inline-block;
+            background: rgba(40, 54, 24, 0.08);
+            color: var(--dark-olive);
+            font-size: 0.78rem;
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            padding: 0.35rem 0.85rem;
+            border-radius: 4px;
+            margin-bottom: 0.8rem;
+        }
+
+        .about-card h2 {
+            font-size: 1.85rem;
+            color: var(--dark-olive);
+            margin: 0 0 1.2rem;
+        }
+
+        .about-lead {
+            font-size: 1.05rem;
+            line-height: 1.75;
+            color: var(--charcoal);
+            margin: 0 0 2rem;
+        }
+
+        .about-pillars {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+            margin-top: 2rem;
+            padding-top: 2rem;
+            border-top: 1px solid #f0ede6;
+        }
+
+        @media (max-width: 768px) {
+            .about-pillars {
+                grid-template-columns: 1fr;
+            }
+            .about-card {
+                padding: 2rem 1.4rem;
+            }
+        }
+
+        .about-pillar {
+            background: #faf9f6;
+            border: 1px solid #ece9e1;
+            border-radius: 8px;
+            padding: 1.3rem;
+        }
+
+        .pillar-icon {
+            font-size: 1.5rem;
+            margin-bottom: 0.4rem;
+        }
+
+        .pillar-title {
+            font-size: 1.05rem;
+            color: var(--dark-olive);
+            margin: 0 0 0.5rem;
+        }
+
+        .pillar-desc {
+            font-size: 0.88rem;
+            color: var(--soft-grey);
+            line-height: 1.5;
+            margin: 0;
         }
 
         /* ── FOOTER MINIMALISTA Y ELEGANTE ── */
@@ -276,7 +626,9 @@
     <header class="premium-header">
         <a href="index.html" class="logo">MALLORCA<span>QUOTES</span></a>
         <nav class="seo-nav">
-            <a href="index.html#calculator" data-i18n="nav-calc">Calculator</a>
+            <a href="#calculator" data-i18n="nav-calc">Calculator</a>
+            <a href="#audits" data-i18n="nav-audits">Site Audits</a>
+            <a href="#about-us" data-i18n="nav-about">About Us</a>
             <a href="inspiration.html" data-i18n="nav-inspiration">Inspiration</a>
             <a href="blog.html" data-i18n="nav-blog">Blog</a>
             <a href="contact.html" data-i18n="nav-contact">Contact</a>
@@ -288,59 +640,182 @@
         </div>
     </header>
 
-    <div class="main-wrapper" id="calculator">
-        <!-- INTRODUCCIÓN PREMIUM -->
-        <h1 style="text-align: center; margin-bottom: 0.5rem; font-size: 2.2rem;" data-i18n="main-title">Know the cost before you build</h1>
-        <p style="text-align: center; color: var(--soft-grey); margin-bottom: 3rem; font-size: 1.1rem;" data-i18n="main-subtitle">Get an indicative and premium cost estimate for building your new home in Mallorca.</p>
+    <!-- WRAPPER SEMÁNTICO PRINCIPAL DEL DOCUMENTO -->
+    <main id="main-content">
+        <div class="main-wrapper">
+            <!-- INTRODUCCIÓN PREMIUM -->
+            <header class="section-header" style="margin-bottom: 2.5rem;">
+                <h1 style="font-size: 2.3rem; margin-bottom: 0.6rem;" data-i18n="main-title">Know the cost before you build</h1>
+                <p class="section-lead" style="font-size: 1.1rem; margin-bottom: 0;" data-i18n="main-subtitle">Get an indicative and premium cost estimate for building your new home in Mallorca.</p>
+            </header>
 
-        <!-- ========================================== -->
-        <!-- 1. CALCULADORA RÁPIDA (SIN REGISTRO)      -->
-        <!-- ========================================== -->
-        <div class="quick-calculator-box" style="margin-bottom: 4rem; padding: 2rem; background-color: #faf9f6; border-radius: 6px; border: 1px solid #e2e8f0;">
-            <h3 style="margin-bottom: 1.5rem; border-bottom: 1px solid var(--sand); padding-bottom: 0.5rem; color: var(--dark-olive);" data-i18n="quick-title">1. Quick Calculator (No Registration)</h3>
-            
-            <div class="form-group">
-                <label for="quick-m2" data-i18n="lbl-quick-m2">Built-up Area (m²)</label>
-                <input type="number" id="quick-m2" value="160" min="40" max="1500" oninput="calculateQuickEstimate()">
-            </div>
+            <!-- ========================================== -->
+            <!-- 1. CALCULADORA RÁPIDA (SIN REGISTRO)      -->
+            <!-- ========================================== -->
+            <section id="calculator" class="quick-calculator-box calc-form-container" style="margin-bottom: 4rem; padding: 2rem; background-color: #faf9f6; border-radius: 8px; border: 1px solid #e2e8f0;" aria-labelledby="quick-title-heading">
+                <h2 id="quick-title-heading" style="margin-bottom: 1.5rem; border-bottom: 1px solid var(--sand); padding-bottom: 0.5rem; color: var(--dark-olive); font-size: 1.5rem;" data-i18n="quick-title">1. Quick Calculator (No Registration)</h2>
+                
+                <div class="form-group">
+                    <label for="quick-m2" data-i18n="lbl-quick-m2">Built-up Area (m²)</label>
+                    <input type="number" id="quick-m2" value="160" min="40" max="1500" oninput="calculateQuickEstimate()">
+                </div>
 
-            <div class="form-group">
-                <label for="quick-quality" data-i18n="lbl-quality">Quality Level</label>
-                <select id="quick-quality" onchange="calculateQuickEstimate()">
-                    <option value="medium" data-i18n="q-medium" selected>Medium Quality</option>
-                    <option value="basic" data-i18n="q-basic">Basic Quality</option>
-                    <option value="high" data-i18n="q-high">High Quality</option>
-                </select>
-            </div>
+                <div class="form-group">
+                    <label for="quick-quality" data-i18n="lbl-quality">Quality Level</label>
+                    <select id="quick-quality" onchange="calculateQuickEstimate()">
+                        <option value="medium" data-i18n="q-medium" selected>Medium Quality</option>
+                        <option value="basic" data-i18n="q-basic">Basic Quality</option>
+                        <option value="high" data-i18n="q-high">High Quality</option>
+                    </select>
+                </div>
 
-            <div class="form-group">
-                <label for="quick-pool" data-i18n="lbl-pool">Swimming Pool Size</label>
-                <select id="quick-pool" onchange="calculateQuickEstimate()">
-                    <option value="none" data-i18n="pool-none">No Pool</option>
-                    <option value="small" data-i18n="pool-small">Small Pool (10 m² sheet)</option>
-                    <option value="medium" data-i18n="pool-medium">Medium Pool (15 m² sheet)</option>
-                    <option value="large" data-i18n="pool-large" selected>Large Pool (20 m² sheet)</option>
-                    <option value="xlarge" data-i18n="pool-xlarge">Extra Large Pool (35 m² sheet)</option>
-                </select>
-            </div>
+                <div class="form-group">
+                    <label for="quick-pool" data-i18n="lbl-pool">Swimming Pool Size</label>
+                    <select id="quick-pool" onchange="calculateQuickEstimate()">
+                        <option value="none" data-i18n="pool-none">No Pool</option>
+                        <option value="small" data-i18n="pool-small">Small Pool (10 m² sheet)</option>
+                        <option value="medium" data-i18n="pool-medium">Medium Pool (15 m² sheet)</option>
+                        <option value="large" data-i18n="pool-large" selected>Large Pool (20 m² sheet)</option>
+                        <option value="xlarge" data-i18n="pool-xlarge">Extra Large Pool (35 m² sheet)</option>
+                    </select>
+                </div>
 
-            <div class="result-box" style="text-align: center; background: var(--white); border: 1px solid var(--sand);">
-                <h4 style="margin-bottom: 0.5rem; color: var(--charcoal);" data-i18n="quick-res-title">Estimated Construction Cost</h4>
-                <div class="price-range" id="quick-price-range" style="font-size: 1.8rem; font-weight: 700; color: var(--earth);">€0 - €0</div>
-                <p style="font-size: 0.85rem; color: var(--soft-grey); margin-top: 0.5rem; margin-bottom: 0;" data-i18n="quick-disclaimer">*An uncertainty range of ±5% is applied around the central estimate.</p>
-            </div>
-            
-            <p style="text-align: center; margin-top: 1.5rem; font-size: 0.95rem; color: var(--charcoal);" data-i18n="go-detailed">Want a more detailed estimate? Go to Detailed Calculator below</p>
-        </div>
+                <div class="result-box" style="text-align: center; background: var(--white); border: 1px solid var(--sand);">
+                    <h3 style="margin-bottom: 0.5rem; color: var(--charcoal); font-size: 1.2rem;" data-i18n="quick-res-title">Estimated Construction Cost</h3>
+                    <div class="price-range" id="quick-price-range" style="font-size: 1.85rem; font-weight: 700; color: var(--earth);">€0 - €0</div>
+                    <p style="font-size: 0.85rem; color: var(--soft-grey); margin-top: 0.5rem; margin-bottom: 0;" data-i18n="quick-disclaimer">*An uncertainty range of ±5% is applied around the central estimate.</p>
+                </div>
+                
+                <p style="text-align: center; margin-top: 1.5rem; font-size: 0.95rem; color: var(--charcoal);" data-i18n="go-detailed">Want a more detailed estimate? Go to Detailed Calculator below</p>
+            </section>
 
-        <!-- ========================================== -->
-        <!-- 2. ESTIMACIÓN DETALLADA POR PARTIDAS       -->
-        <!-- ========================================== -->
-        <h3 id="detailed-title-heading" style="margin-bottom: 2rem; color: var(--dark-olive);" data-i18n="detailed-title">2. Detailed Estimate by Items</h3>
-        
-        <!-- PASO 1: ESTRUCTURA DE LA PROPIEDAD -->
-        <div class="step-container active" id="step-1">
-            <h4 style="margin-bottom: 1.5rem; color: var(--soft-grey);" id="txt-s1-title" data-i18n="step1-title">Step 1 of 4: Property Structure</h4>
+            <!-- ========================================== -->
+            <!-- 2. NUEVA SECCIÓN: REMOTE SITE AUDITS       -->
+            <!-- ========================================== -->
+            <section id="audits" class="audits-section" aria-labelledby="audits-title-heading">
+                <div class="section-header">
+                    <span class="section-badge" data-i18n="audits-badge">Project Management & Quality Control</span>
+                    <h2 id="audits-title-heading" data-i18n="audits-title">Remote Site Audits (Project Management)</h2>
+                    <p class="section-lead" data-i18n="audits-subtitle">Independent technical site inspections and visual milestone audits for international homeowners building in Mallorca. Fixed percentage pricing over construction costs.</p>
+                    
+                    <div class="audits-live-calc">
+                        <span class="audits-live-icon">⚙️</span>
+                        <span data-i18n="audits-live-label">Projected PM fee based on current estimate:</span>
+                        <strong id="audits-reference-amount">€450,000</strong>
+                    </div>
+                </div>
+
+                <div class="audits-grid">
+                    <!-- PLAN ESSENTIAL -->
+                    <article class="audit-card">
+                        <div class="card-header">
+                            <h3 class="card-title" data-i18n="plan-essential-title">Plan Essential</h3>
+                            <div class="card-price">
+                                <span class="price-rate">0.9%</span>
+                                <span class="price-basis" data-i18n="plan-basis">of total construction cost</span>
+                            </div>
+                            <div class="card-est-fee" id="fee-essential">Est. €4,050 total (~€225/mo)</div>
+                        </div>
+                        <ul class="card-features">
+                            <li><span class="feat-icon">✓</span> <span data-i18n="feat-ess-1">Valid for a standard period of up to 18 months of construction.</span></li>
+                            <li><span class="feat-icon">✓</span> <span data-i18n="feat-ess-2">1 Visual site inspection visit every 2 months with photographic report sent via email.</span></li>
+                            <li><span class="feat-icon">✓</span> <span data-i18n="feat-ess-3">Exclusive email support and point of contact for report inquiries.</span></li>
+                        </ul>
+                        <div class="card-extension">
+                            <span>ℹ️</span>
+                            <p data-i18n="plan-time-clause">Option to contract additional coverage months if construction extends beyond the initial timeframe.</p>
+                        </div>
+                        <a href="contact.html?plan=essential" class="btn btn-secondary plan-btn" data-i18n="btn-plan-essential">Inquire Essential</a>
+                    </article>
+
+                    <!-- PLAN SMART CONTROL [RECOMMENDED] -->
+                    <article class="audit-card featured">
+                        <div class="card-ribbon" data-i18n="plan-badge-rec">Recommended</div>
+                        <div class="card-header">
+                            <h3 class="card-title" data-i18n="plan-smart-title">Plan Smart Control</h3>
+                            <div class="card-price">
+                                <span class="price-rate">1.5%</span>
+                                <span class="price-basis" data-i18n="plan-basis">of total construction cost</span>
+                            </div>
+                            <div class="card-est-fee" id="fee-smart">Est. €6,750 total (~€375/mo)</div>
+                        </div>
+                        <ul class="card-features">
+                            <li><span class="feat-icon">✓</span> <span data-i18n="feat-smart-1">Valid for a standard period of up to 18 months of construction.</span></li>
+                            <li><span class="feat-icon">✓</span> <span data-i18n="feat-smart-2">1 Visual site visit per month with detailed high-definition (HD) photos and videos of real progress.</span></li>
+                            <li><span class="feat-icon">✓</span> <span data-i18n="feat-smart-3">Visual schedule monitoring: Direct builder inquiry in case of noticeable deviations from the master timeline.</span></li>
+                            <li><span class="feat-icon">✓</span> <span data-i18n="feat-smart-4">Direct, agile communication channel via WhatsApp and Email to resolve your monthly queries.</span></li>
+                        </ul>
+                        <div class="card-extension">
+                            <span>ℹ️</span>
+                            <p data-i18n="plan-time-clause">Option to contract additional coverage months if construction extends beyond the initial timeframe.</p>
+                        </div>
+                        <a href="contact.html?plan=smart-control" class="btn plan-btn" data-i18n="btn-plan-smart">Select Smart Control</a>
+                    </article>
+
+                    <!-- PLAN FULL OVERSIGHT -->
+                    <article class="audit-card">
+                        <div class="card-header">
+                            <h3 class="card-title" data-i18n="plan-full-title">Plan Full Oversight</h3>
+                            <div class="card-price">
+                                <span class="price-rate">2.3%</span>
+                                <span class="price-basis" data-i18n="plan-basis">of total construction cost</span>
+                            </div>
+                            <div class="card-est-fee" id="fee-full">Est. €10,350 total (~€575/mo)</div>
+                        </div>
+                        <ul class="card-features">
+                            <li><span class="feat-icon">✓</span> <span data-i18n="feat-full-1">Valid for a standard period of up to 18 months of construction.</span></li>
+                            <li><span class="feat-icon">✓</span> <span data-i18n="feat-full-2">Visual site inspection visits every 15 days on the plot.</span></li>
+                            <li><span class="feat-icon">✓</span> <span data-i18n="feat-full-3">Bi-weekly technical report with photos, videos, and 1 monthly live video call directly from the job site.</span></li>
+                            <li><span class="feat-icon">✓</span> <span data-i18n="feat-full-4">Schedule management: Direct on-site communication and issue resolution with the general contractor.</span></li>
+                            <li><span class="feat-icon">✓</span> <span data-i18n="feat-full-5">Visual milestone audit before payments: Verification that real physical progress matches the contractor's monthly billing certification before you pay.</span></li>
+                        </ul>
+                        <div class="card-extension">
+                            <span>ℹ️</span>
+                            <p data-i18n="plan-time-clause">Option to contract additional coverage months if construction extends beyond the initial timeframe.</p>
+                        </div>
+                        <a href="contact.html?plan=full-oversight" class="btn btn-secondary plan-btn" data-i18n="btn-plan-full">Inquire Full Oversight</a>
+                    </article>
+                </div>
+            </section>
+
+            <!-- ========================================== -->
+            <!-- 3. NUEVA SECCIÓN: ABOUT US                 -->
+            <!-- ========================================== -->
+            <section id="about-us" class="about-section" aria-labelledby="about-title-heading">
+                <div class="about-card">
+                    <span class="about-badge" data-i18n="about-badge">Independent Advisory & Security Filter</span>
+                    <h2 id="about-title-heading" data-i18n="about-title">About MallorcaQuotes</h2>
+                    <p class="about-lead" data-i18n="about-text">MallorcaQuotes es una plataforma de consultoría independiente nacida para aportar transparencia al sector inmobiliario y de la construcción en Mallorca. Gracias a nuestra experiencia en el mercado inmobiliario local, sabemos que el mayor reto para un comprador internacional es la falta de claridad en los costes reales de edificación. No somos una constructora; somos tu filtro de seguridad. Recopilamos datos actualizados de ejecución para ofrecerte estimaciones paramétricas fiables. Si decides avanzar, nuestro equipo técnico traduce tu proyecto a mediciones reales y licita tu obra ante 3 constructoras locales homologadas para garantizarte el mejor precio y calidad del mercado.</p>
+                    
+                    <div class="about-pillars">
+                        <div class="about-pillar">
+                            <div class="pillar-icon">🛡️</div>
+                            <h3 class="pillar-title" data-i18n="pillar-1-title">100% Independent Security Filter</h3>
+                            <p class="pillar-desc" data-i18n="pillar-1-desc">We are not builders or brokers. We represent only your financial and quality interests as a buyer.</p>
+                        </div>
+                        <div class="about-pillar">
+                            <div class="pillar-icon">📊</div>
+                            <h3 class="pillar-title" data-i18n="pillar-2-title">Real Balearic Cost Database</h3>
+                            <p class="pillar-desc" data-i18n="pillar-2-desc">Unit costs calibrated quarterly against real ongoing builds and municipal regulations across the island.</p>
+                        </div>
+                        <div class="about-pillar">
+                            <div class="pillar-icon">⚖️</div>
+                            <h3 class="pillar-title" data-i18n="pillar-3-title">Competitive 3-Way Tendering</h3>
+                            <p class="pillar-desc" data-i18n="pillar-3-desc">We convert your design into precise bills of quantities and tender across 3 certified local builders for peak price and quality.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ========================================== -->
+            <!-- 4. ESTIMACIÓN DETALLADA POR PARTIDAS       -->
+            <!-- ========================================== -->
+            <div id="detailed-calculator" class="calc-form-container">
+                <h2 id="detailed-title-heading" style="margin-bottom: 2rem; color: var(--dark-olive); font-size: 1.6rem;" data-i18n="detailed-title">2. Detailed Estimate by Items</h2>
+                
+                <!-- PASO 1: ESTRUCTURA DE LA PROPIEDAD -->
+                <div class="step-container active" id="step-1">
+                    <h3 style="margin-bottom: 1.5rem; color: var(--soft-grey); font-size: 1.2rem;" id="txt-s1-title" data-i18n="step1-title">Step 1 of 4: Property Structure</h3>
             
             <div class="form-group">
                 <label for="has-plot" data-i18n="lbl-has-plot">Do you have a plot?</label>
@@ -399,7 +874,7 @@
 
         <!-- PASO 2: DISTRIBUCIÓN Y CALIDADES -->
         <div class="step-container" id="step-2">
-            <h4 style="margin-bottom: 1.5rem; color: var(--soft-grey);" id="txt-s2-title" data-i18n="step2-title">Step 2 of 4: Layout & Qualities</h4>
+            <h3 style="margin-bottom: 1.5rem; color: var(--soft-grey); font-size: 1.2rem;" id="txt-s2-title" data-i18n="step2-title">Step 2 of 4: Layout & Qualities</h3>
             
             <div class="form-group">
                 <label for="num-bedrooms" data-i18n="lbl-bedrooms">Number of Bedrooms</label>
@@ -439,7 +914,7 @@
 
         <!-- PASO 3: INSTALACIONES Y EXTERIORES -->
         <div class="step-container" id="step-3">
-            <h4 style="margin-bottom: 1.5rem; color: var(--soft-grey);" id="txt-s3-title" data-i18n="step3-title">Step 3 of 4: Facilities & Exteriors</h4>
+            <h3 style="margin-bottom: 1.5rem; color: var(--soft-grey); font-size: 1.2rem;" id="txt-s3-title" data-i18n="step3-title">Step 3 of 4: Facilities & Exteriors</h3>
             
             <div class="form-group">
                 <label for="hvac-system" data-i18n="lbl-hvac">Climate / HVAC System</label>
@@ -489,6 +964,7 @@
                     <option value="no" data-i18n="fees-no" selected>No (Material execution only)</option>
                     <option value="yes" data-i18n="fees-yes">Yes (Add architectural & tax estimates)</option>
                 </select>
+                <small class="field-clarification" data-i18n="fees-clarification">(Calculated as an estimate over the total building cost)</small>
             </div>
 
             <div class="step-buttons">
@@ -499,7 +975,7 @@
 
         <!-- PASO 4: FORMULARIO Y CONFIRMACIÓN ORIENTADO A PRESUPUESTO DETALLADO -->
         <div class="step-container" id="step-4">
-            <h4 style="margin-bottom: 1.5rem; color: var(--soft-grey);" id="txt-s4-title" data-i18n="txt-s4-title">Step 4 of 4: Custom Estimate Request</h4>
+            <h3 style="margin-bottom: 1.5rem; color: var(--soft-grey); font-size: 1.2rem;" id="txt-s4-title" data-i18n="txt-s4-title">Step 4 of 4: Custom Estimate Request</h3>
             <p style="color: var(--charcoal); font-size: 0.95rem; margin-bottom: 1.5rem; line-height: 1.6;" id="txt-s4-subtitle" data-i18n="step4-subtitle">Please confirm your contact details. Our team will process your parameters to prepare a detailed budget based on real Mallorca market costs.</p>
             
             <!-- FORMULARIO FORMSPREE CON CAPTURA OCULTA DE VARIABLES -->
@@ -580,13 +1056,15 @@
             
             <div style="background: var(--white); padding: 1.5rem; border-radius: 6px; border: 1px solid var(--sand); margin: 1rem 0;">
                 <strong style="color: var(--olive); font-size: 1.15rem; display: block;" id="txt-d-success" data-i18n="txt-d-success">Request successfully received!</strong>
-                <p style="font-size: 0.95rem; margin-top: 0.5rem; color: var(--charcoal); line-height: 1.6;" id="txt-d-explain" data-i18n="txt-d-explain">De acuerdo con nuestras políticas de validación premium, un responsable de nuestro equipo verificará las variables de construcción introducidas frente a los índices de mercado actuales en la isla de Mallorca. Su presupuesto detallado por partidas arquitectónicas será enviado a su correo electrónico en un plazo de 12 a 48 horas.</p>
+                <p style="font-size: 0.95rem; margin-top: 0.5rem; color: var(--charcoal); line-height: 1.6;" id="txt-d-explain" data-i18n="txt-d-explain">In accordance with our premium validation policies, a manager from our team will verify the construction variables entered against current market indices on the island of Mallorca. Your detailed architectural itemized estimate will be sent to your email within 12 to 48 hours.</p>
             </div>
             
             <p class="disclaimer" id="txt-d-disclaimer" data-i18n="txt-d-disclaimer"><strong>Indicative Legal Disclaimer:</strong> This estimate is based on parametric data provided by the user and average market values in Mallorca. It does not constitute a contractual offer or a final construction quotation.</p>
         </div>
 
-    </div> <!-- Cierre de main-wrapper -->
+            </div> <!-- Cierre de detailed-calculator (calc-form-container) -->
+        </div> <!-- Cierre de main-wrapper -->
+    </main> <!-- Cierre de main landmark -->
  
      <!-- FOOTER PREMIUM CON ENLACES LEGALES Y PRIVACIDAD -->
      <footer class="site-footer">
@@ -613,7 +1091,7 @@
         if (targetStep) {
             targetStep.style.display = 'block';
             const detailedHeading = document.getElementById('detailed-title-heading') || targetStep;
-            const headerOffset = 25;
+            const headerOffset = 90;
             const elementPosition = detailedHeading.getBoundingClientRect().top;
             const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
             window.scrollTo({
@@ -783,7 +1261,51 @@
         return Math.round(totalEstimatedCost);
     }
 
-    // 3. Calculadora Rápida en Vivo (Garantiza que nunca da €0 y actualiza con el nuevo coste de piscina)
+    // Helper para actualizar las proyecciones dinámicas de Remote Site Audits
+    function updateAuditProjections(buildTotal) {
+        const total = parseFloat(buildTotal) || 450000;
+        const numLocale = currentLanguage === 'es' ? 'es-ES' : (currentLanguage === 'de' ? 'de-DE' : 'en-US');
+
+        const refAmountEl = document.getElementById('audits-reference-amount');
+        if (refAmountEl) {
+            refAmountEl.innerText = `€${Math.round(total).toLocaleString(numLocale)}`;
+        }
+
+        // Essential: 0.9%
+        const feeEss = Math.round(total * 0.009);
+        const feeEssMo = Math.round(feeEss / 18);
+        const elEss = document.getElementById('fee-essential');
+        if (elEss) {
+            const text = currentLanguage === 'es' ? `Est. €${feeEss.toLocaleString(numLocale)} total (~€${feeEssMo.toLocaleString(numLocale)}/mes)`
+                : (currentLanguage === 'de' ? `Geschätzt €${feeEss.toLocaleString(numLocale)} gesamt (~€${feeEssMo.toLocaleString(numLocale)}/Monat)`
+                : `Est. €${feeEss.toLocaleString(numLocale)} total (~€${feeEssMo.toLocaleString(numLocale)}/mo)`);
+            elEss.innerText = text;
+        }
+
+        // Smart Control: 1.5%
+        const feeSmart = Math.round(total * 0.015);
+        const feeSmartMo = Math.round(feeSmart / 18);
+        const elSmart = document.getElementById('fee-smart');
+        if (elSmart) {
+            const text = currentLanguage === 'es' ? `Est. €${feeSmart.toLocaleString(numLocale)} total (~€${feeSmartMo.toLocaleString(numLocale)}/mes)`
+                : (currentLanguage === 'de' ? `Geschätzt €${feeSmart.toLocaleString(numLocale)} gesamt (~€${feeSmartMo.toLocaleString(numLocale)}/Monat)`
+                : `Est. €${feeSmart.toLocaleString(numLocale)} total (~€${feeSmartMo.toLocaleString(numLocale)}/mo)`);
+            elSmart.innerText = text;
+        }
+
+        // Full Oversight: 2.3%
+        const feeFull = Math.round(total * 0.023);
+        const feeFullMo = Math.round(feeFull / 18);
+        const elFull = document.getElementById('fee-full');
+        if (elFull) {
+            const text = currentLanguage === 'es' ? `Est. €${feeFull.toLocaleString(numLocale)} total (~€${feeFullMo.toLocaleString(numLocale)}/mes)`
+                : (currentLanguage === 'de' ? `Geschätzt €${feeFull.toLocaleString(numLocale)} gesamt (~€${feeFullMo.toLocaleString(numLocale)}/Monat)`
+                : `Est. €${feeFull.toLocaleString(numLocale)} total (~€${feeFullMo.toLocaleString(numLocale)}/mo)`);
+            elFull.innerText = text;
+        }
+    }
+
+    // 3. Calculadora Rápida en Vivo con Sincronización a Auditorías
     function calculateQuickEstimate() {
         const m2Input = document.getElementById('quick-m2');
         let m2 = parseFloat(m2Input ? m2Input.value : 160);
@@ -803,13 +1325,16 @@
         const rangeMax = Math.round(centralTotal * 1.05);
 
         const formatNumber = (num) => {
-            return num.toLocaleString('es-ES');
+            return num.toLocaleString(currentLanguage === 'es' ? 'es-ES' : (currentLanguage === 'de' ? 'de-DE' : 'en-US'));
         };
 
         const rangeBox = document.getElementById('quick-price-range');
         if (rangeBox) {
             rangeBox.innerText = `€${formatNumber(rangeMin)} – €${formatNumber(rangeMax)}`;
         }
+
+        // Sincronizar tarifas en vivo de Project Management
+        updateAuditProjections(centralTotal);
     }
 
     // MODIFICACIÓN 3: Control y Validación Estricta del Checkbox de Privacidad
@@ -1105,8 +1630,17 @@
             if (response.ok) {
                 document.getElementById('step-4').style.display = 'none';
                 const resultBox = document.getElementById('detailed-result');
-                resultBox.style.display = 'block';
-                const headerOffset = 25;
+                if (resultBox) {
+                    // Garantiza la traducción dinámica estricta según el idioma activo
+                    resultBox.querySelectorAll('[data-i18n]').forEach(el => {
+                        const key = el.getAttribute('data-i18n');
+                        if (dictionary[currentLanguage] && dictionary[currentLanguage][key]) {
+                            el.innerHTML = dictionary[currentLanguage][key];
+                        }
+                    });
+                    resultBox.style.display = 'block';
+                }
+                const headerOffset = 90;
                 const elementPosition = resultBox.getBoundingClientRect().top;
                 const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
                 window.scrollTo({
@@ -1133,6 +1667,8 @@
     const dictionary = {
         en: {
             "nav-calc": "Calculator",
+            "nav-audits": "Site Audits",
+            "nav-about": "About Us",
             "nav-inspiration": "Inspiration",
             "nav-blog": "Blog",
             "nav-contact": "Contact",
@@ -1147,6 +1683,40 @@
             "quick-res-title": "Estimated Construction Cost",
             "quick-disclaimer": "*An uncertainty range of ±5% is applied around the central estimate.",
             "go-detailed": "Want a more detailed estimate? Go to Detailed Calculator below",
+            "audits-badge": "Project Management & Quality Control",
+            "audits-title": "Remote Site Audits (Project Management)",
+            "audits-subtitle": "Independent technical site inspections and visual milestone audits for international homeowners building in Mallorca. Fixed percentage pricing over construction costs.",
+            "audits-live-label": "Projected PM fee based on current estimate:",
+            "plan-basis": "of total construction cost",
+            "plan-badge-rec": "Recommended",
+            "plan-time-clause": "Option to contract additional coverage months if construction extends beyond the initial timeframe.",
+            "plan-essential-title": "Plan Essential (0.9%)",
+            "feat-ess-1": "Valid for a standard period of up to 18 months of construction.",
+            "feat-ess-2": "1 Visual site inspection visit every 2 months with photographic report sent via email.",
+            "feat-ess-3": "Exclusive email support and point of contact for report inquiries.",
+            "btn-plan-essential": "Inquire Essential",
+            "plan-smart-title": "Plan Smart Control (1.5%)",
+            "feat-smart-1": "Valid for a standard period of up to 18 months of construction.",
+            "feat-smart-2": "1 Visual site visit per month with detailed high-definition (HD) photos and videos of real progress.",
+            "feat-smart-3": "Visual schedule monitoring: Direct builder inquiry in case of noticeable deviations from the master timeline.",
+            "feat-smart-4": "Direct, agile communication channel via WhatsApp and Email to resolve your monthly queries.",
+            "btn-plan-smart": "Select Smart Control",
+            "plan-full-title": "Plan Full Oversight (2.3%)",
+            "feat-full-1": "Valid for a standard period of up to 18 months of construction.",
+            "feat-full-2": "Visual site inspection visits every 15 days on the plot.",
+            "feat-full-3": "Bi-weekly technical report with photos, videos, and 1 monthly live video call directly from the job site.",
+            "feat-full-4": "Schedule management: Direct on-site communication and issue resolution with the general contractor.",
+            "feat-full-5": "Visual milestone audit before payments: Verification that real physical progress matches the contractor's monthly billing certification before you pay.",
+            "btn-plan-full": "Inquire Full Oversight",
+            "about-badge": "Independent Advisory & Security Filter",
+            "about-title": "About MallorcaQuotes",
+            "about-text": "MallorcaQuotes is an independent consultancy platform created to bring transparency to the real estate and construction sectors in Mallorca. Drawing on our in-depth experience in the local property market, we understand that the biggest challenge for international buyers is the lack of clarity regarding actual building costs. We are not a construction company; we are your independent security filter. We compile continuously updated execution data to provide you with reliable parametric estimates. Should you choose to proceed, our technical team converts your project into accurate bills of quantities and tenders your build among 3 certified local construction companies to guarantee you the best market price and execution quality.",
+            "pillar-1-title": "100% Independent Security Filter",
+            "pillar-1-desc": "We are not builders or brokers. We represent only your financial and quality interests as a buyer.",
+            "pillar-2-title": "Real Balearic Cost Database",
+            "pillar-2-desc": "Unit costs calibrated quarterly against real ongoing builds and municipal regulations across the island.",
+            "pillar-3-title": "Competitive 3-Way Tendering",
+            "pillar-3-desc": "We convert your design into precise bills of quantities and tender across 3 certified local builders for peak price and quality.",
             "detailed-title": "2. Detailed Estimate by Items",
             "step1-title": "Step 1 of 4: Property Structure",
             "lbl-has-plot": "Do you have a plot?",
@@ -1180,6 +1750,7 @@
             "lbl-fees": "Include Project, Architect & License Fees? (10% Extra)",
             "fees-no": "No (Material execution only)",
             "fees-yes": "Yes (Add architectural & tax estimates)",
+            "fees-clarification": "(Calculated as an estimate over the total building cost)",
             "btn-back": "Back",
             "btn-next": "Next Step",
             "btn-submit": "Request Detailed Estimate",
@@ -1205,6 +1776,8 @@
         },
         es: {
             "nav-calc": "Calculadora",
+            "nav-audits": "Auditorías de Obra",
+            "nav-about": "Sobre Nosotros",
             "nav-inspiration": "Inspiración",
             "nav-blog": "Blog",
             "nav-contact": "Contacto",
@@ -1219,6 +1792,40 @@
             "quick-res-title": "Coste de Construcción Estimado",
             "quick-disclaimer": "*Se aplica un rango de incertidumbre de ±5% alrededor de la estimación central.",
             "go-detailed": "¿Quieres una estimación más detallada? Ir a la Calculadora Detallada abajo",
+            "audits-badge": "Project Management & Control Técnico",
+            "audits-title": "Auditorías Remotas de Obra (Project Management)",
+            "audits-subtitle": "Tarifas de control visual y seguimiento de obra para propietarios internacionales en Mallorca. Porcentajes fijos sobre el coste total de construcción.",
+            "audits-live-label": "Honorarios estimados según su presupuesto calculado:",
+            "plan-basis": "del coste de construcción",
+            "plan-badge-rec": "Recomendado",
+            "plan-time-clause": "Posibilidad de contratar meses adicionales de cobertura en caso de que la obra se extienda más allá del plazo inicial.",
+            "plan-essential-title": "Plan Essential (0.9%)",
+            "feat-ess-1": "Válido para un periodo estándar de hasta 18 meses de construcción.",
+            "feat-ess-2": "1 Visita visual a la obra cada 2 meses con reporte fotográfico por correo electrónico.",
+            "feat-ess-3": "Soporte y contacto exclusivo a través de Correo Electrónico para dudas del reporte.",
+            "btn-plan-essential": "Consultar Essential",
+            "plan-smart-title": "Plan Smart Control (1.5%)",
+            "feat-smart-1": "Válido para un periodo estándar de hasta 18 meses de construcción.",
+            "feat-smart-2": "1 Visita visual a la obra cada mes con reportaje detallado de fotos y vídeos en alta definición (HD) de los avances reales.",
+            "feat-smart-3": "Seguimiento visual del calendario de obra: Consulta directa al constructor en caso de retrasos visibles sobre el plan original.",
+            "feat-smart-4": "Canal de comunicación directo y ágil vía WhatsApp y Email para resolver tus dudas mensuales.",
+            "btn-plan-smart": "Seleccionar Smart Control",
+            "plan-full-title": "Plan Full Oversight (2.3%)",
+            "feat-full-1": "Válido para un periodo estándar de hasta 18 meses de construcción.",
+            "feat-full-2": "Visitas visuales a la obra cada 15 días.",
+            "feat-full-3": "Reporte técnico quincenal con fotos, vídeos y una Videollamada mensual en directo desde la propia obra.",
+            "feat-full-4": "Gestión de plazos: Comunicación directa y resolución de dudas con el constructor en el terreno.",
+            "feat-full-5": "Control visual antes de pagos: Revisión de que el avance real coincida con la certificación mensual antes de pagar al constructor.",
+            "btn-plan-full": "Consultar Full Oversight",
+            "about-badge": "Consultoría Independiente & Filtro de Seguridad",
+            "about-title": "Sobre MallorcaQuotes",
+            "about-text": "MallorcaQuotes es una plataforma de consultoría independiente nacida para aportar transparencia al sector inmobiliario y de la construcción en Mallorca. Gracias a nuestra experiencia en el mercado inmobiliario local, sabemos que el mayor reto para un comprador internacional es la falta de claridad en los costes reales de edificación. No somos una constructora; somos tu filtro de seguridad. Recopilamos datos actualizados de ejecución para ofrecerte estimaciones paramétricas fiables. Si decides avanzar, nuestro equipo técnico traduce tu proyecto a mediciones reales y licita tu obra ante 3 constructoras locales homologadas para garantizarte el mejor precio y calidad del mercado.",
+            "pillar-1-title": "Filtro 100% Independiente",
+            "pillar-1-desc": "No somos una constructora ni cobramos comisiones de venta. Defendemos únicamente tus intereses como comprador.",
+            "pillar-2-title": "Datos Paramétricos Reales de Mallorca",
+            "pillar-2-desc": "Métricas calibradas trimestre a trimestre con obras y normativas vigentes en los 53 municipios de la isla.",
+            "pillar-3-title": "Licitación Tripartita Homologada",
+            "pillar-3-desc": "Traducimos tu proyecto a mediciones reales y licitamos ante 3 constructoras locales seleccionadas para asegurar el mejor precio.",
             "detailed-title": "2. Estimación Detallada por Partidas",
             "step1-title": "Paso 1 de 4: Estructura de la Propiedad",
             "lbl-has-plot": "¿Dispone de terreno?",
@@ -1253,6 +1860,7 @@
             "lbl-fees": "¿Incluir Tasas de Proyecto, Arquitecto y Licencia? (10% Extra)",
             "fees-no": "No (Solo ejecución material)",
             "fees-yes": "Sí (Añadir estimaciones arquitectónicas y tasas)",
+            "fees-clarification": "(Calculado como una estimación sobre el coste total de ejecución de la obra)",
             "btn-back": "Atrás",
             "btn-next": "Siguiente Paso",
             "btn-submit": "Solicitar Presupuesto Detallado",
@@ -1277,6 +1885,8 @@
         },
         de: {
             "nav-calc": "Rechner",
+            "nav-audits": "Bau-Audits",
+            "nav-about": "Über Uns",
             "nav-inspiration": "Inspiration",
             "nav-blog": "Blog",
             "nav-contact": "Kontakt",
@@ -1291,6 +1901,40 @@
             "quick-res-title": "Geschätzte Baukosten",
             "quick-disclaimer": "*Um die zentrale Schätzung wird eine Unsicherheitsspanne von ±5% angewandt.",
             "go-detailed": "Wünschen Sie eine detailliertere Schätzung? Gehen Sie unten zum detaillierten Rechner",
+            "audits-badge": "Projektmanagement & Qualitätskontrolle",
+            "audits-title": "Bau-Audits aus der Ferne (Projektmanagement)",
+            "audits-subtitle": "Visuelle Bauüberwachung und Fortschrittskontrolle für internationale Bauherren auf Mallorca. Feste Prozentsätze bezogen auf das gesamte Bauausführungsvolumen.",
+            "audits-live-label": "Geschätztes PM-Honorar basierend auf Ihrer Berechnung:",
+            "plan-basis": "der gesamten Baukosten",
+            "plan-badge-rec": "Empfohlen",
+            "plan-time-clause": "Möglichkeit zur Buchung zusätzlicher Betreuungsmonate, falls sich die Bauzeit über den ursprünglichen Zeitraum hinaus verlängert.",
+            "plan-essential-title": "Plan Essential (0.9%)",
+            "feat-ess-1": "Gültig für einen Standard-Bauzeitraum von bis zu 18 Monaten.",
+            "feat-ess-2": "1 visuelle Baustellenbegehung alle 2 Monate mit Fotoreport per E-Mail.",
+            "feat-ess-3": "Ausschließlicher E-Mail-Support für Fragen zum Prüfbericht.",
+            "btn-plan-essential": "Essential anfragen",
+            "plan-smart-title": "Plan Smart Control (1.5%)",
+            "feat-smart-1": "Gültig für einen Standard-Bauzeitraum von bis zu 18 Monaten.",
+            "feat-smart-2": "1 visuelle Baustellenbegehung pro Monat mit detailliertem HD-Foto- und Videobericht des Baufortschritts.",
+            "feat-smart-3": "Visuelle Bauzeitenkontrolle: Direkte Rücksprache mit dem Bauleiter bei sichtbaren Verzögerungen gegenüber dem Bauzeitenplan.",
+            "feat-smart-4": "Direkter und schneller Kommunikationskanal über WhatsApp und E-Mail für Ihre monatlichen Rückfragen.",
+            "btn-plan-smart": "Smart Control wählen",
+            "plan-full-title": "Plan Full Oversight (2.3%)",
+            "feat-full-1": "Gültig für einen Standard-Bauzeitraum von bis zu 18 Monaten.",
+            "feat-full-2": "Visuelle Baustellenbegehungen alle 14 Tage vor Ort.",
+            "feat-full-3": "Zweiwöchentlicher technischer Bericht mit Fotos und Videos sowie monatlicher Live-Videoanruf direkt von der Baustelle.",
+            "feat-full-4": "Terminmanagement: Direkte Kommunikation und Klärung von Rückfragen mit dem Bauunternehmen vor Ort.",
+            "feat-full-5": "Visuelle Prüfung vor Abschlagszahlungen: Überprüfung, ob der tatsächliche Baufortschritt mit der monatlichen Baufortschrittsrechnung übereinstimmt, bevor Zahlungen freigegeben werden.",
+            "btn-plan-full": "Full Oversight anfragen",
+            "about-badge": "Unabhängige Beratung & Sicherheitsfilter",
+            "about-title": "Über MallorcaQuotes",
+            "about-text": "MallorcaQuotes ist eine unabhängige Beratungsplattform, die gegründet wurde, um Transparenz in den Immobilien- und Bausektor auf Mallorca zu bringen. Aus unserer langjährigen Erfahrung auf dem lokalen Markt wissen wir, dass die größte Herausforderung für internationale Käufer die mangelnde Klarheit über die tatsächlichen Baukosten ist. Wir sind kein Bauunternehmen; wir sind Ihr Sicherheitsfilter. Wir erfassen aktuelle Ausführungsdaten, um Ihnen verlässliche parametrische Kostenschätzungen zu liefern. Wenn Sie Ihr Vorhaben verwirklichen möchten, übersetzt unser Fachteam Ihr Projekt in reale Leistungsverzeichnisse und schreibt Ihr Bauprojekt bei 3 geprüften lokalen Bauunternehmen aus, um Ihnen den besten Marktpreis und höchste Ausführungsqualität zu sichern.",
+            "pillar-1-title": "100% Unabhängiger Sicherheitsfilter",
+            "pillar-1-desc": "Wir sind kein Bauunternehmen und nehmen keine Vermittlungsprovisionen. Wir vertreten ausschließlich Ihre Interessen als Bauherr.",
+            "pillar-2-title": "Reale Kostendatenbank für Mallorca",
+            "pillar-2-desc": "Kostensätze vierteljährlich kalibriert anhand realer Neubauprojekte in den 53 Gemeinden der Insel.",
+            "pillar-3-title": "Ausschreibung bei 3 geprüften Baupartnern",
+            "pillar-3-desc": "Wir übersetzen Ihre Planung in ein exaktes Leistungsverzeichnis und holen 3 Vergleichsangebote geprüfter Bauunternehmen ein.",
             "detailed-title": "2. Detaillierte Schätzung nach Positionen",
             "step1-title": "Schritt 1 von 4: Immobilienstruktur",
             "lbl-has-plot": "Haben Sie ein Grundstück?",
@@ -1325,6 +1969,7 @@
             "lbl-fees": "Projekt-, Architekten- und Lizenzgebühren einbeziehen? (10% Extra)",
             "fees-no": "Nein (Nur Materialausführung)",
             "fees-yes": "Ja (Architektur- und Steuerschätzungen hinzufügen)",
+            "fees-clarification": "(Berechnet als Schätzung des gesamten Bauausführungsvolumens)",
             "btn-back": "Zurück",
             "btn-next": "Nächster Schritt",
             "btn-submit": "Detaillierten Kostenvoranschlag anfordern",
