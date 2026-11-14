@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import Script from 'next/script';
 import './globals.css';
 import { LanguageProvider } from '@/lib/i18n/context';
 import Header from '@/components/layout/Header';
@@ -57,6 +58,21 @@ export default function RootLayout({
   return (
     <html lang="en" className="scroll-smooth">
       <body className="min-h-screen flex flex-col bg-med-sand text-med-dark selection:bg-med-olive/20 selection:text-med-olive-dark antialiased font-sans">
+        {/* Google tag (gtag.js) */}
+        <Script
+          src="https://www.googletagmanager.com/gtag/js?id=G-QT2C8KESKH"
+          strategy="afterInteractive"
+        />
+        <Script id="google-analytics" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+
+            gtag('config', 'G-QT2C8KESKH');
+          `}
+        </Script>
+
         <LanguageProvider>
           <Header />
           <main className="flex-grow">{children}</main>
